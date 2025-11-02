@@ -1,59 +1,48 @@
-[gd_scene load_steps=3 format=3 uid="uid://bklubkulutqyb"]
+[gd_scene load_steps=5 format=3 uid="uid://bklubkulutqyb"]
 
-[ext_resource type="PackedScene" uid="uid://def43p88jt0ty" path="res://crowd_line.tscn" id="1_0xm2m"]
-[ext_resource type="PackedScene" uid="uid://carguwelo5gat" path="res://crowd_member.tscn" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://ddf65fgyd437n" path="res://main.gd" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://bubjsiara3vsa" path="res://mexican_wave_typing_game.tscn" id="2_0xm2m"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_0xm2m"]
+font_size = 48
+
+[sub_resource type="LabelSettings" id="LabelSettings_h2yge"]
+font_size = 32
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_ig7tw")
+mexican_wave_typing_game_scene = ExtResource("2_0xm2m")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_right = 1152.0
 offset_bottom = 648.0
-color = Color(0.4378049, 0.7202219, 0.58813035, 1)
+color = Color(0.2784314, 1, 0.59607846, 1)
 
-[node name="CrowdLine" parent="." node_paths=PackedStringArray("crowd_members") instance=ExtResource("1_0xm2m")]
-crowd_members = [NodePath("CrowdMember"), NodePath("CrowdMember2"), NodePath("CrowdMember3"), NodePath("CrowdMember4"), NodePath("CrowdMember5"), NodePath("CrowdMember6"), NodePath("CrowdMember7"), NodePath("CrowdMember8")]
-
-[node name="CrowdMember" parent="CrowdLine" instance=ExtResource("1_ig7tw")]
-position = Vector2(91, 359)
-letter = "G"
-
-[node name="CrowdMember2" parent="CrowdLine" instance=ExtResource("1_ig7tw")]
-position = Vector2(230, 360)
-letter = "o"
-
-[node name="CrowdMember3" parent="CrowdLine" instance=ExtResource("1_ig7tw")]
-position = Vector2(368, 361)
-letter = " "
-
-[node name="CrowdMember4" parent="CrowdLine" instance=ExtResource("1_ig7tw")]
-position = Vector2(506, 361)
-letter = "t"
-
-[node name="CrowdMember5" parent="CrowdLine" instance=ExtResource("1_ig7tw")]
-position = Vector2(642, 359)
-letter = "e"
-
-[node name="CrowdMember6" parent="CrowdLine" instance=ExtResource("1_ig7tw")]
-position = Vector2(789, 362)
-letter = "a"
-
-[node name="CrowdMember7" parent="CrowdLine" instance=ExtResource("1_ig7tw")]
-position = Vector2(928, 360)
-letter = "m"
-
-[node name="CrowdMember8" parent="CrowdLine" instance=ExtResource("1_ig7tw")]
-position = Vector2(1067, 360)
-letter = "!"
-
-[node name="ColorRect2" type="ColorRect" parent="."]
-offset_top = 403.0
+[node name="MarginContainer" type="CenterContainer" parent="."]
 offset_right = 1152.0
 offset_bottom = 648.0
-color = Color(0.46055228, 0.17966154, 4.813075e-08, 1)
 
-[node name="ColorRect2" type="ColorRect" parent="ColorRect2"]
-layout_mode = 0
-offset_top = -3.0
-offset_right = 1152.0
-offset_bottom = 36.0
-color = Color(0.31976697, 0.11668778, 1.2032687e-07, 1)
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "BATH BOMB BITCHES MAKE A 
+GAME ABOUT WAVES:"
+label_settings = SubResource("LabelSettings_0xm2m")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "PROTOTYPES"
+label_settings = SubResource("LabelSettings_h2yge")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Mexican Wave Typing Game"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]

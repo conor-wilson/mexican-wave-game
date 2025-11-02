@@ -38,6 +38,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			
 			if current_crowd_member_index+1 == len(crowd_members):
 				print("SUCCESS!")
+				current_crowd_member_index = -1
 				await get_tree().create_timer(0.3).timeout
 				reset()
 				execute_wave(0.1)
