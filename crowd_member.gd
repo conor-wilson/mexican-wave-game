@@ -9,6 +9,10 @@ var sitting_pos:Vector2
 const STANDING_DIFF:Vector2 = Vector2(0, -32)
 
 func _ready() -> void:
+	reset()
+
+func reset():
+	
 	label.text = letter
 	
 	if letter == " ":

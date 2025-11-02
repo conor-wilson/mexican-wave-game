@@ -4,19 +4,21 @@
 [ext_resource type="Texture2D" uid="uid://da3hlf8u7y4em" path="res://icon.svg" id="1_x46ac"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_k4c68"]
-font_size = 64
+font_size = 32
 
 [node name="CrowdMember" type="Node2D"]
 script = ExtResource("1_k4c68")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(9.536743e-07, 9.536743e-07)
+scale = Vector2(0.37499997, 0.37499997)
 texture = ExtResource("1_x46ac")
 
 [node name="Label" type="Label" parent="."]
-offset_left = -64.0
-offset_top = -167.0
-offset_right = 64.0
-offset_bottom = -64.0
+offset_left = -24.0
+offset_top = -69.0
+offset_right = 24.0
+offset_bottom = -24.0
 text = "L"
 label_settings = SubResource("LabelSettings_k4c68")
 horizontal_alignment = 1

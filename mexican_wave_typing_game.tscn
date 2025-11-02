@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://bubjsiara3vsa"]
+[gd_scene load_steps=2 format=3 uid="uid://bubjsiara3vsa"]
 
 [ext_resource type="PackedScene" uid="uid://def43p88jt0ty" path="res://crowd_line.tscn" id="1_yqivm"]
-[ext_resource type="PackedScene" uid="uid://carguwelo5gat" path="res://crowd_member.tscn" id="2_d7iiw"]
 
 [node name="MexicanWaveTypingGame" type="Node2D"]
 
@@ -10,40 +9,13 @@ offset_right = 1152.0
 offset_bottom = 648.0
 color = Color(0.4378049, 0.7202219, 0.58813035, 1)
 
-[node name="CrowdLine" parent="." node_paths=PackedStringArray("crowd_members") instance=ExtResource("1_yqivm")]
-crowd_members = [NodePath("CrowdMember"), NodePath("CrowdMember2"), NodePath("CrowdMember3"), NodePath("CrowdMember4"), NodePath("CrowdMember5"), NodePath("CrowdMember6"), NodePath("CrowdMember7"), NodePath("CrowdMember8")]
+[node name="CrowdLine" parent="." node_paths=PackedStringArray("first_crowd_member_marker") instance=ExtResource("1_yqivm")]
+phrase = "The quick brown fox!"
+spacing_between_crowd_members = 56
+first_crowd_member_marker = NodePath("FirstCrowdMemberPosition")
 
-[node name="CrowdMember" parent="CrowdLine" instance=ExtResource("2_d7iiw")]
-position = Vector2(91, 359)
-letter = "G"
-
-[node name="CrowdMember2" parent="CrowdLine" instance=ExtResource("2_d7iiw")]
-position = Vector2(230, 360)
-letter = "o"
-
-[node name="CrowdMember3" parent="CrowdLine" instance=ExtResource("2_d7iiw")]
-position = Vector2(368, 361)
-letter = " "
-
-[node name="CrowdMember4" parent="CrowdLine" instance=ExtResource("2_d7iiw")]
-position = Vector2(506, 361)
-letter = "t"
-
-[node name="CrowdMember5" parent="CrowdLine" instance=ExtResource("2_d7iiw")]
-position = Vector2(642, 359)
-letter = "e"
-
-[node name="CrowdMember6" parent="CrowdLine" instance=ExtResource("2_d7iiw")]
-position = Vector2(789, 362)
-letter = "a"
-
-[node name="CrowdMember7" parent="CrowdLine" instance=ExtResource("2_d7iiw")]
-position = Vector2(928, 360)
-letter = "m"
-
-[node name="CrowdMember8" parent="CrowdLine" instance=ExtResource("2_d7iiw")]
-position = Vector2(1067, 360)
-letter = "!"
+[node name="FirstCrowdMemberPosition" type="Marker2D" parent="CrowdLine"]
+position = Vector2(32, 84)
 
 [node name="ColorRect2" type="ColorRect" parent="."]
 offset_top = 403.0
