@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bq66k3la0er8b"]
+[gd_scene load_steps=16 format=3 uid="uid://bq66k3la0er8b"]
 
 [ext_resource type="Texture2D" uid="uid://fx8fcpsa30l3" path="res://assets/Enemies-Sheet.png" id="1_c57h8"]
 [ext_resource type="Script" uid="uid://c0yyrn5g4xhml" path="res://crab_game/crab_game.gd" id="1_her5s"]
@@ -208,6 +208,9 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_wmagh"]
 radius = 16.0
 
+[sub_resource type="LabelSettings" id="LabelSettings_jwypb"]
+font_size = 64
+
 [node name="CrabGame" type="Node2D"]
 script = ExtResource("1_her5s")
 
@@ -234,18 +237,50 @@ autoplay = "wave_animation"
 position = Vector2(576, 260)
 shape = SubResource("RectangleShape2D_7abox")
 
-[node name="Crab" type="CharacterBody2D" parent="."]
+[node name="CrabSpawnPoint" type="Marker2D" parent="."]
+position = Vector2(576, 64)
+
+[node name="Crab" type="CharacterBody2D" parent="." node_paths=PackedStringArray("spawn_point")]
 position = Vector2(112, 56)
 script = ExtResource("2_jwypb")
+spawn_point = NodePath("../CrabSpawnPoint")
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Crab"]
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_r4hym")
 autoplay = "default"
-frame_progress = 0.038852334
+frame_progress = 0.068098694
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Crab"]
 shape = SubResource("CircleShape2D_wmagh")
 
+[node name="LossScreen" type="ColorRect" parent="."]
+visible = false
+offset_left = 264.0
+offset_top = 128.0
+offset_right = 880.0
+offset_bottom = 504.0
+color = Color(0, 1, 1, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="LossScreen"]
+layout_mode = 0
+offset_right = 616.0
+offset_bottom = 376.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LossScreen/CenterContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="LossScreen/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "YOU LOSE :("
+label_settings = SubResource("LabelSettings_jwypb")
+
+[node name="RetryButton" type="Button" parent="LossScreen/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Retry"
+
 [connection signal="animation_finished" from="Water/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="body_entered" from="Water/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="pressed" from="LossScreen/CenterContainer/VBoxContainer/RetryButton" to="." method="_on_retry_button_pressed"]

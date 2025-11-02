@@ -1,10 +1,23 @@
-extends CharacterBody2D
+class_name Crab extends CharacterBody2D
 
 
 const SPEED = 300.0
 
+@export var spawn_point:Marker2D
+
+var active:bool = true
+
+
+
+func reset():
+	position = spawn_point.position
+	active = true
+	show()
 
 func _process(delta: float) -> void:
+	
+	if !active:
+		return
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -22,3 +35,8 @@ func _process(delta: float) -> void:
 	
 
 	move_and_slide()
+
+
+func die():
+	active = false
+	hide()
