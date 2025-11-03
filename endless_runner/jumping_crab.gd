@@ -1,4 +1,4 @@
-extends CharacterBody2D
+class_name JumpingCrab extends CharacterBody2D
 
 
 const SPEED = 500.0
@@ -23,3 +23,10 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	move_and_slide()
+
+func kill():
+	hide()
+
+
+func _on_back_button_pressed() -> void:
+	SceneSwitcher.queue_switch_scene(SceneSwitcher.main_scene)
