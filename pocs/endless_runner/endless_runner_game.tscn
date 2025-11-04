@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://qkxlgp53rnh"]
 
-[ext_resource type="PackedScene" uid="uid://b6gm6iqpmra38" path="res://endless_runner/jumping_crab.tscn" id="1_74bba"]
-[ext_resource type="Script" uid="uid://d2bv2q5f0vtoj" path="res://endless_runner/endless_runner_game.gd" id="1_n27rk"]
-[ext_resource type="PackedScene" uid="uid://qmyknk600nqy" path="res://endless_runner/rock.tscn" id="2_5t2nf"]
+[ext_resource type="PackedScene" uid="uid://b6gm6iqpmra38" path="res://pocs/endless_runner/jumping_crab.tscn" id="1_74bba"]
+[ext_resource type="Script" uid="uid://d2bv2q5f0vtoj" path="res://pocs/endless_runner/endless_runner_game.gd" id="1_n27rk"]
+[ext_resource type="PackedScene" uid="uid://qmyknk600nqy" path="res://pocs/endless_runner/rock.tscn" id="2_5t2nf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m1ade"]
 size = Vector2(1152, 136)

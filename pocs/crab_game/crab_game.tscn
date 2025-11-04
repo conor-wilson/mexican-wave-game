@@ -1,8 +1,8 @@
 [gd_scene load_steps=10 format=3 uid="uid://bq66k3la0er8b"]
 
-[ext_resource type="Script" uid="uid://c0yyrn5g4xhml" path="res://crab_game/crab_game.gd" id="1_her5s"]
-[ext_resource type="PackedScene" uid="uid://crpukwr6khuic" path="res://crab_game/crab.tscn" id="2_her5s"]
-[ext_resource type="PackedScene" uid="uid://qmyknk600nqy" path="res://endless_runner/rock.tscn" id="3_jwypb"]
+[ext_resource type="Script" uid="uid://c0yyrn5g4xhml" path="res://pocs/crab_game/crab_game.gd" id="1_her5s"]
+[ext_resource type="PackedScene" uid="uid://crpukwr6khuic" path="res://pocs/crab_game/crab.tscn" id="2_her5s"]
+[ext_resource type="PackedScene" uid="uid://qmyknk600nqy" path="res://pocs/endless_runner/rock.tscn" id="3_jwypb"]
 
 [sub_resource type="Animation" id="Animation_jwypb"]
 length = 0.001

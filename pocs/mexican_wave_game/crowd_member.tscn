@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://carguwelo5gat"]
 
-[ext_resource type="Script" uid="uid://b2osx2p1hwt0m" path="res://mexican_wave_game/crowd_member.gd" id="1_k4c68"]
+[ext_resource type="Script" uid="uid://b2osx2p1hwt0m" path="res://pocs/mexican_wave_game/crowd_member.gd" id="1_k4c68"]
 [ext_resource type="Texture2D" uid="uid://da3hlf8u7y4em" path="res://icon.svg" id="1_x46ac"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_k4c68"]

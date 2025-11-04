@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://crpukwr6khuic"]
 
-[ext_resource type="Texture2D" uid="uid://fx8fcpsa30l3" path="res://assets/Enemies-Sheet.png" id="1_7mysw"]
-[ext_resource type="Script" uid="uid://ba2id172aul0q" path="res://crab_game/crab.gd" id="1_iqrpm"]
+[ext_resource type="Texture2D" uid="uid://fx8fcpsa30l3" path="res://pocs/assets/Enemies-Sheet.png" id="1_7mysw"]
+[ext_resource type="Script" uid="uid://ba2id172aul0q" path="res://pocs/crab_game/crab.gd" id="1_iqrpm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_25fay"]
 atlas = ExtResource("1_7mysw")

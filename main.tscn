@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bklubkulutqyb"]
 
 [ext_resource type="Script" uid="uid://ddf65fgyd437n" path="res://main.gd" id="1_ig7tw"]
-[ext_resource type="PackedScene" uid="uid://bubjsiara3vsa" path="res://mexican_wave_game/mexican_wave_typing_game.tscn" id="2_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://bubjsiara3vsa" path="res://pocs/mexican_wave_game/mexican_wave_typing_game.tscn" id="2_0xm2m"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_0xm2m"]
 font_size = 48

@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://c1tniroajamab"]
 
-[ext_resource type="PackedScene" uid="uid://carguwelo5gat" path="res://mexican_wave_game/crowd_member.tscn" id="1_211w1"]
-[ext_resource type="Script" uid="uid://c3pemnx1sxoc1" path="res://ball_bounce_game/crowd_ball_spelling_game.gd" id="1_y44yc"]
-[ext_resource type="PackedScene" uid="uid://dprj1p17euegs" path="res://ball_bounce_game/ball.tscn" id="3_5o8hb"]
+[ext_resource type="PackedScene" uid="uid://carguwelo5gat" path="res://pocs/mexican_wave_game/crowd_member.tscn" id="1_211w1"]
+[ext_resource type="Script" uid="uid://c3pemnx1sxoc1" path="res://pocs/ball_bounce_game/crowd_ball_spelling_game.gd" id="1_y44yc"]
+[ext_resource type="PackedScene" uid="uid://dprj1p17euegs" path="res://pocs/ball_bounce_game/ball.tscn" id="3_5o8hb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5o8hb"]
 size = Vector2(256, 648)
