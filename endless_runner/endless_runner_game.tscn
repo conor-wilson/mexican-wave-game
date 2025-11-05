@@ -13,45 +13,65 @@ script = ExtResource("1_5t2nf")
 
 [node name="ScrollingBackground" parent="." instance=ExtResource("2_n27rk")]
 
-[node name="CrowdRow7" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("3_cl8m1")]
-scroll_scale = Vector2(0.62, 1)
+[node name="CrowdRows" type="Node2D" parent="."]
+
+[node name="CrowdRow9" parent="CrowdRows" node_paths=PackedStringArray("camera") instance=ExtResource("3_cl8m1")]
+scroll_scale = Vector2(0.65, 1)
+scroll_offset = Vector2(0, 56)
+camera = NodePath("../../Camera2D")
+num_crowd_members = 22
+
+[node name="CrowdRow7" parent="CrowdRows" node_paths=PackedStringArray("camera") instance=ExtResource("3_cl8m1")]
+scroll_scale = Vector2(0.65, 1)
 scroll_offset = Vector2(0, 88)
-camera = NodePath("../Camera2D")
+camera = NodePath("../../Camera2D")
+first_member_offset = 28.0
+num_crowd_members = 22
 
-[node name="CrowdRow8" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("3_cl8m1")]
-scroll_scale = Vector2(0.63, 1)
+[node name="CrowdRow8" parent="CrowdRows" node_paths=PackedStringArray("camera") instance=ExtResource("3_cl8m1")]
+scroll_scale = Vector2(0.65, 1)
 scroll_offset = Vector2(0, 120)
-camera = NodePath("../Camera2D")
+camera = NodePath("../../Camera2D")
+num_crowd_members = 22
 
-[node name="CrowdRow5" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("3_cl8m1")]
-scroll_scale = Vector2(0.64, 1)
+[node name="CrowdRow6" parent="CrowdRows" node_paths=PackedStringArray("camera") instance=ExtResource("3_cl8m1")]
+scroll_scale = Vector2(0.65, 1)
 scroll_offset = Vector2(0, 152)
-camera = NodePath("../Camera2D")
+camera = NodePath("../../Camera2D")
+first_member_offset = 28.0
+num_crowd_members = 22
 
-[node name="CrowdRow6" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("3_cl8m1")]
+[node name="CrowdRow5" parent="CrowdRows" node_paths=PackedStringArray("camera") instance=ExtResource("3_cl8m1")]
 scroll_scale = Vector2(0.65, 1)
 scroll_offset = Vector2(0, 184)
-camera = NodePath("../Camera2D")
+camera = NodePath("../../Camera2D")
+num_crowd_members = 22
 
-[node name="CrowdRow4" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("3_cl8m1")]
-scroll_scale = Vector2(0.66, 1)
+[node name="CrowdRow4" parent="CrowdRows" node_paths=PackedStringArray("camera") instance=ExtResource("3_cl8m1")]
+scroll_scale = Vector2(0.65, 1)
 scroll_offset = Vector2(0, 216)
-camera = NodePath("../Camera2D")
+camera = NodePath("../../Camera2D")
+first_member_offset = 28.0
+num_crowd_members = 22
 
-[node name="CrowdRow3" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("3_cl8m1")]
-scroll_scale = Vector2(0.67, 1)
+[node name="CrowdRow3" parent="CrowdRows" node_paths=PackedStringArray("camera") instance=ExtResource("3_cl8m1")]
+scroll_scale = Vector2(0.65, 1)
 scroll_offset = Vector2(0, 248)
-camera = NodePath("../Camera2D")
+camera = NodePath("../../Camera2D")
+num_crowd_members = 22
 
-[node name="CrowdRow2" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("3_cl8m1")]
-scroll_scale = Vector2(0.68, 1)
+[node name="CrowdRow2" parent="CrowdRows" node_paths=PackedStringArray("camera") instance=ExtResource("3_cl8m1")]
+scroll_scale = Vector2(0.65, 1)
 scroll_offset = Vector2(0, 280)
-camera = NodePath("../Camera2D")
+camera = NodePath("../../Camera2D")
+first_member_offset = 28.0
+num_crowd_members = 22
 
-[node name="CrowdRow1" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("3_cl8m1")]
-scroll_scale = Vector2(0.69, 1)
+[node name="CrowdRow1" parent="CrowdRows" node_paths=PackedStringArray("camera") instance=ExtResource("3_cl8m1")]
+scroll_scale = Vector2(0.65, 1)
 scroll_offset = Vector2(0, 312)
-camera = NodePath("../Camera2D")
+camera = NodePath("../../Camera2D")
+num_crowd_members = 22
 
 [node name="BackRails" type="Parallax2D" parent="."]
 scroll_scale = Vector2(0.7, 1)
