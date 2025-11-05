@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://qmyknk600nqy"]
 
-[ext_resource type="Script" uid="uid://cxqycuacbhylq" path="res://endless_runner/rock.gd" id="1_x4o5r"]
+[ext_resource type="Script" uid="uid://cxqycuacbhylq" path="res://pocs/endless_runner/rock.gd" id="1_x4o5r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4cdxc"]
 size = Vector2(128, 128)

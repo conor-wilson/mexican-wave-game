@@ -12,6 +12,5 @@ func _on_ball_bounce_game_pressed() -> void:
 func _on_crab_game_pressed() -> void:
 	SceneSwitcher.queue_switch_scene(SceneSwitcher.crab_game)
 
-
 func _on_endless_runner_game_pressed() -> void:
 	SceneSwitcher.queue_switch_scene(SceneSwitcher.endless_runner_game)

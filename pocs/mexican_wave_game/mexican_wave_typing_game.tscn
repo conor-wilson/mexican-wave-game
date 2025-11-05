@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://bubjsiara3vsa"]
 
-[ext_resource type="Script" uid="uid://3edx4sgh8mdf" path="res://mexican_wave_game/mexican_wave_typing_game.gd" id="1_d7iiw"]
-[ext_resource type="PackedScene" uid="uid://def43p88jt0ty" path="res://mexican_wave_game/crowd_line.tscn" id="1_yqivm"]
+[ext_resource type="Script" uid="uid://3edx4sgh8mdf" path="res://pocs/mexican_wave_game/mexican_wave_typing_game.gd" id="1_d7iiw"]
+[ext_resource type="PackedScene" uid="uid://def43p88jt0ty" path="res://pocs/mexican_wave_game/crowd_line.tscn" id="1_yqivm"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_yqivm"]
 font_size = 64
