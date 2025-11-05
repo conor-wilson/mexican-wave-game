@@ -1,0 +1,61 @@
+[gd_scene load_steps=7 format=3 uid="uid://bo6kiemh8lvuy"]
+
+[ext_resource type="Texture2D" uid="uid://denuexkmv7lvw" path="res://assets/StadiumBackWall.png" id="1_wpv6f"]
+[ext_resource type="Texture2D" uid="uid://jg8h5gp7b2h7" path="res://assets/StadiumBackRailings.png" id="2_btek7"]
+[ext_resource type="Texture2D" uid="uid://yb6wwp4i6kd7" path="res://assets/StadiumLowerWall.png" id="3_p6hfh"]
+[ext_resource type="PackedScene" uid="uid://carguwelo5gat" path="res://pocs/mexican_wave_game/crowd_member.tscn" id="4_btek7"]
+[ext_resource type="Texture2D" uid="uid://bhubk7qgbpjcc" path="res://assets/StadiumFrontRailings.png" id="4_x3gib"]
+[ext_resource type="Texture2D" uid="uid://24p8rwbj4rif" path="res://assets/StadiumPitch.png" id="5_8v4j0"]
+
+[node name="ScrollingBackground" type="Node2D"]
+
+[node name="Background" type="Parallax2D" parent="."]
+repeat_size = Vector2(1152, 0)
+
+[node name="ColorRect" type="ColorRect" parent="Background"]
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0.4117647, 0.41568628, 0.41568628, 1)
+
+[node name="BackWall" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.6, 1)
+repeat_size = Vector2(1152, 0)
+
+[node name="StadiumBackWall" type="Sprite2D" parent="BackWall"]
+position = Vector2(1152, 324)
+texture = ExtResource("1_wpv6f")
+
+[node name="BackRails" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.7, 1)
+repeat_size = Vector2(1152, 0)
+
+[node name="StadiumBackRailings" type="Sprite2D" parent="BackRails"]
+position = Vector2(1152, 324)
+texture = ExtResource("2_btek7")
+
+[node name="LowerWall" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.8, 1)
+repeat_size = Vector2(1152, 0)
+
+[node name="StadiumLowerWall" type="Sprite2D" parent="LowerWall"]
+position = Vector2(1152, 324)
+texture = ExtResource("3_p6hfh")
+
+[node name="CrowdMember" parent="LowerWall" instance=ExtResource("4_btek7")]
+position = Vector2(32, 488)
+
+[node name="LowerRails" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.8, 1)
+repeat_size = Vector2(1152, 0)
+
+[node name="StadiumFrontRailings" type="Sprite2D" parent="LowerRails"]
+position = Vector2(1152, 324)
+texture = ExtResource("4_x3gib")
+
+[node name="Pitch" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.9, 1)
+repeat_size = Vector2(1152, 0)
+
+[node name="StadiumPitch" type="Sprite2D" parent="Pitch"]
+position = Vector2(1152, 324)
+texture = ExtResource("5_8v4j0")
