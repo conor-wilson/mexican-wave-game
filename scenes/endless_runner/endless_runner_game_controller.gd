@@ -10,6 +10,7 @@ enum State {
 var state:State
 
 @onready var screen_view: EndlessRunnerScreenView = $ScreenView
+@onready var popups: EndlessRunnerPopups = $Popups
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -22,6 +23,7 @@ func reset(reuse_existing_crowd:bool = false) -> void:
 	
 	# Reset the visuals
 	screen_view.reset(sample_letter_queue, reuse_existing_crowd)
+	popups.reset()
 
 func start():
 	if state != State.READY:
@@ -32,6 +34,7 @@ func start():
 	
 	# Update the visuals
 	screen_view.start()
+	popups.show_go()
 
 func _process_correct_letter():
 	if state != State.READY && state != State.PLAYING:
@@ -50,17 +53,13 @@ func _process_loss():
 	
 	state = State.OVER
 	await get_tree().create_timer(1).timeout
-	screen_view.show_end_popup()
+	popups.show_game_over_menu()
 
 func _on_screen_view_loss() -> void:
 	if state != State.PLAYING:
 		return
 	
 	_process_loss()
-
-func _on_screen_view_retry() -> void:
-	reset(true)
-
 
 func _on_input_system_letter_input_received(letter_input:String) -> void:
 	if state != State.READY && state != State.PLAYING:
@@ -72,3 +71,6 @@ func _on_input_system_letter_input_received(letter_input:String) -> void:
 	# TODO:
 	#else:
 		#process_incorrect_letter(letter_input)
+
+func _on_popups_retry() -> void:
+	reset(true)

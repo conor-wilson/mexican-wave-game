@@ -1,12 +1,10 @@
 class_name EndlessRunnerScreenView extends Node2D # TODO: Should this extend an "interface"?
 
 signal loss
-signal retry
 
 const STARTING_CAMERA_SPEED:float = 200
 const CAMERA_ACCELERATION:float = 5
 
-@onready var end_screen: ColorRect = $GameCamera/EndScreen
 @onready var letter_row: EndlessRunnerRow = $LetterRow
 @onready var non_letter_rows: Array[EndlessRunnerRow] = [
 	$BackgroundRows/CrowdRow9, 
@@ -35,11 +33,6 @@ func reset(new_letter_queue:String, reuse_existing_crowd:bool = false) -> void:
 	letter_queue = new_letter_queue
 	letter_row.reset()
 	
-	# Reset the popups
-	$Ready.show()
-	$GO.hide()
-	end_screen.hide()
-	
 	# Reset the camera
 	game_camera.stop_auto_scrolling()
 
@@ -50,17 +43,8 @@ func reset(new_letter_queue:String, reuse_existing_crowd:bool = false) -> void:
 	#camera.position += Vector2(1,0)*delta*camera_speed
 
 func start() -> void:
-	
-	# Update the popups
-	$Ready.hide()
-	$GO.show()
-	$GO/BlinkTimer.start()
-	
 	# Update the camera
 	game_camera.start_auto_scrolling(Vector2.RIGHT, STARTING_CAMERA_SPEED, CAMERA_ACCELERATION)
-
-func show_end_popup():
-	end_screen.show()
 
 func get_next_letter() -> String:
 	return letter_row.get_next_person_in_wave().letter
@@ -75,12 +59,6 @@ func stand_up_next_person_column():
 	# Stand up all the people in line with that person
 	for crowd_row in non_letter_rows:
 		crowd_row.stand_up_next_person_in_wave()
-
-func _on_blink_timer_timeout() -> void:
-	$GO.hide()
-
-func _on_retry_button_pressed() -> void:
-	retry.emit()
 
 func _pop_letter_from_queue() -> String:
 	
