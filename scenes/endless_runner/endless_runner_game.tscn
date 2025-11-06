@@ -117,7 +117,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="Camera2D/EndScreen/CenterContainer/VBoxContainer"]
 layout_mode = 2
-text = "YOU LOSE :("
+text = "GAME OVER!"
 label_settings = SubResource("LabelSettings_04xik")
 
 [node name="RetryButton" type="Button" parent="Camera2D/EndScreen/CenterContainer/VBoxContainer"]
