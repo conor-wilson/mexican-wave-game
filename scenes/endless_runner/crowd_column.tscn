@@ -10,30 +10,39 @@ script = ExtResource("1_fyjm1")
 
 [node name="Person0" parent="People" instance=ExtResource("2_g1iyf")]
 position = Vector2(0, 56)
+has_sign = true
 
 [node name="Person1" parent="People" instance=ExtResource("2_g1iyf")]
 position = Vector2(24, 88)
+has_sign = true
 
 [node name="Person2" parent="People" instance=ExtResource("2_g1iyf")]
 position = Vector2(0, 120)
+has_sign = true
 
 [node name="Person3" parent="People" instance=ExtResource("2_g1iyf")]
 position = Vector2(24, 152)
+has_sign = true
 
 [node name="Person4" parent="People" instance=ExtResource("2_g1iyf")]
 position = Vector2(0, 184)
+has_sign = true
 
 [node name="Person5" parent="People" instance=ExtResource("2_g1iyf")]
 position = Vector2(24, 216)
+has_sign = true
 
 [node name="Person6" parent="People" instance=ExtResource("2_g1iyf")]
 position = Vector2(0, 248)
+has_sign = true
 
 [node name="Person7" parent="People" instance=ExtResource("2_g1iyf")]
 position = Vector2(24, 280)
+has_sign = true
 
 [node name="Person8" parent="People" instance=ExtResource("2_g1iyf")]
 position = Vector2(0, 312)
+has_sign = true
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(0, 56)

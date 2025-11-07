@@ -3,8 +3,7 @@ class_name Crowd extends Node2D
 signal new_column_spawned(CrowdColumn)
 signal column_exited_screen(CrowdColumn)
 
-# TODO: Clean this up before merging
-
+# TODO: Reintroduce this functionality?
 const GLOBAL_POS_X_TOLERANCE:float = 32
 
 @export var first_member_offset:float
@@ -12,9 +11,12 @@ const GLOBAL_POS_X_TOLERANCE:float = 32
 @export var spacing_between_crowd_columns:int = 48+8
 @export var num_columns:int = 5
 
+# TODO: The spawn_buffer is a bit of a jankey solution and is essentially the 
+# only non-modular piece of functionality in this file. We should find a better
+# implementation and remove it.
 var spawn_buffer:float = 0
 
-# Called when the node enters the scene tree for the first time.
+## Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	reset()
 
@@ -32,8 +34,10 @@ func reset():
 	for letter in range(0, num_columns):
 		spawn_new_column()
 
+## Spawns a new column to the right of the existing columns. Uses spawn_buffer 
+## to keep track of where the next column should be.
 func spawn_new_column() -> void:
-	# TODO: Add directionality here
+	# TODO: Right now, this always spawns to the right. Add option to spawn to the left?
 	
 	# Create the new column
 	var new_column = crowd_column_scene.instantiate() as CrowdColumn
@@ -48,6 +52,6 @@ func spawn_new_column() -> void:
 	# Signal that 
 	new_column_spawned.emit(new_column)
 
-
+## Triggered when a column exits the screen.
 func _on_crowd_column_exited_screen(column:CrowdColumn):
 	column_exited_screen.emit(column)

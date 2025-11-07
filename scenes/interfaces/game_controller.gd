@@ -11,14 +11,14 @@ enum State {
 }
 var state:State
 
-# Called when the node enters the scene tree for the first time.
+## Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	await setup()
+	await _setup()
 	reset()
 
 ## Sets up the modular components by waiting for them to be ready, and then
 ## connecting all their signals to the correct functions.
-func setup() -> void:
+func _setup() -> void:
 	await wait_for_ready_components()
 	connect_all_signals()
 
@@ -76,7 +76,7 @@ func connect_all_signals():
 	# Connect the Popup signals:
 	popups.retry.connect(_on_popups_retry)
 
-## Starts the EndlessRunner game
+## Starts the game.
 func start():
 	if state != State.READY:
 		return

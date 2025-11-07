@@ -1,7 +1,5 @@
 class_name Person extends Node2D
 
-signal exited_screen(Person)
-
 @onready var held_sign: ColorRect = $HeldSign
 @onready var held_sign_label: Label = $HeldSign/Label
 @onready var standup_timer: Timer = $StandupTimer
@@ -13,23 +11,21 @@ signal exited_screen(Person)
 var sitting_pos_y:float
 const STANDING_DIFF:float = -16
 
-
-# Called when the node enters the scene tree for the first time.
+## Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	_setup()
-	reset()
 
 ## Sets up the Person's initial state.
 func _setup():
+	
+	# Set up the state
 	sitting_pos_y = position.y
-
-# TODO: Remove this and just use the give_letter()/remove_letter() functions
-func reset():
-	if has_sign && letter != "" && letter != " ":
-		held_sign_label.text = letter
-		held_sign.show()
+	
+	# Set up the visuals
+	if has_sign:
+		give_letter(letter)
 	else:
-		held_sign.hide()
+		remove_sign()
 
 ## Gives the Person a sign holding the provided letter.
 func give_letter(new_letter:String) -> void:
