@@ -1,6 +1,7 @@
 class_name EndlessRunnerScreenView extends ScreenView
 
 const LETTER_ROW_INDEX:int = 5
+const FIRST_LETTER_COLUMN_INDEX:int = 4
 const STARTING_CAMERA_SPEED:float = 200
 const CAMERA_ACCELERATION:float = 5
 
@@ -34,13 +35,19 @@ func populate_letters(new_letter_queue:String) -> void:
 ## reusing them).
 func reset() -> void:
 	
-	# TODO: Fix the reset mechanic when restarting the game
-	
 	# Reset the crowd
 	wave_column_queue = []
 	crowd.reset()
 	
 	super.reset()
+
+## Restarts the game visuals, reusing any existing visual components (eg: reuses
+## existing crowd members)
+func restart() -> void:
+	var all_columns:Array[CrowdColumn] = crowd.get_sorted_columns()
+	for column in all_columns:
+		column.reset()
+	wave_column_queue = all_columns.slice(FIRST_LETTER_COLUMN_INDEX, all_columns.size())
 
 ## Starts the game visuals.
 func start() -> void:

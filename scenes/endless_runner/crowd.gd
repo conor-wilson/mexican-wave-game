@@ -52,6 +52,25 @@ func spawn_new_column() -> void:
 	# Signal that 
 	new_column_spawned.emit(new_column)
 
+
+## Returns the existing crowd columns as a sorted array (from the left of the
+## screen to the right of the screen).
+##
+## NOTE: This is quite a heavy computation, but it's only really used for
+## resetting things. If we end up using it a lot, let's look into storing the
+## columns in an array (although that brings with it its own challenges). 
+func get_sorted_columns() -> Array[CrowdColumn]:
+	var columns:Array[CrowdColumn] = []
+	for child in get_children():
+		if child is CrowdColumn:
+			columns.append(child)
+	
+	columns.sort_custom(_sort_columns_func)
+	return columns
+
+func _sort_columns_func(a:CrowdColumn, b:CrowdColumn) -> bool:
+	return a.position.x < b.position.x
+
 ## Triggered when a column exits the screen.
 func _on_crowd_column_exited_screen(column:CrowdColumn):
 	column_exited_screen.emit(column)
