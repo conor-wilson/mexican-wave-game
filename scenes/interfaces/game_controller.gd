@@ -86,7 +86,7 @@ func start():
 	
 	# Update the visuals
 	screen_view.start()
-	#popups.start()
+	popups.start()
 
 ## Triggered when the InputSystem signals that a letter input has been received.
 func _on_input_system_letter_input_received(letter_input:String) -> void:

@@ -8,10 +8,14 @@ font_size = 64
 [sub_resource type="LabelSettings" id="LabelSettings_onapr"]
 font_size = 64
 
-[node name="EndlessRunnerPopups" type="CanvasLayer"]
+[node name="EndlessRunnerPopups" type="CanvasLayer" node_paths=PackedStringArray("ready_screen", "hud", "game_over_menu", "game_over_menu_retry_button")]
 script = ExtResource("1_sqbng")
+ready_screen = NodePath("ReadyScreen")
+hud = NodePath("HUD")
+game_over_menu = NodePath("GameOverMenu")
+game_over_menu_retry_button = NodePath("GameOverMenu/CenterContainer/VBoxContainer/RetryButton")
 
-[node name="ScreenText" type="Label" parent="."]
+[node name="ReadyScreen" type="Label" parent="."]
 offset_right = 1152.0
 offset_bottom = 648.0
 text = "READY...."
@@ -19,9 +23,24 @@ label_settings = SubResource("LabelSettings_sqbng")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HideTimer" type="Timer" parent="ScreenText"]
+[node name="GoScreen" type="Label" parent="."]
+offset_right = 1152.0
+offset_bottom = 648.0
+text = "GO!!!"
+label_settings = SubResource("LabelSettings_sqbng")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HideTimer" type="Timer" parent="GoScreen"]
 wait_time = 0.5
 one_shot = true
+
+[node name="HUD" type="Label" parent="."]
+offset_right = 1152.0
+offset_bottom = 648.0
+label_settings = SubResource("LabelSettings_sqbng")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="GameOverMenu" type="ColorRect" parent="."]
 offset_left = 232.0
@@ -48,5 +67,5 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Retry"
 
-[connection signal="timeout" from="ScreenText/HideTimer" to="." method="_on_screen_text_hide_timer_timeout"]
+[connection signal="timeout" from="GoScreen/HideTimer" to="." method="_on_screen_text_hide_timer_timeout"]
 [connection signal="pressed" from="GameOverMenu/CenterContainer/VBoxContainer/RetryButton" to="." method="_on_retry_button_pressed"]
