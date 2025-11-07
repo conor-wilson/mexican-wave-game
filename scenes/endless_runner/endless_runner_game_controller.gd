@@ -17,6 +17,7 @@ func _process_letter_input(letter_input:String):
 	var next_person:Person = screen_view.get_next_person_in_wave()
 	if next_person == null:
 		push_error("ScreenView.get_next_person_in_wave() returned a null person")
+		return
 	if letter_input != next_person.letter:
 		# TODO: Handle the incorrect input here
 		return
