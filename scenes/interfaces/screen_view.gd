@@ -15,6 +15,12 @@ func reset() -> void:
 	# Reset the camera
 	game_camera.stop_auto_scrolling()
 
+## Restarts the game visuals, reusing any existing visual components (eg: reuses
+## existing crowd members)
+func restart() -> void:
+	# Reset the camera
+	game_camera.stop_auto_scrolling()
+
 ## Starts the game visuals.
 func start() -> void:
 	print_debug("start() function is unimplemented")

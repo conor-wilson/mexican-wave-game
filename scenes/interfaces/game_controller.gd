@@ -36,8 +36,13 @@ func reset() -> void:
 ## Restarts the game, reusing any existing visuals (eg: reuses existing crowd 
 ## members)
 func _restart() -> void:
-	# TODO
-	reset()
+	
+	# Reset the state
+	state = State.READY
+	
+	# Reset the visuals
+	screen_view.restart()
+	popups.reset()
 
 ## Checks to see if the modular components are ready. If they are not, the
 ## function waits until they are. Pushes errors if any of them are undefined.

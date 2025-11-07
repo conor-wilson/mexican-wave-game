@@ -14,6 +14,13 @@ signal exited_screen
 	$People/Person8,
 ]
 
+## Resets all the people in the column by sitting them down and removing their
+## signs.
+func reset():
+	for person in _people:
+		person.remove_sign()
+		person.sit_down()
+
 ## Returns the people in the column.
 func get_people() -> Array[Person]:
 	return _people

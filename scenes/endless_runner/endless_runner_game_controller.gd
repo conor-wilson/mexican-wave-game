@@ -8,6 +8,12 @@ func reset():
 	super.reset()
 	screen_view.populate_letters(sample_letter_queue)
 
+## Restarts the game, reusing any existing visuals (eg: reuses existing crowd 
+## members)
+func _restart() -> void:
+	super._restart()
+	screen_view.populate_letters(sample_letter_queue)
+
 ## Handles what happens when the game receives a letter input.
 func _process_letter_input(letter_input:String):
 	if state != State.READY && state != State.PLAYING:
