@@ -1,0 +1,24 @@
+[gd_scene load_steps=6 format=3 uid="uid://40fr54vxkknb"]
+
+[ext_resource type="PackedScene" uid="uid://cisneqfww647r" path="res://scenes/endless_runner/endless_runner_game_controller.tscn" id="1_q7adk"]
+[ext_resource type="PackedScene" uid="uid://cbsfelqtvbj2" path="res://scenes/endless_runner/endless_runner_screen_view.tscn" id="2_8vx36"]
+[ext_resource type="PackedScene" uid="uid://btv8ja7btrtx7" path="res://scenes/input_system.tscn" id="2_46c3i"]
+[ext_resource type="PackedScene" uid="uid://ogocgp6mobke" path="res://scenes/endless_runner/endless_runner_popups.tscn" id="3_46c3i"]
+[ext_resource type="PackedScene" uid="uid://bn7hl6e1ussx0" path="res://scenes/game_camera.tscn" id="4_04xik"]
+
+[node name="EndlessRunnerGame" type="Node2D"]
+
+[node name="EndlessRunnerGameController" parent="." node_paths=PackedStringArray("input_system", "screen_view", "popups") instance=ExtResource("1_q7adk")]
+input_system = NodePath("../InputSystem")
+screen_view = NodePath("../EndlessRunnerScreenView")
+popups = NodePath("../EndlessRunnerPopups")
+
+[node name="EndlessRunnerScreenView" parent="." node_paths=PackedStringArray("game_camera") instance=ExtResource("2_8vx36")]
+game_camera = NodePath("../GameCamera")
+
+[node name="EndlessRunnerPopups" parent="." instance=ExtResource("3_46c3i")]
+
+[node name="GameCamera" parent="." instance=ExtResource("4_04xik")]
+position = Vector2(576, 324)
+
+[node name="InputSystem" parent="." instance=ExtResource("2_46c3i")]

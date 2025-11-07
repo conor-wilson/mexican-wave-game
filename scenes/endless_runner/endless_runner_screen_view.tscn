@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cbsfelqtvbj2"]
+[gd_scene load_steps=8 format=3 uid="uid://cbsfelqtvbj2"]
 
 [ext_resource type="Script" uid="uid://b8o57ocny684l" path="res://scenes/endless_runner/endless_runner_screen_view.gd" id="1_cdxfl"]
 [ext_resource type="Texture2D" uid="uid://denuexkmv7lvw" path="res://assets/StadiumBackWall.png" id="2_yfp3g"]
@@ -7,7 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://bhubk7qgbpjcc" path="res://assets/StadiumFrontRailings.png" id="5_lnw58"]
 [ext_resource type="Texture2D" uid="uid://24p8rwbj4rif" path="res://assets/StadiumPitch.png" id="6_2xeil"]
 [ext_resource type="PackedScene" uid="uid://b4jfm050tml0n" path="res://scenes/endless_runner/endless_runner_row.tscn" id="7_lt3xr"]
-[ext_resource type="PackedScene" uid="uid://bn7hl6e1ussx0" path="res://scenes/game_camera.tscn" id="8_yfp3g"]
 
 [node name="EndlessRunnerScreenView" type="Node2D"]
 script = ExtResource("1_cdxfl")
@@ -130,9 +129,6 @@ repeat_size = Vector2(1152, 0)
 [node name="StadiumBackRailings" type="Sprite2D" parent="ScrollingForeground/BackRails"]
 position = Vector2(1152, 324)
 texture = ExtResource("3_6cmjg")
-
-[node name="GameCamera" parent="." instance=ExtResource("8_yfp3g")]
-position = Vector2(576, 324)
 
 [connection signal="person_exited_screen" from="BackgroundRows/CrowdRow9" to="." method="_on_row_person_exited_screen"]
 [connection signal="person_exited_screen" from="BackgroundRows/CrowdRow8" to="." method="_on_row_person_exited_screen"]

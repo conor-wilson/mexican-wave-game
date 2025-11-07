@@ -16,10 +16,10 @@ const CAMERA_ACCELERATION:float = 5
 	$ForegroundRows/CrowdRow2, 
 	$ForegroundRows/CrowdRow1,
 ]
-@onready var game_camera: GameCamera = $GameCamera
+@export var game_camera: GameCamera
 
 # TODO: Maybe this belongs in the game controller?
-@export var letter_queue:String
+var letter_queue:String
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
