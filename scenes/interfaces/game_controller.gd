@@ -1,121 +1,116 @@
-class_name GameController extends Node
+@abstract
+class_name GameController
+extends Node
 
-@export var input_system: InputSystem # TODO: Should this be a global class?
-@export var screen_view: ScreenView
-@export var popups: Popups
+@export var _input_system: InputSystem # TODO: Should this be a global class?
+@export var _screen_view: ScreenView
+@export var _popups: Popups
 
 enum State {
 	READY,
 	PLAYING,
 	GAMEOVER,
 }
-var state:State
+var _state:State
 
 ## Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	await _setup()
-	reset()
+	_reset()
 
 ## Sets up the modular components by waiting for them to be ready, and then
 ## connecting all their signals to the correct functions.
 func _setup() -> void:
-	await wait_for_ready_components()
-	connect_all_signals()
+	await _wait_for_ready_components()
+	_connect_all_signals()
 
 ## Resets the game to the very beginning state. Does not reuse any existing
 ## visuals (eg: deletes any existing crowd members instead of reusing them).
-func reset() -> void:
+func _reset() -> void:
 	
 	# Reset the state
-	state = State.READY
+	_state = State.READY
 	
 	# Reset the visuals
-	screen_view.reset()
-	popups.reset()
+	_screen_view.reset()
+	_popups.reset()
 
 ## Restarts the game, reusing any existing visuals (eg: reuses existing crowd 
 ## members)
 func _restart() -> void:
 	
 	# Reset the state
-	state = State.READY
+	_state = State.READY
 	
 	# Reset the visuals
-	screen_view.restart()
-	popups.reset()
+	_screen_view.restart()
+	_popups.reset()
 
 ## Checks to see if the modular components are ready. If they are not, the
 ## function waits until they are. Pushes errors if any of them are undefined.
-func wait_for_ready_components() -> void:
+func _wait_for_ready_components() -> void:
 	
 	# Connect the InputSystem signals
-	if input_system != null:
-		if !input_system.is_node_ready():
-			await input_system.ready
+	if _input_system != null:
+		if !_input_system.is_node_ready():
+			await _input_system.ready
 	else:
 		push_error("no InputSystem defined")
 	
 	# Connect the ScreenView signals
-	if screen_view != null:
-		if !screen_view.is_node_ready():
-			await screen_view.ready
+	if _screen_view != null:
+		if !_screen_view.is_node_ready():
+			await _screen_view.ready
 	else:
 		push_error("no ScreenView defined")
 	
 	# Connect the Popup signals:
-	if popups != null:
-		if !popups.is_node_ready():
-			await popups.ready
+	if _popups != null:
+		if !_popups.is_node_ready():
+			await _popups.ready
 	else:
 		push_error("no Popups defined")
 
 ## Connects all the signals from the modular components.
-func connect_all_signals():
+func _connect_all_signals():
 	
 	# Connect the InputSystem signals
-	input_system.letter_input_received.connect(_on_input_system_letter_input_received)
+	_input_system.letter_input_received.connect(_on_input_system_letter_input_received)
 
 	# Connect the ScreenView signals
-	screen_view.loss.connect(_on_screen_view_loss)
+	_screen_view.loss.connect(_on_screen_view_loss)
 	
 	# Connect the Popup signals:
-	popups.retry.connect(_on_popups_retry)
+	# None yet :)
 
 ## Starts the game.
-func start():
-	if state != State.READY:
+func _start():
+	if _state != State.READY:
 		return
 	
 	# Update the state
-	state = State.PLAYING
+	_state = State.PLAYING
 	
 	# Update the visuals
-	screen_view.start()
-	popups.start()
+	_screen_view.start()
+	_popups.start()
 
 ## Triggered when the InputSystem signals that a letter input has been received.
 func _on_input_system_letter_input_received(letter_input:String) -> void:
-	if state != State.READY && state != State.PLAYING:
+	if _state != State.READY && _state != State.PLAYING:
 		return
 	_process_letter_input(letter_input)
 
 ## Triggered when the ScreenView signals that a loss has occurred.
 func _on_screen_view_loss() -> void:
-	if state != State.PLAYING:
+	if _state != State.PLAYING:
 		return
 	_process_game_over()
 
-## Triggers when the the Popups signal that the player wants to retry.
-func _on_popups_retry() -> void:
-	# TODO: Should we check for state here? I kinda don't think so.
-	_restart()
-
 ## Handles what happens when the game receives a letter input.
-func _process_letter_input(_letter_input:String):
-	print_debug("_process_letter_input() function is unimplemented")
-	pass
+@abstract
+func _process_letter_input(_letter_input:String)
 
 ## Handles the game's game-over sequence.
-func _process_game_over():
-	print_debug("_process_game_over() function is unimplemented")
-	pass
+@abstract
+func _process_game_over()

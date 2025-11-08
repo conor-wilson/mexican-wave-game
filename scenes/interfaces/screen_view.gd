@@ -1,4 +1,6 @@
-class_name ScreenView extends Node
+@abstract
+class_name ScreenView
+extends Node
 
 signal loss
 
@@ -22,24 +24,18 @@ func restart() -> void:
 	game_camera.stop_auto_scrolling()
 
 ## Starts the game visuals.
-func start() -> void:
-	print_debug("start() function is unimplemented")
-	pass
+@abstract
+func start() -> void
 
 ## Populates the crowd with the provided letters (whatever that might mean for 
 ## this game mode)
-func populate_letters(new_letters:String):
-	print_debug("populate_letters() function is unimplemented")
-	pass
+@abstract
+func populate_letters(new_letters:String)
 
 ## Returns the central person in the next column of the wave.
-func get_next_person_in_wave() -> Person:
-	# TODO: Maybe there's a good generic way to implement this?
-	print_debug("get_next_person_in_wave() function is unimplemented")
-	return null
+@abstract
+func get_next_person_in_wave() -> Person
 
 ## Advances the wave by one column.
-func advance_wave():
-	# TODO: Maybe there's a good generic way to implement this?
-	print_debug("get_next_person_in_wave() function is unimplemented")
-	return null
+@abstract
+func advance_wave()

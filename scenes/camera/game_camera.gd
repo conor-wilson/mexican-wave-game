@@ -12,7 +12,7 @@ func _process(delta: float) -> void:
 		return
 	
 	if movement_accelleration != 0:
-		_update_speed(delta)
+		_increment_speed(delta)
 	
 	if movement_speed != 0 && movement_direction != Vector2.ZERO:
 		_move(delta)
@@ -35,7 +35,7 @@ func snap_to(new_pos:Vector2) -> void:
 
 ## Calculates new speed based on accelleration and delta time, and updates
 ## accordingly.
-func _update_speed(delta:float):
+func _increment_speed(delta:float):
 	movement_speed += movement_accelleration*delta
 
 ## Moves the camera's position based on speed and delta time.
