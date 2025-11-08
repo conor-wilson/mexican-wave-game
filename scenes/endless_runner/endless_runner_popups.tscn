@@ -9,11 +9,13 @@ font_size = 64
 [sub_resource type="LabelSettings" id="LabelSettings_onapr"]
 font_size = 64
 
-[node name="EndlessRunnerPopups" type="CanvasLayer" node_paths=PackedStringArray("ready_screen", "hud", "game_over_menu")]
+[node name="EndlessRunnerPopups" type="CanvasLayer" node_paths=PackedStringArray("_go_screen", "_go_screen_hide_timer", "_ready_screen", "_hud", "_game_over_menu")]
 script = ExtResource("1_sqbng")
-ready_screen = NodePath("ReadyScreen")
-hud = NodePath("HUD")
-game_over_menu = NodePath("GameOverMenu")
+_go_screen = NodePath("GoScreen")
+_go_screen_hide_timer = NodePath("GoScreen/HideTimer")
+_ready_screen = NodePath("ReadyScreen")
+_hud = NodePath("HUD")
+_game_over_menu = NodePath("GameOverMenu")
 
 [node name="ReadyScreen" type="Label" parent="."]
 offset_right = 1152.0
