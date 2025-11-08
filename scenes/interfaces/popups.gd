@@ -1,22 +1,13 @@
 class_name Popups extends CanvasLayer
 
-signal retry
-
 @export var ready_screen: Control
 @export var hud: Control
-@export var game_over_menu: Control
-@export var game_over_menu_retry_button: Button
+@export var game_over_menu: GameOverMenu
 
 ## Resets the popups to the start-of-game state
 func reset():
 	hide_all()
 	ready_screen.show()
-
-## Connects all the signals from the various popups.
-func connect_all_signals():
-	
-	# Connect the game-over menu signals
-	game_over_menu_retry_button.retry.connect(_on_retry_button_pressed)
 
 ## Hides all the popups.
 func hide_all():
@@ -40,10 +31,6 @@ func show_hud():
 	hud.show()
 
 ## Shows the game-over menu.
-func show_game_over_menu():
+func show_game_over_menu(retry_button_functionality:Callable):
 	hide_all()
-	game_over_menu.show()
-
-## Triggers when the game-over menu's retry button is pressed.
-func _on_retry_button_pressed() -> void:
-	retry.emit()
+	game_over_menu.open_popup(retry_button_functionality)

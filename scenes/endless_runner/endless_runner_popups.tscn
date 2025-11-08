@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://ogocgp6mobke"]
+[gd_scene load_steps=5 format=3 uid="uid://ogocgp6mobke"]
 
 [ext_resource type="Script" uid="uid://cubpfrr44642v" path="res://scenes/endless_runner/endless_runner_popups.gd" id="1_sqbng"]
+[ext_resource type="Script" uid="uid://3ugbv7d5ldc" path="res://scenes/ui/game_over_menu.gd" id="2_yywdt"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_sqbng"]
 font_size = 64
@@ -8,12 +9,11 @@ font_size = 64
 [sub_resource type="LabelSettings" id="LabelSettings_onapr"]
 font_size = 64
 
-[node name="EndlessRunnerPopups" type="CanvasLayer" node_paths=PackedStringArray("ready_screen", "hud", "game_over_menu", "game_over_menu_retry_button")]
+[node name="EndlessRunnerPopups" type="CanvasLayer" node_paths=PackedStringArray("ready_screen", "hud", "game_over_menu")]
 script = ExtResource("1_sqbng")
 ready_screen = NodePath("ReadyScreen")
 hud = NodePath("HUD")
 game_over_menu = NodePath("GameOverMenu")
-game_over_menu_retry_button = NodePath("GameOverMenu/CenterContainer/VBoxContainer/RetryButton")
 
 [node name="ReadyScreen" type="Label" parent="."]
 offset_right = 1152.0
@@ -42,12 +42,14 @@ label_settings = SubResource("LabelSettings_sqbng")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="GameOverMenu" type="ColorRect" parent="."]
+[node name="GameOverMenu" type="ColorRect" parent="." node_paths=PackedStringArray("_retry_button")]
 offset_left = 232.0
 offset_top = 128.0
 offset_right = 848.0
 offset_bottom = 504.0
 color = Color(0, 1, 1, 1)
+script = ExtResource("2_yywdt")
+_retry_button = NodePath("CenterContainer/VBoxContainer/RetryButton")
 
 [node name="CenterContainer" type="CenterContainer" parent="GameOverMenu"]
 layout_mode = 0
@@ -68,4 +70,3 @@ theme_override_font_sizes/font_size = 32
 text = "Retry"
 
 [connection signal="timeout" from="GoScreen/HideTimer" to="." method="_on_screen_text_hide_timer_timeout"]
-[connection signal="pressed" from="GameOverMenu/CenterContainer/VBoxContainer/RetryButton" to="." method="_on_retry_button_pressed"]

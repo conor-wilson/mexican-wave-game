@@ -42,4 +42,4 @@ func _process_game_over():
 	
 	state = State.GAMEOVER
 	await get_tree().create_timer(1).timeout
-	popups.show_game_over_menu()
+	popups.show_game_over_menu(_restart)

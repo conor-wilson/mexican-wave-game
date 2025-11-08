@@ -1,3 +1,4 @@
+@abstract
 class_name GameController extends Node
 
 @export var input_system: InputSystem # TODO: Should this be a global class?
@@ -79,7 +80,7 @@ func connect_all_signals():
 	screen_view.loss.connect(_on_screen_view_loss)
 	
 	# Connect the Popup signals:
-	popups.retry.connect(_on_popups_retry)
+	# None yet :)
 
 ## Starts the game.
 func start():
@@ -104,11 +105,6 @@ func _on_screen_view_loss() -> void:
 	if state != State.PLAYING:
 		return
 	_process_game_over()
-
-## Triggers when the the Popups signal that the player wants to retry.
-func _on_popups_retry() -> void:
-	# TODO: Should we check for state here? I kinda don't think so.
-	_restart()
 
 ## Handles what happens when the game receives a letter input.
 func _process_letter_input(_letter_input:String):
