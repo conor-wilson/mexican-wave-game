@@ -3,7 +3,6 @@ class_name Crowd extends Node2D
 signal new_column_spawned(int)
 signal column_exited_screen(int)
 
-@export var first_member_offset:float
 @export var crowd_column_scene:PackedScene
 @export var spacing_between_crowd_columns:int = 54+16 # Width of the person sprite + buffer
 @export var num_columns:int = 5
@@ -34,7 +33,7 @@ func reset():
 		columns[i].despawn()
 	
 	# Setup the crowd columns
-	spawn_buffer = first_member_offset
+	spawn_buffer = 0
 	for i in range(0, num_columns):
 		spawn_new_column()
 
@@ -45,8 +44,14 @@ func get_column_with_id(column_id:int) -> CrowdColumn:
 ## Returns the array of column IDs currently in the crowd. Optionally, the IDs
 ## are returned sorted from the left to the right of the screen.
 func get_column_ids(sort_left_to_right:bool = false) -> Array[int]:
-	# TODO: Implement sorting option
-	return _column_pool.get_columns().keys()
+	
+	var columns:Dictionary[int, CrowdColumn] = _column_pool.get_columns()
+	var sorted_ids := columns.keys()
+	sorted_ids.sort_custom(func(a,b):
+		return columns[a].position.x < columns[b].position.x
+		)
+	
+	return sorted_ids
 
 ## Spawns a new column to the right of the existing columns. Uses spawn_buffer 
 ## to keep track of where the next column should be.

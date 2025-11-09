@@ -2,11 +2,14 @@
 class_name ScreenView
 extends Node
 
-signal loss
 signal new_column_spawned(int)
 signal existing_column_despawned(int)
 
 @export var game_camera: GameCamera
+
+# TODO: Maybe we should have the Crowd node in here? Think about this if and 
+# when we introduce other game modes.
+# TODO: Same goes for TextManager
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -33,16 +36,26 @@ func start() -> void
 @abstract
 func stop() -> void
 
+## Returns the IDs of the crowd columns from the left to the right of the 
+## screen. The optional inputs give options to ignore columns to the left or
+## right of their index.
+@abstract
+func get_crowd_column_ids(from_index:int = 0, to_index:int = -1) -> Array[int]
+
+## Makes the column with the provided ID stand up.
+@abstract
+func stand_up_column_with_id(column_id:int)
+
+## Fills the crowd with text from the provided column index via the TextManager.
+@abstract
+func fill_crowd_with_text(from_column_index)
+
+## Obtains a new character from the text manager, and renders it in the next
+## column. 
+@abstract
+func render_char_in_column(column_id:int)
+
+## Checks to see if the camera should snap to the crowd column with the provided
+## ID.
 @abstract
 func check_for_camera_snap(column_id:int) -> void
-
-@abstract
-func get_crowd_column_ids(from_index:int = 0) -> Array[int]
-
-### Returns the central person in the next column of the wave.
-#@abstract
-#func get_next_person_in_wave() -> Person
-#
-### Advances the wave by one column.
-#@abstract
-#func advance_wave()

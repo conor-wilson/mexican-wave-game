@@ -9,35 +9,16 @@ class_name EndlessRunnerScreenView extends ScreenView
 
 ## If the wave gets to this percentage across the screen, we snap the camera to
 ## catch up.
-# TODO: Play around with this value
-# TODO: Remove this feature to simulate the user going REALLY fast, and insure 
-# the game doesn't completely break when the player gets past the screen.
+##
+## TODO: Play around with this value
+##
+## TODO: Remove this feature to simulate the user going REALLY fast, and ensure 
+## the game doesn't completely break when the player gets past the screen.
 @export var _camera_snap_threshold_percentage:float = 0.6
-
 @export var _crowd: Crowd
 
-# TODO: Maybe this belongs in the game controller?
+## Keeps track of what character in the TextManager we need to render next.
 var _next_rendered_char_index:int = 0
-
-## Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	reset()
-
-### Populates the crowd with the provided letters. Here, it fills the letter row
-### with the first few letters (a number equal to the number of crowd members), 
-### and adds the rest of the letters to the letter queue.
-#func _fill_crowd_with_text(from_column:int = 0) -> void:
-	#_next_rendered_char_index = 0
-	#var all_columns:Array[CrowdColumn] = _crowd.get_sorted_columns()
-	#for i in range(from_column, len(all_columns)):
-		#render_char_in_column(all_columns[i])
-
-## Obtains a new character from the text manager, and renders it in the next column.
-func render_char_in_column(column_id:int):
-	var next_letter :String = _text_manager.get_char(_next_rendered_char_index)
-	#print(next_letter)
-	_crowd.get_column_with_id(column_id).get_person_at_index(_letter_row_index).give_letter(next_letter)
-	_next_rendered_char_index += 1
 
 ## Resets the game visuals to the very beginning state. Does not reuse any
 ## existing visual components (eg: deletes any existing crowd members instead of
@@ -47,23 +28,18 @@ func reset() -> void:
 	# Reset the crowd
 	_crowd.reset()
 	
-	# Reset the letters
-	#_fill_crowd_with_text(0)
 	super.reset()
 
 ## Restarts the game visuals, reusing any existing visual components (eg: reuses
 ## existing crowd members)
 func restart() -> void:
 	
-	# Reset the crowd
-	_crowd.reset()
-	#var all_columns:Array[CrowdColumn] = _crowd.get_sorted_columns()
-	#for column in all_columns:
-		#column.reset()
-	#_wave_column_queue = all_columns.slice(_first_letter_column_index, all_columns.size())
+	# Make the crowd sit down
+	var all_column_ids:Array[int] = _crowd.get_column_ids(true)
+	for id in all_column_ids:
+		_crowd.get_column_with_id(id).reset()
 	
-	# Reset the letters
-	#_fill_crowd_with_text(_first_letter_column_index)
+	super.restart()
 
 ## Starts the game visuals.
 func start() -> void:
@@ -75,42 +51,53 @@ func stop() -> void:
 	# Update the camera
 	game_camera.stop_auto_scrolling()
 
-func get_crowd_column_ids(from_index:int = 0) -> Array[int]:
-	return _crowd.get_column_ids()
+## Fills the crowd with text from the provided column index via the TextManager.
+func fill_crowd_with_text(from_column_index):
+	
+	# Reset the next character index
+	_next_rendered_char_index = 0
+	
+	# Render the letters from the TextManager
+	var ids:Array[int] = _crowd.get_column_ids(true)
+	for id in ids.slice(from_column_index, len(ids)):
+		render_char_in_column(id)
 
-func stand_up_column(column_id:int) -> void:
+## Obtains a new character from the text manager, and renders it in the next 
+## column.
+func render_char_in_column(column_id:int):
+	var next_letter :String = _text_manager.get_char(_next_rendered_char_index)
+	_crowd.get_column_with_id(column_id).get_person_at_index(_letter_row_index).give_letter(next_letter)
+	_next_rendered_char_index += 1
+
+## Returns the IDs of the crowd columns from the left to the right of the 
+## screen. The optional inputs give options to ignore columns to the left or
+## right of their index.
+func get_crowd_column_ids(from_index:int = 0, to_index:int = -1) -> Array[int]:
+	
+	var ids:Array[int] = _crowd.get_column_ids()
+	
+	if to_index < 0:
+		to_index = len(ids)
+	
+	return ids.slice(from_index, to_index)
+
+## Makes the column with the provided ID stand up.
+func stand_up_column_with_id(column_id:int) -> void:
 	var column := _crowd.get_column_with_id(column_id)
 	column.stand_up()
 
-### Returns the central person in the next column of the wave.
-#@abstract
-#func get_next_person_in_wave() -> Person
-#
-### Advances the wave by one column.
-#@abstract
-#func advance_wave():
-
-### Returns the letter-holding person in the next column of the wave.
-#func get_next_person_in_wave() -> Person:
-	#
-	#if len(_wave_column_queue) == 0:
-		#push_error("No columns left in the wave column queue")
-		#return null
-	#
-	#return _wave_column_queue[0].get_person_at_index(_letter_row_index)
-
+## Checks to see if the camera should snap to the crowd column with the provided
+## ID.
 func check_for_camera_snap(column_id:int) -> void:
 	
-	pass # TODO
-	
-	## Snap the camera if required
-	#if column.global_position.x - game_camera.global_position.x > _camera_snap_threshold():
-		#var new_camera_global_pos := Vector2(
-			#column.global_position.x - _camera_snap_threshold(),
-			#game_camera.global_position.y
-		#)
-		#game_camera.snap_to(new_camera_global_pos)
-
+	# Snap the camera if required
+	var column:CrowdColumn = _crowd.get_column_with_id(column_id) 
+	if column.global_position.x - game_camera.global_position.x > _camera_snap_threshold():
+		var new_camera_global_pos := Vector2(
+			column.global_position.x - _camera_snap_threshold(),
+			game_camera.global_position.y
+		)
+		game_camera.snap_to(new_camera_global_pos)
 
 ## Returns the Camera threshold as a number of pixels. If the wave gets that many pixels to the
 ## right of the centre of the screen, we snap the camera to catch up.
@@ -119,13 +106,13 @@ func _camera_snap_threshold() -> float:
 
 ## Triggered when a new column is spawned in the crowd.
 func _on_crowd_new_column_spawned(column_id:int) -> void:
- 	# Export the new column to the controller
+ 	# Export the new column ID to the controller
 	new_column_spawned.emit(column_id)
 
 ## Triggered when a column exits the screen.
 func _on_crowd_column_exited_screen(column_id:int) -> void:
 	
-	# Export the despawned column to the controller
+	# Export the despawned column ID to the controller
 	existing_column_despawned.emit(column_id)
 	
 	# Shift the crowd over by one

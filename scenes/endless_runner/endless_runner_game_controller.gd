@@ -7,24 +7,27 @@ var _wave_column_id_queue:Array[int] = []
 func _reset() -> void:
 	_text_manager.reset()
 	super._reset()
+	_screen_view.fill_crowd_with_text(4) # TODO: Make this floating 4 go away
 
 func _restart() -> void:
 	_text_manager.reset()
-	super._reset()
+	super._restart()
+	_screen_view.fill_crowd_with_text(4) # TODO: Make this floating 4 go away
 
 func _start():
-	_wave_column_id_queue = _screen_view.get_crowd_column_ids(0)
+	_wave_column_id_queue = _screen_view.get_crowd_column_ids(4) # TODO: Make this floating 4 go away
 	super._start()
 
 ## Handles what happens when an existing column desspawns:
 func _process_new_column_spawned(column_id:int) -> void:
 	
-	# TODO: Should we check state here?
-	
-	# Append to the wave queue
+	# Append the column's ID to the wave queue
 	_wave_column_id_queue.append(column_id)
+	
+	# Render the character as needed
 	_screen_view.render_char_in_column(column_id)
 
+## Handles what happens when an existing column desspawns.
 func _process_existing_column_despawned(column_id:int) -> void:
 	
 	# Check for loss
@@ -47,12 +50,12 @@ func _process_letter_input(letter_input:String):
 	_text_manager.advance_selected_char()
 	
 	# Update the visuals
-	advance_wave()
+	_advance_wave()
 
 ## Advances the wave by one column.
-func advance_wave():
+func _advance_wave():
 	var next_column_id:int = _wave_column_id_queue.pop_front()
-	_screen_view.stand_up_column(next_column_id)
+	_screen_view.stand_up_column_with_id(next_column_id)
 	_screen_view.check_for_camera_snap(next_column_id)
 
 ## Handles the game's game-over sequence.
