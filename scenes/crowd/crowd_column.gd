@@ -2,17 +2,7 @@ class_name CrowdColumn extends Node2D
 
 signal exited_screen
 
-@onready var _people:Array[Person] = [
-	$People/Person0, 
-	$People/Person1, 
-	$People/Person2, 
-	$People/Person3, 
-	$People/Person4, 
-	$People/Person5, 
-	$People/Person6, 
-	$People/Person7,
-	$People/Person8,
-]
+@export var _people:Array[Person]
 
 ## Resets all the people in the column by sitting them down and removing their
 ## signs.
@@ -23,6 +13,7 @@ func reset():
 
 ## Returns the people in the column.
 func get_people() -> Array[Person]:
+	self.get_instance_id()
 	return _people
 
 ## Returns the person in the crowd at the provided index.

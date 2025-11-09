@@ -9,7 +9,8 @@
 
 [node name="EndlessRunnerGame" type="Node2D"]
 
-[node name="EndlessRunnerGameController" parent="." node_paths=PackedStringArray("_input_system", "_screen_view", "_popups") instance=ExtResource("1_q7adk")]
+[node name="EndlessRunnerGameController" parent="." node_paths=PackedStringArray("_text_manager", "_input_system", "_screen_view", "_popups") instance=ExtResource("1_q7adk")]
+_text_manager = NodePath("../TextManager")
 _input_system = NodePath("../InputSystem")
 _screen_view = NodePath("../EndlessRunnerScreenView")
 _popups = NodePath("../EndlessRunnerPopups")

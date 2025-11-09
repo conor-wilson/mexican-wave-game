@@ -8,8 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://24p8rwbj4rif" path="res://assets/StadiumPitch.png" id="6_2xeil"]
 [ext_resource type="PackedScene" uid="uid://b4jfm050tml0n" path="res://scenes/crowd/crowd.tscn" id="7_lt3xr"]
 
-[node name="EndlessRunnerScreenView" type="Node2D"]
+[node name="EndlessRunnerScreenView" type="Node2D" node_paths=PackedStringArray("_crowd")]
 script = ExtResource("1_cdxfl")
+_crowd = NodePath("Crowd")
 
 [node name="ScrollingBackground" type="Node2D" parent="."]
 
