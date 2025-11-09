@@ -48,7 +48,7 @@ func reset() -> void:
 	_crowd.reset()
 	
 	# Reset the letters
-	_fill_crowd_with_text(0)
+	#_fill_crowd_with_text(0)
 	super.reset()
 
 ## Restarts the game visuals, reusing any existing visual components (eg: reuses
@@ -123,7 +123,7 @@ func _camera_snap_threshold() -> float:
 
 ## Triggered when a new column is spawned in the crowd.
 func _on_crowd_new_column_spawned(column:CrowdColumn) -> void:
-	# Export the new column to the controller
+ 	# Export the new column to the controller
 	new_column_spawned.emit(column)
 
 ## Triggered when a column exits the screen.
@@ -133,5 +133,5 @@ func _on_crowd_column_exited_screen(column:CrowdColumn) -> void:
 	existing_column_despawned.emit(column)
 	
 	# Shift the crowd over by one
-	column.queue_free()
+	column.call_deferred("despawn")
 	_crowd.spawn_new_column()

@@ -11,6 +11,8 @@ const GLOBAL_POS_X_TOLERANCE:float = 32
 @export var spacing_between_crowd_columns:int = 54+16 # Width of the person sprite + buffer
 @export var num_columns:int = 5
 
+var _column_pool: CrowdColumnPool
+
 # TODO: The spawn_buffer is a bit of a jankey solution and is essentially the 
 # only non-modular piece of functionality in this file. We should find a better
 # implementation and remove it.
@@ -27,11 +29,14 @@ func reset():
 	# Clear out any existing crowd columns
 	for child in get_children():
 		if child is CrowdColumn:
-			child.queue_free()
+			child.call_deferred("despawn")
 	
-	# Setup the crowd members
+	# Set up a new column pool
+	_column_pool = CrowdColumnPool.new(num_columns, crowd_column_scene)
+	
+	# Setup the crowd columns
 	spawn_buffer = first_member_offset
-	for letter in range(0, num_columns):
+	for i in range(0, num_columns):
 		spawn_new_column()
 
 ## Spawns a new column to the right of the existing columns. Uses spawn_buffer 
@@ -39,14 +44,15 @@ func reset():
 func spawn_new_column() -> void:
 	# TODO: Right now, this always spawns to the right. Add option to spawn to the left?
 	
-	# Create the new column
-	var new_column = crowd_column_scene.instantiate() as CrowdColumn
-	add_child(new_column)
+	# Get a new column from the pool
+	var new_column = _column_pool.get_unused_crowd_column()
+	if new_column.get_parent() != self:
+		add_child(new_column)
+		new_column.exited_screen.connect(_on_crowd_column_exited_screen)
 	move_child(new_column, 0)
 	
 	# Move the column to the right position
-	new_column.position = Vector2(spawn_buffer, 0)
-	new_column.exited_screen.connect(_on_crowd_column_exited_screen)
+	new_column.spawn(Vector2(spawn_buffer, 0))
 	spawn_buffer += spacing_between_crowd_columns
 	
 	# Signal that 

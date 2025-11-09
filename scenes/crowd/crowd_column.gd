@@ -4,12 +4,26 @@ signal exited_screen
 
 @export var _people:Array[Person]
 
+var active:bool # TODO: Make use of this variable outside of object-pooling?
+
 ## Resets all the people in the column by sitting them down and removing their
 ## signs.
 func reset():
 	for person in _people:
 		person.remove_sign()
 		person.sit_down()
+
+## Activates the CrowdColumn, reveals it, and moves it to the provided new
+## position (used for object pooling).
+func spawn(new_pos:Vector2):
+	active = true
+	show()
+	position = new_pos
+
+## Deactivates the CrowdColumn and hides it (used for object pooling).
+func despawn():
+	active = false
+	hide()
 
 ## Returns the people in the column.
 func get_people() -> Array[Person]:

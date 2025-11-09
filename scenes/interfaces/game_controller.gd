@@ -111,14 +111,14 @@ func _on_input_system_letter_input_received(letter_input:String) -> void:
 
 ## Triggered when the ScreenView signals that a new column has spawned.
 func _on_screen_view_new_column_spawned(new_column:CrowdColumn) -> void:
-	if _state != State.PLAYING:
-		return
+	#if _state != State.PLAYING:
+		#return
 	_process_new_column_spawned(new_column)
 
 ## Triggered when the ScreenView signals that an existing column has despawned.
 func _on_screen_view_existing_column_spawned(column:CrowdColumn) -> void:
-	if _state != State.PLAYING:
-		return
+	#if _state != State.PLAYING:
+		#return
 	_process_existing_column_despawned(column)
 
 ## Handles what happens when a new column spawns.
