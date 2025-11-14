@@ -11,10 +11,10 @@ class_name Person extends Node2D
 @export var peopleSprites:Array[Texture2D] = []
 @export var sprite2d:Sprite2D
 
-var sitting_pos_y:float
+var sitting_pos:Vector2
 const STANDING_DIFF:float = -16
 
-var waddle_diff:Vector2 = Vector2(0,0) # TODO: This is just a stand-in implementation to see what stuff looks like
+var waddling:bool = false
 
 var rng = RandomNumberGenerator.new()
 
@@ -26,7 +26,7 @@ func _ready() -> void:
 func _setup():
 	
 	# Set up the state
-	sitting_pos_y = position.y
+	sitting_pos = position
 	
 	# Set up the visuals
 	_set_random_sprite()
@@ -67,23 +67,36 @@ func remove_sign() -> void:
 ## Makes the person stand up temporarily (time is configurable via the StandupTimer).
 func stand_up():
 	var tween = create_tween()
-	tween.tween_property(self, "position", Vector2(position.x, sitting_pos_y + STANDING_DIFF), 0.15)
+	tween.tween_property(self, "position", Vector2(position.x, sitting_pos.y + STANDING_DIFF), 0.15)
 	standup_timer.start()
 
 ## Makes the person sit down.
 func sit_down():
 	var tween = create_tween()
-	tween.tween_property(self, "position", Vector2(position.x, sitting_pos_y), 0.15)
+	tween.tween_property(self, "position", Vector2(position.x, sitting_pos.y), 0.15)
 
-func waddle():
+func waddle(delay_before_waddle:float, movement_duration:float, linger_time:float):
+	
+	# Only allow one waddle at a time
+	if waddling:
+		return
+	waddling = true
+	
+	# Wait for the delay duration
+	await get_tree().create_timer(delay_before_waddle).timeout
+	
+	# Begin the movement
 	var tween = create_tween()
-	waddle_diff = Vector2(rng.randf_range(-4, 4), rng.randf_range(-4, 4))
-	tween.tween_property(self, "position", position + waddle_diff, 0.5)
-	waddle_timer.start()
+	var waddle_diff := Vector2(rng.randf_range(-4, 4), rng.randf_range(-4, 4))
+	tween.tween_property(self, "position", sitting_pos + waddle_diff, movement_duration)
+	
+	# Start the linger timer
+	waddle_timer.start(linger_time)
 
 func unwaddle():
 	var tween = create_tween()
-	tween.tween_property(self, "position", position - waddle_diff, 0.5)
+	tween.tween_property(self, "position", sitting_pos, 0.5)
+	waddling = false
 
 ## Triggered when the StandupTimer times out.
 func _on_standup_timer_timeout() -> void:

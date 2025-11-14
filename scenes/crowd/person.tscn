@@ -1,10 +1,10 @@
 [gd_scene load_steps=7 format=3 uid="uid://tes5qvvjxl1f"]
 
 [ext_resource type="Script" uid="uid://df1xryx5570ic" path="res://scenes/crowd/person.gd" id="1_31ckc"]
-[ext_resource type="Texture2D" uid="uid://b6kwby6o31ybe" path="res://assets/1.1Fan01.png" id="2_s48cp"]
-[ext_resource type="Texture2D" uid="uid://bpphsts6o1hri" path="res://assets/1.1Fan02.png" id="3_6i1j1"]
-[ext_resource type="Texture2D" uid="uid://c5wy55ykvxjtv" path="res://assets/1.1Fan03.png" id="4_bf855"]
-[ext_resource type="Texture2D" uid="uid://b33ucln5uhha3" path="res://assets/1.1Fan04.png" id="5_04m24"]
+[ext_resource type="Texture2D" uid="uid://b6kwby6o31ybe" path="res://assets/art/people/1.1Fan01.png" id="2_s48cp"]
+[ext_resource type="Texture2D" uid="uid://bpphsts6o1hri" path="res://assets/art/people/1.1Fan02.png" id="3_6i1j1"]
+[ext_resource type="Texture2D" uid="uid://c5wy55ykvxjtv" path="res://assets/art/people/1.1Fan03.png" id="4_bf855"]
+[ext_resource type="Texture2D" uid="uid://b33ucln5uhha3" path="res://assets/art/people/1.1Fan04.png" id="5_04m24"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_q7wum"]
 font_size = 32

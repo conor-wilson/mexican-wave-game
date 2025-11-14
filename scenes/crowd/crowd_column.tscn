@@ -5,44 +5,42 @@
 
 [node name="CrowdColumn" type="Node2D" node_paths=PackedStringArray("_people")]
 script = ExtResource("1_fyjm1")
-_people = [NodePath("People/Person0"), NodePath("People/Person1"), NodePath("People/Person2"), NodePath("People/Person3"), NodePath("People/Person4"), NodePath("People/Person5"), NodePath("People/Person6"), NodePath("People/Person7"), NodePath("People/Person8")]
+_people = [NodePath("People/Person0"), NodePath("People/Person1"), NodePath("People/Person2"), NodePath("People/Person3"), NodePath("People/Person4"), NodePath("People/Person5"), NodePath("People/Person6")]
 
 [node name="People" type="Node2D" parent="."]
 
 [node name="Person0" parent="People" instance=ExtResource("2_g1iyf")]
-position = Vector2(0, 56)
+position = Vector2(0, 180)
 has_sign = true
 
 [node name="Person1" parent="People" instance=ExtResource("2_g1iyf")]
-position = Vector2(24, 88)
+z_index = 1
+position = Vector2(24, 225)
 has_sign = true
 
 [node name="Person2" parent="People" instance=ExtResource("2_g1iyf")]
-position = Vector2(0, 120)
+z_index = 2
+position = Vector2(0, 270)
 has_sign = true
 
 [node name="Person3" parent="People" instance=ExtResource("2_g1iyf")]
-position = Vector2(24, 152)
+z_index = 3
+position = Vector2(24, 315)
 has_sign = true
 
 [node name="Person4" parent="People" instance=ExtResource("2_g1iyf")]
-position = Vector2(0, 184)
+z_index = 4
+position = Vector2(0, 361)
 has_sign = true
 
 [node name="Person5" parent="People" instance=ExtResource("2_g1iyf")]
-position = Vector2(24, 216)
+z_index = 5
+position = Vector2(24, 406)
 has_sign = true
 
 [node name="Person6" parent="People" instance=ExtResource("2_g1iyf")]
-position = Vector2(0, 248)
-has_sign = true
-
-[node name="Person7" parent="People" instance=ExtResource("2_g1iyf")]
-position = Vector2(24, 280)
-has_sign = true
-
-[node name="Person8" parent="People" instance=ExtResource("2_g1iyf")]
-position = Vector2(0, 312)
+z_index = 6
+position = Vector2(0, 451)
 has_sign = true
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c5wy55ykvxjtv"
-path="res://.godot/imported/1.1Fan03.png-25dc88e07d57762360f9a379c05d4d7c.ctex"
+uid="uid://bgnn0ubbsmhw1"
+path="res://.godot/imported/StadiumInFrontOfPeople.png-99ddf88eaad38e622c56663257d8bde5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/1.1Fan03.png"
-dest_files=["res://.godot/imported/1.1Fan03.png-25dc88e07d57762360f9a379c05d4d7c.ctex"]
+source_file="res://assets/art/stadium/StadiumInFrontOfPeople.png"
+dest_files=["res://.godot/imported/StadiumInFrontOfPeople.png-99ddf88eaad38e622c56663257d8bde5.ctex"]
 
 [params]
 

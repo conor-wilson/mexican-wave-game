@@ -27,7 +27,6 @@ func despawn():
 
 ## Returns the people in the column.
 func get_people() -> Array[Person]:
-	self.get_instance_id()
 	return _people
 
 ## Returns the person in the crowd at the provided index.

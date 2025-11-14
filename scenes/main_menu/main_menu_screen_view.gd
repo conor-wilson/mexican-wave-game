@@ -29,4 +29,4 @@ func check_for_camera_snap(column_id:int) -> void:
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_accept"):
-		_crowd.waddle(25)
+		_crowd.waddle()

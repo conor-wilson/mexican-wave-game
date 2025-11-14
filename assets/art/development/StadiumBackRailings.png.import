@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://jg8h5gp7b2h7"
-path="res://.godot/imported/StadiumBackRailings.png-79d3acac4d0cd17b17dec38d353e1db3.ctex"
+path="res://.godot/imported/StadiumBackRailings.png-991d440682265b1946cc78baf12f5067.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/StadiumBackRailings.png"
-dest_files=["res://.godot/imported/StadiumBackRailings.png-79d3acac4d0cd17b17dec38d353e1db3.ctex"]
+source_file="res://assets/art/development/StadiumBackRailings.png"
+dest_files=["res://.godot/imported/StadiumBackRailings.png-991d440682265b1946cc78baf12f5067.ctex"]
 
 [params]
 
