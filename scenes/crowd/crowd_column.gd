@@ -27,7 +27,6 @@ func despawn():
 
 ## Returns the people in the column.
 func get_people() -> Array[Person]:
-	self.get_instance_id()
 	return _people
 
 ## Returns the person in the crowd at the provided index.
@@ -42,6 +41,10 @@ func get_person_at_index(index:int) -> Person:
 func stand_up():
 	for person in _people:
 		person.stand_up()
+
+## Returns a random Person from the column.
+func get_random_person() -> Person:
+	return _people[randi_range(0, len(_people)-1)]
 
 ## Triggered when the CrowdColumn exits the screen.
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:

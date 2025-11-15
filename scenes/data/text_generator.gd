@@ -39,7 +39,7 @@ func generate_word():
 	return current_word
 	
 func _load_model():
-	var file = FileAccess.open("res://assets/corpus.txt", FileAccess.READ)
+	var file = FileAccess.open("res://assets/text/corpus.txt", FileAccess.READ)
 	var content = file.get_as_text()
 	file.close()
 	

@@ -4,7 +4,7 @@ signal new_column_spawned(int)
 signal column_exited_screen(int)
 
 @export var crowd_column_scene:PackedScene
-@export var spacing_between_crowd_columns:int = 54+16 # Width of the person sprite + buffer
+@export var spacing_between_crowd_columns:int = 54 # Width of the person sprite + buffer
 @export var num_columns:int = 5
 
 var _column_pool: CrowdColumnPool
@@ -71,6 +71,22 @@ func spawn_new_column() -> void:
 	
 	# Signal that the new column has been spawned
 	new_column_spawned.emit(new_column.get_instance_id())
+
+## Makes all of the people in the crowd randomly waddle once.
+##
+## TODO: This is an unfinished (and unused) feature. When it's being properly
+## implemented, the programmer should take care to consider if this is the
+## right approach. 
+func waddle() -> void:
+	
+	for column in _column_pool.get_columns().values() as Array[CrowdColumn]:
+		for person in column.get_people():
+			person.waddle(
+				randf_range(0, 4),
+				randf_range(0.2, 2),
+				randf_range(2, 5)
+			)
+			
 
 ## Triggered when a column exits the screen.
 func _on_crowd_column_exited_screen(column:CrowdColumn):

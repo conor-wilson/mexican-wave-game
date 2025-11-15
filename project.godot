@@ -22,6 +22,7 @@ SceneSwitcher="*res://scenes/scene_switcher.tscn"
 [display]
 
 window/stretch/mode="canvas_items"
+window/stretch/scale_mode="integer"
 
 [layer_names]
 
