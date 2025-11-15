@@ -28,7 +28,7 @@ func _setup():
 	
 	# Set up the state
 	sitting_pos = position
-	
+	held_sign.color = Color(1, 1, 1, 1)
 	# Set up the visuals
 	_set_random_sprite()
 	if has_sign:
@@ -45,6 +45,7 @@ func give_letter(new_letter:String) -> void:
 	
 	# Update the state
 	has_sign = true
+	held_sign.color = Color(1, 1, 1, 1)
 	held_sign_label.text = new_letter
 	letter = new_letter
 	
@@ -53,6 +54,14 @@ func give_letter(new_letter:String) -> void:
 		held_sign.show()
 	else:
 		held_sign.hide()
+		
+func fade_sign() -> void:
+	if has_sign:
+		held_sign.color = Color(0.754, 0.754, 0.754, 1.0)
+
+func highlight_sign() -> void:
+	if has_sign:
+		held_sign.color = Color(0.983, 0.796, 0.0, 1.0)
 
 ## Removes the held sign from the Person.
 func remove_sign() -> void:

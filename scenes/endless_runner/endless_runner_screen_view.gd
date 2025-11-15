@@ -48,15 +48,20 @@ func stop() -> void:
 	game_camera.stop_auto_scrolling()
 
 ## Fills the crowd with text from the provided column index via the TextManager.
-func fill_crowd_with_text(from_column_index):
-	
+func fill_crowd_with_text(from_column_index):	
 	# Reset the next character index
 	_next_rendered_char_index = 0
 	
 	# Render the letters from the TextManager
 	var ids:Array[int] = _crowd.get_column_ids()
-	for id in ids.slice(from_column_index, len(ids)):
+	var sliced_ids := ids.slice(from_column_index, len(ids))
+	for id in sliced_ids:		
 		render_char_in_column(id)
+		
+		if id == sliced_ids[0]:
+			var column = _crowd.get_column_with_id(id)
+			column.mark_highlighted()
+	
 
 ## Obtains a new character from the text manager, and renders it in the next 
 ## column.
@@ -81,6 +86,14 @@ func get_crowd_column_ids(from_index:int = 0, to_index:int = -1) -> Array[int]:
 func stand_up_column_with_id(column_id:int) -> void:
 	var column := _crowd.get_column_with_id(column_id)
 	column.stand_up()
+
+func mark_column_completed(column_id:int) -> void:
+	var column := _crowd.get_column_with_id(column_id)
+	column.mark_completed()
+	
+func mark_column_highlighted(column_id:int) -> void:
+	var column := _crowd.get_column_with_id(column_id)
+	column.mark_highlighted()
 
 ## Checks to see if the camera should snap to the crowd column with the provided
 ## ID.

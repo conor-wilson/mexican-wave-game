@@ -34,4 +34,6 @@ func advance_selected_char() -> void:
 
 ## Uses the TextGenerator to generate new text.
 func _generate_new_text():
+	if _text != "":
+		_text += " "
 	_text += _text_generator.generate_sentence()

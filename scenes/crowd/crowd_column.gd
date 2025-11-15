@@ -42,6 +42,14 @@ func stand_up():
 	for person in _people:
 		person.stand_up()
 
+func mark_completed() -> void:
+	for person in _people:
+		person.fade_sign()
+		
+func mark_highlighted() -> void:
+	for person in _people:
+		person.highlight_sign()
+
 ## Returns a random Person from the column.
 func get_random_person() -> Person:
 	return _people[randi_range(0, len(_people)-1)]

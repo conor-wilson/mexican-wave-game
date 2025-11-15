@@ -1,16 +1,14 @@
 class_name TextGenerator extends Node
 
 var json = JSON.new()
+var regex = RegEx.new()
 var current_word = ""
 var model = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	model = _load_model()
-	
-	print(generate_sentence())
-	print(generate_sentence())
-	print(generate_sentence())
+	regex.compile(r"[^A-Za-z,\.\- ';]")
 	
 func generate_sentence():
 	current_word = ""
@@ -22,7 +20,7 @@ func generate_sentence():
 		if (word != ""):
 			sentence += " " + word
 	
-	return sentence
+	return regex.sub(sentence, "", true)
 
 func generate_word():
 	var options
@@ -48,6 +46,8 @@ func _load_model():
 	
 	var sentences = content.split("\n")
 	for sentence in sentences:
+		if sentence == "":
+			continue
 		var words = sentence.split(" ")
 		for i in range(0, len(words)):
 			var is_last_word = i == len(words) - 1

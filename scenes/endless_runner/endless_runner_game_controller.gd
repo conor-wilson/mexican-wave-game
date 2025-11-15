@@ -77,9 +77,12 @@ func _process_letter_input(letter_input:String):
 
 ## Advances the wave by one column.
 func _advance_wave():
-	var next_column_id:int = _wave_column_id_queue.pop_front()
-	_screen_view.stand_up_column_with_id(next_column_id)
-	_screen_view.check_for_camera_snap(next_column_id)
+	var completed_column_id:int = _wave_column_id_queue.pop_front()
+	var next_column_id:int = _wave_column_id_queue.front()
+	_screen_view.stand_up_column_with_id(completed_column_id)
+	_screen_view.mark_column_completed(completed_column_id)
+	_screen_view.check_for_camera_snap(completed_column_id)
+	_screen_view.mark_column_highlighted(next_column_id)
 
 ## Handles the game's game-over sequence.
 func _process_game_over():
