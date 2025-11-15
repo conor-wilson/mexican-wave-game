@@ -14,7 +14,8 @@ class_name Person extends Node2D
 var sitting_pos:Vector2
 const STANDING_DIFF:float = -16
 
-var waddling:bool = false
+var waddling:bool = false # TODO: Maybe the Person needs a State?
+var waddle_movement_duration:float = 0.5
 
 var rng = RandomNumberGenerator.new()
 
@@ -75,12 +76,16 @@ func sit_down():
 	var tween = create_tween()
 	tween.tween_property(self, "position", Vector2(position.x, sitting_pos.y), 0.15)
 
+## Makes the person waddle after the provided delay with the provided movement 
+## duration for the provided linger time.
+## Only one waddle motion is allowed at a time.
 func waddle(delay_before_waddle:float, movement_duration:float, linger_time:float):
 	
 	# Only allow one waddle at a time
 	if waddling:
 		return
 	waddling = true
+	waddle_movement_duration = movement_duration
 	
 	# Wait for the delay duration
 	await get_tree().create_timer(delay_before_waddle).timeout
@@ -88,14 +93,17 @@ func waddle(delay_before_waddle:float, movement_duration:float, linger_time:floa
 	# Begin the movement
 	var tween = create_tween()
 	var waddle_diff := Vector2(rng.randf_range(-4, 4), rng.randf_range(-4, 4))
-	tween.tween_property(self, "position", sitting_pos + waddle_diff, movement_duration)
+	tween.tween_property(self, "position", sitting_pos + waddle_diff, waddle_movement_duration)
 	
 	# Start the linger timer
 	waddle_timer.start(linger_time)
 
+## Moves the player back to its original position with with the configured
+## movement duration. This is intended to be called after the Person is finished
+## waddling.
 func unwaddle():
 	var tween = create_tween()
-	tween.tween_property(self, "position", sitting_pos, 0.5)
+	tween.tween_property(self, "position", sitting_pos, waddle_movement_duration)
 	waddling = false
 
 ## Triggered when the StandupTimer times out.

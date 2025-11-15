@@ -72,6 +72,11 @@ func spawn_new_column() -> void:
 	# Signal that the new column has been spawned
 	new_column_spawned.emit(new_column.get_instance_id())
 
+## Makes all of the people in the crowd randomly waddle once.
+##
+## TODO: This is an unfinished (and unused) feature. When it's being properly
+## implemented, the programmer should take care to consider if this is the
+## right approach. 
 func waddle() -> void:
 	
 	for column in _column_pool.get_columns().values() as Array[CrowdColumn]:
