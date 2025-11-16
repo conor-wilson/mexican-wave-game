@@ -200,9 +200,21 @@ func _play_dissapointment_animation(delay:float = 0):
 	# Play the disappointment animation
 	sprite.play("disappointment")
 	if has_sign:
-		# Get rid of the sign if it has one
-		await sprite.animation_finished
+		
+		# Squish the sign down
+		# TODO: THIS IS HORRIBLE!!! Fix this to something much nicer when time permits
+		var tween = create_tween()
+		held_sign.move_to_front()
+		tween.parallel().tween_property(held_sign, "position",held_sign.position + Vector2(0,32), 0.2)
+		tween.parallel().tween_property(held_sign, "scale", Vector2(1,0), 0.2)
+		
+		# Reset the sign for next time 
+		# TODO: THIS IS HORRIBLE!!! Fix this to something much nicer when time permits
+		await tween.finished
 		held_sign.hide()
+		held_sign.scale = Vector2(1,1)
+		held_sign.position -= Vector2(0,32)
+		move_child(held_sign, 0)
 
 #########################
 ## Connected functions ##
