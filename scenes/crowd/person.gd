@@ -28,8 +28,9 @@ func _setup():
 	
 	# Set up the state
 	sitting_pos = position
-	held_sign.color = Color(1, 1, 1, 1)
+	
 	# Set up the visuals
+	held_sign.color = Color(1, 1, 1, 1)
 	_set_random_sprite()
 	if has_sign:
 		give_letter(letter)
@@ -52,11 +53,11 @@ func give_letter(new_letter:String) -> void:
 	if letter != "" && letter != " ":
 		held_sign.show()
 		held_sign.color = Color(1, 1, 1, 1)
-		sprite.play("hands_up")
 	else:
 		# TODO: This should be called earlier in the function
 		remove_sign()
-		
+	_play_hands_up_animation()
+
 func fade_sign() -> void:
 	if has_sign:
 		held_sign.color = Color(0.754, 0.754, 0.754, 1.0)
@@ -75,14 +76,14 @@ func remove_sign() -> void:
 	
 	# Update the visuals
 	held_sign.hide()
-	sprite.play("hands_down")
+	#_play_hands_up_animation(randf_range(0, 0.5))
+	#sprite.play("hands_down")
 
 ## Makes the person stand up temporarily (time is configurable via the StandupTimer).
 func stand_up():
 	
-	# Start the stand-up animation (unless they've already got their arms up)
-	if !has_sign:
-		sprite.play("jump")
+	# Start the stand-up animation
+	_play_stand_up_animation()
 	
 	# Move the person up a bit
 	var tween = create_tween()
@@ -94,13 +95,19 @@ func stand_up():
 ## Makes the person sit down.
 func sit_down():
 	
-	# Play the sit-down animation (unless they need to keep their arms up)
-	if !has_sign:
-		sprite.play("sit_down")
+	# Play the sit-down animation
+	_play_sit_down_animation()
 	
 	# Move the person back down
 	var tween = create_tween()
 	tween.tween_property(self, "position", Vector2(position.x, sitting_pos.y), 0.15)
+	
+	await sprite.animation_finished
+	_play_hands_up_animation()
+
+## Makes the person become upset.
+func become_upset(delay:float = 0):
+	_play_dissapointment_animation(delay)
 
 ## Makes the person waddle after the provided delay with the provided movement 
 ## duration for the provided linger time.
@@ -131,6 +138,67 @@ func unwaddle():
 	var tween = create_tween()
 	tween.tween_property(self, "position", sitting_pos, waddle_movement_duration)
 	waddling = false
+
+#########################
+## Animation functions ##
+#########################
+
+## Plays the animation for the person to sit down. This takes into consideration 
+## whether or not the person has a sign.
+func _play_sit_down_animation(delay:float = 0):
+	
+	# Add optional delay
+	if delay != 0:
+		await get_tree().create_timer(delay).timeout
+	
+	# Play the sit-down animation (unless the person is holding a sign)
+	if !has_sign:
+		sprite.play("sit_down")
+
+## Plays the animation for the person to stand up. This takes into consideration 
+## whether or not the person has a sign.
+func _play_stand_up_animation(delay:float = 0):
+	
+	# Add optional delay
+	if delay != 0:
+		await get_tree().create_timer(delay).timeout
+	
+	# Play the stand-up animation (unless the person is holding a sign)
+	if !has_sign:
+		sprite.play("stand_up")
+
+## Plays the animation for the person to hold their hands up. This takes into
+## consideration whether or not the person has a sign.
+func _play_hands_up_animation(delay:float = 0):
+	
+	# Add optional delay
+	if delay != 0:
+		await get_tree().create_timer(delay).timeout
+	
+	# Play the hands-up animation
+	if has_sign:
+		sprite.play("hands_up_holding_sign")
+	else:
+		sprite.play("hands_up_not_holding_sign")
+
+## Plays the animation for the person to become disappointed. This takes into
+## consideration whether or not the person has a sign.
+func _play_dissapointment_animation(delay:float = 0):
+	
+	# Add optional delay
+	if delay != 0:
+		await get_tree().create_timer(delay).timeout
+	
+	# Play the disappointment animation
+	sprite.play("disappointment")
+	if has_sign:
+		# Get rid of the sign if it has one
+		await sprite.animation_finished
+		held_sign.hide()
+
+#########################
+## Connected functions ##
+#########################
 
 ## Triggered when the StandupTimer times out.
 func _on_standup_timer_timeout() -> void:

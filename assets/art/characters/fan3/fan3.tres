@@ -13,33 +13,6 @@
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_ff51t")
-}],
-"loop": true,
-"name": &"hands_down",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_y8tjl")
-}],
-"loop": false,
-"name": &"hands_up",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("3_23o5s")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_a868h")
-}],
-"loop": false,
-"name": &"jump",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
 "texture": ExtResource("5_t1cqk")
 }, {
 "duration": 1.0,
@@ -52,6 +25,52 @@ animations = [{
 "texture": ExtResource("8_idio4")
 }],
 "loop": false,
+"name": &"disappointment",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ff51t")
+}],
+"loop": true,
+"name": &"hands_down",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_y8tjl")
+}],
+"loop": true,
+"name": &"hands_up_holding_sign",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_23o5s")
+}],
+"loop": true,
+"name": &"hands_up_not_holding_sign",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_a868h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_23o5s")
+}],
+"loop": false,
 "name": &"sit_down",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_23o5s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_a868h")
+}],
+"loop": false,
+"name": &"stand_up",
 "speed": 10.0
 }]

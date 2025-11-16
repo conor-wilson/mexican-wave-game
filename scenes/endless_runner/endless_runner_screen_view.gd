@@ -44,8 +44,12 @@ func start() -> void:
 
 ## Stops the game visuals.
 func stop() -> void:
+	
 	# Update the camera
 	game_camera.stop_auto_scrolling()
+	
+	# Make the crowd upset
+	_crowd.make_everyone_upset()
 
 ## Fills the crowd with text from the provided column index via the TextManager.
 func fill_crowd_with_text(from_column_index):	
