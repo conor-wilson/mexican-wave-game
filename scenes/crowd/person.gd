@@ -65,6 +65,15 @@ func give_letter(new_letter:String) -> void:
 	held_sign.color = normal_sign_colour
 	_play_hands_up_animation()
 
+func send_to_sleep() -> void:
+	
+	# Fold the sign down
+	held_sign.hide()
+	
+	# Set the sleep animation
+	_play_sleep_animation()
+	
+
 ## Fades the sign with the fade colour.
 func fade_sign() -> void:
 	if has_sign:
@@ -228,6 +237,16 @@ func _play_dissapointment_animation(delay:float = 0):
 		held_sign.scale = Vector2(1,1)
 		held_sign.position -= Vector2(0,32)
 		move_child(held_sign, 0)
+
+func _play_sleep_animation(delay:float = 0):
+	
+	# Add optional delay
+	if delay != 0:
+		await get_tree().create_timer(delay).timeout
+	
+	#Play the animation
+	sprite.play("sleeping")
+	
 
 #########################
 ## Connected functions ##

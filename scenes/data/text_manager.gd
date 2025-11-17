@@ -5,10 +5,17 @@ class_name TextManager extends Node2D
 var _text:String
 var _currently_selected_char_index:int
 
-func reset():
+var _sleeping_people_indices:Dictionary[int, bool]
+
+func reset(new_sleeping_indices:Dictionary[int, bool]):
 	_text = ""
 	_currently_selected_char_index = 0
+	_sleeping_people_indices = new_sleeping_indices
 	_generate_new_text()
+
+func add_sleeping_indices(new_indices:Dictionary[int, bool]):
+	for index in new_indices:
+		_sleeping_people_indices[index] = true
 
 ## Returns the character in the text at the provided index.
 func get_char(index:int) -> String:
@@ -23,6 +30,22 @@ func get_char(index:int) -> String:
 			return ""
 	
 	return _text[index]
+
+func get_index_is_sleeping_person(index:int) -> bool:
+	
+	# Override to false this character can't be sleeping
+	if (
+		get_char(index) == " "   or # Space person can't be asleep
+		get_char(index-1) == " " or # First letter in word can't be asleep
+		get_char(index+1) == " " or # Last letter in word can't be asleep
+		get_char(index+1) == "," or # Last letter in word can't be asleep
+		get_char(index+1) == "." or # Last letter in word can't be asleep
+		get_char(index+1) == "?" or # Last letter in word can't be asleep
+		get_char(index+1) == "!"    # Last letter in word can't be asleep
+		):
+		return false 
+	
+	return _sleeping_people_indices.get(index, false)
 
 ## Returns the current character selection (based on _currently_selected_char_index)
 func get_currently_selected_char() -> String:

@@ -65,6 +65,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("1_8fw10")
+}],
+"loop": true,
+"name": &"sleeping",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("3_titlo")
 }, {
 "duration": 1.0,

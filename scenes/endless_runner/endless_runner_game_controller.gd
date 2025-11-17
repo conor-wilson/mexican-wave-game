@@ -2,15 +2,43 @@ class_name EndlessRunnerGameController extends GameController
 
 @export var _text_manager:TextManager
 
+# Sleeping people spawn rate configuration
+@export var _starting_sleeping_person_chance:float
+@export var _sleeping_person_chance_increment:float
+## Number of letters spawned before increasing the sleeping_person_chance.
+@export var _sleeping_person_chance_increment_interval:int
+@export var _max_sleeping_person_chance:float
+
+# Max sleeping people in each word configuration
+@export var _starting_max_sleeping_people_in_word:int
+@export var _max_sleeping_people_in_word_increment:int
+## Number of letters spawned before increasing the sleeping_person_chance.
+@export var _max_sleeping_people_in_word_increment_interval:int
+@export var _max_max_sleeping_people_in_word:int
+
+## The percentage chance that a sleeping person will spawn.
+var _sleeping_person_chance:float
+
+## The maximum number of sleeping people allowed per word.
+var _max_sleeping_people_in_word:int
+
+## The queue IDs of columns that are next in the wave.
 var _wave_column_id_queue:Array[int] = []
 
 func _reset() -> void:
-	_text_manager.reset()
+	
+	# Reset the data
+	_text_manager.reset(_generate_sleeping_people_indices())
+	
+	# Reset the difficulty
+	_sleeping_person_chance = _starting_sleeping_person_chance
+	_max_sleeping_people_in_word = _starting_max_sleeping_people_in_word
+	
 	super._reset()
 	_screen_view.fill_crowd_with_text(_screen_view.first_letter_column_index)
 
 func _restart() -> void:
-	_text_manager.reset()
+	_text_manager.reset(_generate_sleeping_people_indices())
 	super._restart()
 	_screen_view.fill_crowd_with_text(_screen_view.first_letter_column_index)
 
@@ -105,3 +133,12 @@ func _get_score() -> int:
 
 func _get_mode_name() -> String:
 	return "EndlessRunner"
+
+func _generate_sleeping_people_indices() -> Dictionary[int, bool]:
+	
+	# Generate 100 numbers
+	var output:Dictionary[int, bool] = {}
+	for i in range(100):
+		output[randi_range(20, 500)] = true
+	
+	return output

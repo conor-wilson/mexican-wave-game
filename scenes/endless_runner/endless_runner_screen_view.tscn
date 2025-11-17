@@ -9,6 +9,11 @@
 [node name="EndlessRunnerScreenView" type="Node2D" node_paths=PackedStringArray("_crowd")]
 script = ExtResource("1_cdxfl")
 _crowd = NodePath("Crowd")
+_letter_row_index = null
+_camera_snap_threshold_percentage = null
+_starting_camera_speed = null
+_camera_acceleration = null
+first_letter_column_index = null
 
 [node name="ScrollingBackground" type="Node2D" parent="."]
 
