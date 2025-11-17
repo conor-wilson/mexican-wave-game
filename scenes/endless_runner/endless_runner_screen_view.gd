@@ -59,8 +59,8 @@ func fill_crowd_with_text(from_column_index):
 	# Render the letters from the TextManager
 	var ids:Array[int] = _crowd.get_column_ids()
 	var sliced_ids := ids.slice(from_column_index, len(ids))
-	for id in sliced_ids:		
-		render_char_in_column(id)
+	for id in sliced_ids:
+		render_char_in_column(id, true)
 		
 		if id == sliced_ids[0]:
 			var column = _crowd.get_column_with_id(id)
@@ -68,7 +68,7 @@ func fill_crowd_with_text(from_column_index):
 
 ## Obtains a new character from the text manager, and renders it in the next 
 ## column.
-func render_char_in_column(column_id:int):
+func render_char_in_column(column_id:int, with_sign_up_animation:bool=false):
 	
 	# Obtain the next letter
 	var next_letter :String = _text_manager.get_char(_next_rendered_char_index)
@@ -76,9 +76,9 @@ func render_char_in_column(column_id:int):
 	
 	# Render the person
 	var person:Person = _crowd.get_column_with_id(column_id).get_person_at_index(_letter_row_index)
-	person.give_letter(next_letter)
+	person.give_letter(next_letter, with_sign_up_animation)
 	if is_sleeping_person:
-		person.send_to_sleep()
+		person.go_to_sleep()
 	
 	# Advance the letter index
 	_next_rendered_char_index += 1

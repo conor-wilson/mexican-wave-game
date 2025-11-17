@@ -5,6 +5,7 @@ class_name Person extends Node2D
 @export var held_sign_label: Label
 @export var standup_timer: Timer
 @export var waddle_timer: Timer
+@export var wake_up_timer: Timer
 @export var camera:Camera2D
 
 @export var normal_sign_colour:Color
@@ -18,6 +19,10 @@ class_name Person extends Node2D
 var sitting_pos:Vector2
 const STANDING_DIFF:float = -18
 
+var held_up_sign_pos:Vector2
+const SIGN_DOWN_DIFF:float = 32
+
+var asleep:bool = false
 var waddling:bool = false # TODO: Maybe the Person needs a State?
 var waddle_movement_duration:float = 0.5
 
@@ -32,6 +37,7 @@ func _setup():
 	
 	# Set up the state
 	sitting_pos = position
+	held_up_sign_pos = held_sign.position
 	
 	# Set up the visuals
 	held_sign.color = normal_sign_colour
@@ -48,7 +54,7 @@ func _set_random_sprite():
 	sprite.sprite_frames = peopleSpriteFrames[randomIndex]
 
 ## Gives the Person a sign holding the provided letter.
-func give_letter(new_letter:String) -> void:
+func give_letter(new_letter:String, with_sign_up_animation:bool = false) -> void:
 	
 	# Check for the case where the letter is empty
 	if Utilities.is_empty(new_letter):
@@ -62,27 +68,12 @@ func give_letter(new_letter:String) -> void:
 	
 	# Update the visuals
 	held_sign.show()
+	if with_sign_up_animation:
+		_fold_sign_up()
+	else:
+		_snap_sign_up()
 	held_sign.color = normal_sign_colour
 	_play_hands_up_animation()
-
-func send_to_sleep() -> void:
-	
-	# Fold the sign down
-	held_sign.hide()
-	
-	# Set the sleep animation
-	_play_sleep_animation()
-	
-
-## Fades the sign with the fade colour.
-func fade_sign() -> void:
-	if has_sign:
-		held_sign.color = faded_sign_colour
-
-## Highlights the sign with the highlight colour.
-func highlight_sign() -> void:
-	if has_sign:
-		held_sign.color = highlighted_sign_colour
 
 ## Removes the held sign from the Person.
 func remove_sign(immediate:bool = false) -> void:
@@ -98,6 +89,10 @@ func remove_sign(immediate:bool = false) -> void:
 
 ## Makes the person stand up temporarily (time is configurable via the StandupTimer).
 func stand_up():
+	
+	# Wake the person up if they're asleep
+	if asleep:
+		wake_up()
 	
 	# Start the stand-up animation
 	_play_stand_up_animation()
@@ -123,11 +118,38 @@ func sit_down(immediate:bool = false):
 		var tween = create_tween()
 		tween.tween_property(self, "position", Vector2(position.x, sitting_pos.y), 0.2)
 	
-		await tween.finished
+		# Play the idle animation once the person has sat down
+	await tween.finished
 	_play_hands_up_animation(immediate)
+
+## Makes the person go to sleep.
+func go_to_sleep() -> void:
+	
+	# Update the state
+	asleep = true
+	
+	# Update the visuals
+	_snap_sign_down()
+	_play_sleep_animation()
+	
+	# Start the wake-up timer
+	wake_up_timer.start()
+
+## Makes the person wake up.
+func wake_up() -> void:
+	
+	# Update the state
+	if !asleep:
+		return
+	asleep = false
+	
+	# Update the visuals
+	_fold_sign_up()
+	_play_wake_up_animation()
 
 ## Makes the person become upset.
 func become_upset(delay:float = 0):
+	asleep = false
 	_play_dissapointment_animation(delay)
 
 ## Makes the person waddle after the provided delay with the provided movement 
@@ -159,6 +181,48 @@ func unwaddle():
 	var tween = create_tween()
 	tween.tween_property(self, "position", sitting_pos, waddle_movement_duration)
 	waddling = false
+
+###########################
+## Sign Appearance Funcs ##
+###########################
+
+## Snaps the sign to the up-position without playing the folding animation.
+func _snap_sign_up() -> void:
+	held_sign.position = held_up_sign_pos
+	held_sign.scale = Vector2(1,1)
+	move_child(held_sign, 0)
+
+## Snaps the sign to the down-position without playing the folding animation.
+func _snap_sign_down() -> void:
+	held_sign.move_to_front()
+	held_sign.position = held_up_sign_pos + Vector2(0, SIGN_DOWN_DIFF)
+	held_sign.scale = Vector2(1,0)
+
+## Folds the sign to the up-position with the folding animation.
+func _fold_sign_up() -> void:
+	var tween = create_tween()
+	held_sign.move_to_front()
+	tween.parallel().tween_property(held_sign, "position", held_up_sign_pos, 0.2)
+	tween.parallel().tween_property(held_sign, "scale", Vector2(1,1), 0.2)
+	move_child(held_sign, 0)
+
+## Folds the sign to the down-position with the folding animation.
+func _fold_sign_down() -> void:
+	held_sign.move_to_front()
+	var tween = create_tween()
+	held_sign.move_to_front()
+	tween.parallel().tween_property(held_sign, "position", held_up_sign_pos + Vector2(0, SIGN_DOWN_DIFF), 0.2)
+	tween.parallel().tween_property(held_sign, "scale", Vector2(1,0), 0.2)
+
+## Fades the sign with the fade colour.
+func fade_sign() -> void:
+	if has_sign:
+		held_sign.color = faded_sign_colour
+
+## Highlights the sign with the highlight colour.
+func highlight_sign() -> void:
+	if has_sign:
+		held_sign.color = highlighted_sign_colour
 
 #########################
 ## Animation functions ##
@@ -225,18 +289,15 @@ func _play_dissapointment_animation(delay:float = 0):
 		
 		# Squish the sign down
 		# TODO: THIS IS HORRIBLE!!! Fix this to something much nicer when time permits
-		var tween = create_tween()
-		held_sign.move_to_front()
-		tween.parallel().tween_property(held_sign, "position",held_sign.position + Vector2(0,32), 0.2)
-		tween.parallel().tween_property(held_sign, "scale", Vector2(1,0), 0.2)
+		_fold_sign_down()
 		
-		# Reset the sign for next time 
-		# TODO: THIS IS HORRIBLE!!! Fix this to something much nicer when time permits
-		await tween.finished
-		held_sign.hide()
-		held_sign.scale = Vector2(1,1)
-		held_sign.position -= Vector2(0,32)
-		move_child(held_sign, 0)
+		## Reset the sign for next time 
+		## TODO: THIS IS HORRIBLE!!! Fix this to something much nicer when time permits
+		#await tween.finished
+		#held_sign.hide()
+		#held_sign.scale = Vector2(1,1)
+		#held_sign.position -= Vector2(0,32)
+		#move_child(held_sign, 0)
 
 func _play_sleep_animation(delay:float = 0):
 	
@@ -244,9 +305,17 @@ func _play_sleep_animation(delay:float = 0):
 	if delay != 0:
 		await get_tree().create_timer(delay).timeout
 	
-	#Play the animation
+	# Play the animation
 	sprite.play("sleeping")
+
+func _play_wake_up_animation(delay:float = 0):
 	
+	# Add optional delay
+	if delay != 0:
+		await get_tree().create_timer(delay).timeout
+	
+	# Play the animation
+	sprite.play("wake_up")
 
 #########################
 ## Connected functions ##
@@ -259,3 +328,7 @@ func _on_standup_timer_timeout() -> void:
 ## Triggered when the WaddleTimer times out.
 func _on_waddle_timer_timeout() -> void:
 	unwaddle()
+
+## Triggered when the WakeUpTimer times out.
+func _on_wake_up_timer_timeout() -> void:
+	wake_up()

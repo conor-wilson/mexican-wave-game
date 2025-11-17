@@ -12,13 +12,14 @@ font = ExtResource("6_s48cp")
 font_size = 40
 font_color = Color(0, 0, 0, 1)
 
-[node name="Person" type="Node2D" node_paths=PackedStringArray("sprite", "held_sign", "held_sign_label", "standup_timer", "waddle_timer")]
+[node name="Person" type="Node2D" node_paths=PackedStringArray("sprite", "held_sign", "held_sign_label", "standup_timer", "waddle_timer", "wake_up_timer")]
 script = ExtResource("1_31ckc")
 sprite = NodePath("AnimatedSprite2D")
 held_sign = NodePath("HeldSign")
 held_sign_label = NodePath("HeldSign/Label")
 standup_timer = NodePath("StandupTimer")
 waddle_timer = NodePath("WaddleTimer")
+wake_up_timer = NodePath("WakeUpTimer")
 normal_sign_colour = Color(1, 1, 1, 1)
 highlighted_sign_colour = Color(0.983, 0.796, 0, 1)
 faded_sign_colour = Color(0.754, 0.754, 0.754, 1)
@@ -67,7 +68,7 @@ color = Color(0, 0, 0, 0.74509805)
 position = Vector2(9.536743e-07, 9.536743e-07)
 scale = Vector2(3, 3)
 sprite_frames = ExtResource("5_bf855")
-animation = &"sleeping"
+animation = &"wake_up"
 autoplay = "hands_up_holding_sign"
 
 [node name="StandupTimer" type="Timer" parent="."]
@@ -77,5 +78,10 @@ one_shot = true
 [node name="WaddleTimer" type="Timer" parent="."]
 one_shot = true
 
+[node name="WakeUpTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
 [connection signal="timeout" from="StandupTimer" to="." method="_on_standup_timer_timeout"]
 [connection signal="timeout" from="WaddleTimer" to="." method="_on_waddle_timer_timeout"]
+[connection signal="timeout" from="WakeUpTimer" to="." method="_on_wake_up_timer_timeout"]
