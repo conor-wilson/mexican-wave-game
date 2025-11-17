@@ -98,7 +98,7 @@ func _process_game_over():
 	# Update the visuals
 	_screen_view.stop()
 	await get_tree().create_timer(1).timeout
-	_popups.show_game_over_menu(_restart, _get_score(), _get_high_score())
+	_popups.game_over_menu.open_popup(_restart, _get_score(), _get_high_score())
 	
 func _get_score() -> int:
 	return _text_manager.get_currently_selected_char_index()

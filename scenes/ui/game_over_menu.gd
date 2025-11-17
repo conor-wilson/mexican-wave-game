@@ -1,4 +1,4 @@
-class_name GameOverMenu extends Control
+class_name GameOverMenu extends GamePopup
 
 @export var _retry_button:Button
 @export var _score_text:Label
