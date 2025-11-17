@@ -4,6 +4,7 @@ class_name GameCamera extends Camera2D
 @export var movement_direction:Vector2 = Vector2.ZERO
 @export var movement_speed:float = 0
 @export var movement_accelleration:float = 0
+@export var max_movement_speed:float = 100
 # TODO: Should we have a maximum speed?
 
 func _process(delta: float) -> void:
@@ -36,7 +37,7 @@ func snap_to(new_pos:Vector2) -> void:
 ## Calculates new speed based on accelleration and delta time, and updates
 ## accordingly.
 func _increment_speed(delta:float):
-	movement_speed += movement_accelleration*delta
+	movement_speed = clamp(movement_speed + movement_accelleration*delta, -max_movement_speed, max_movement_speed)
 
 ## Moves the camera's position based on speed and delta time.
 func _move(delta:float):
