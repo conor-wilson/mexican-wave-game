@@ -1,5 +1,7 @@
 class_name Person extends Node2D
 
+# TODO: Fix WakeUpTimer mechanic (also maybe make it optional to help testing)
+
 @export var sprite:AnimatedSprite2D
 @export var held_sign: Control
 @export var held_sign_label: Label

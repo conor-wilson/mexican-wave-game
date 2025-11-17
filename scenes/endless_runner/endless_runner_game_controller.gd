@@ -136,6 +136,8 @@ func _get_mode_name() -> String:
 
 func _generate_sleeping_people_indices() -> Dictionary[int, bool]:
 	
+	# TODO: Figure out a way to do this properly
+	
 	# Generate 100 numbers
 	var output:Dictionary[int, bool] = {}
 	for i in range(100):
