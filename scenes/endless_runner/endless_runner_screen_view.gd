@@ -6,7 +6,10 @@ class_name EndlessRunnerScreenView extends ScreenView
 
 # Visual Configuration
 @export var _letter_row_index:int = 5
+
+## When a column reaches this index (from left to right on the screen), its members wake up.
 @export var _wake_up_column_index:int = 10
+
 ## If the wave gets to this percentage across the screen, we snap the camera to catch up.
 @export var _camera_snap_threshold_percentage:float = 0.6 # TODO: Play around with this value
 
@@ -134,6 +137,10 @@ func _on_crowd_new_column_spawned(column_id:int) -> void:
 ## Wakes up the column at the wake-up column index (ie: that many columns across
 ## the screen).
 func _wake_up_wake_up_column(): # NOTE: This name is derranged but I think it actually makes sense, because we're waking up the wake-up column?
+	
+	if !Global.sleeping_people_wake_up:
+		return
+	
 	var sorted_column_ids:Array[int] = _crowd.get_column_ids()
 	_crowd.get_column_with_id(sorted_column_ids[_wake_up_column_index]).wake_up()
 
