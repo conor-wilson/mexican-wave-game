@@ -2,8 +2,15 @@ class_name EndlessRunnerGameController extends GameController
 
 @export var _text_manager:TextManager
 
+## The chance that a random person will be sleeping at the start of the game.
 @export var _starting_sleeping_person_spawn_chance:float = 0.1
-@export var _sleeping_person_spawn_chance_accelleration:float = 0.001
+
+## The amount by which the sleeping person spawn chance increases each time a
+## person is spawned.
+@export var _sleeping_person_spawn_chance_increment:float = 0.001
+
+## The maximum chance that a random person will be sleeping (ie: it won't
+## increment beyond this).
 @export var _max_sleeping_person_spawn_chance:float = 0.5
 
 ## The queue IDs of columns that are next in the wave.
@@ -11,11 +18,6 @@ var _wave_column_id_queue:Array[int] = []
 
 var _sleeping_person_spawn_chance:float = 0.5
 var _last_sleeping_person_index:int = 0
-
-func _process(delta: float) -> void:
-	
-	if _text_manager.get_generated_text_length() > _last_sleeping_person_index:
-		_text_manager.add_sleeping_indices(_generate_sleeping_people_indices())
 
 func _reset() -> void:
 	
@@ -64,6 +66,10 @@ func _process_new_column_spawned(column_id:int) -> void:
 	
 	# Render the character as needed
 	_screen_view.render_char_in_column(column_id)
+	
+	# New text might have been generated. Check to see if we need new sleeping indices.
+	if _text_manager.get_generated_text_length() > _last_sleeping_person_index:
+		_generate_sleeping_people_indices()
 
 ## Handles what happens when an existing column desspawns.
 func _process_existing_column_despawned(column_id:int) -> void:
@@ -133,25 +139,25 @@ func _get_score() -> int:
 func _get_mode_name() -> String:
 	return "EndlessRunner"
 
-func _generate_sleeping_people_indices() -> Dictionary[int, bool]:
+## Generates new indices for sleeping people, and gives them to the text manager.
+func _generate_sleeping_people_indices():
 	
-	# TODO: Figure out a way to do this properly
+	var new_indices:Dictionary[int, bool] = {}
+	var current_text_length:int = _text_manager.get_generated_text_length()
 	
-	
-	# Generate the indexes for sleeping people
-	var output:Dictionary[int, bool] = {}
-	for i in range(_last_sleeping_person_index, _text_manager.get_generated_text_length()):
+	# For each person who haven't had the chance to be sleeping...
+	for i in range(_last_sleeping_person_index, current_text_length):
 		
-		# Roll the dice to see if the person will be sleeping
+		# ...roll the dice to see if they should sleep...
 		if randf() <= _sleeping_person_spawn_chance:
-			output[i] = true
+			new_indices[i] = true
 		
-		# Increase the chance that the next person will be sleeping
+		# ...then increase the chance that the next person will be sleeping.
 		if _sleeping_person_spawn_chance < _max_sleeping_person_spawn_chance:
-			_sleeping_person_spawn_chance += _sleeping_person_spawn_chance_accelleration
+			_sleeping_person_spawn_chance += _sleeping_person_spawn_chance_increment
 	
-	print("GENERATED ", _text_manager.get_generated_text_length() - _last_sleeping_person_index, " SLEEPING PEOPLE")
-	print("SPAWN CHANCE: ", _sleeping_person_spawn_chance)
-	_last_sleeping_person_index = _text_manager.get_generated_text_length()
+	# Record where we left off for next time
+	_last_sleeping_person_index = current_text_length
 	
-	return output
+	# Give the indices to the text manager
+	_text_manager.add_sleeping_indices(new_indices)

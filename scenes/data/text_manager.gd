@@ -3,12 +3,14 @@ class_name TextManager extends Node2D
 @export var _text_generator:TextGenerator
 
 var _text:String
+var _text_length:int # We store this as a variable to avoid having to do len(_text) every time the controller wants the length of the text.
 var _currently_selected_char_index:int
 
 var _sleeping_people_indices:Dictionary[int, bool]
 
 func reset():
 	_text = ""
+	_text_length = 0
 	_currently_selected_char_index = 0
 	_sleeping_people_indices = {}
 	_generate_new_text()
@@ -18,7 +20,7 @@ func add_sleeping_indices(new_indices:Dictionary[int, bool]):
 		_sleeping_people_indices[index] = true
 
 func get_generated_text_length() -> int:
-	return len(_text)
+	return _text_length
 
 ## Returns the character in the text at the provided index.
 func get_char(index:int) -> String:
@@ -66,3 +68,4 @@ func _generate_new_text():
 	if _text != "":
 		_text += " "
 	_text += _text_generator.generate_sentence()
+	_text_length = len(_text)
