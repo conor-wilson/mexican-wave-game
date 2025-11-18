@@ -13,7 +13,7 @@ enum State {
 	PLAYING,
 	GAMEOVER,
 }
-var _state:State
+var _state: State
 
 ## Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -29,7 +29,6 @@ func _setup() -> void:
 ## Resets the game to the very beginning state. Does not reuse any existing
 ## visuals (eg: deletes any existing crowd members instead of reusing them).
 func _reset() -> void:
-	
 	# Reset the state
 	_state = State.READY
 	
@@ -40,7 +39,6 @@ func _reset() -> void:
 ## Restarts the game, reusing any existing visuals (eg: reuses existing crowd 
 ## members)
 func _restart() -> void:
-	
 	# Reset the state
 	_state = State.READY
 	
@@ -51,7 +49,6 @@ func _restart() -> void:
 ## Checks to see if the modular components are ready. If they are not, the
 ## function waits until they are. Pushes errors if any of them are undefined.
 func _wait_for_ready_components() -> void:
-	
 	# Wait for InputSystem
 	if _input_system != null:
 		if !_input_system.is_node_ready():
@@ -75,7 +72,6 @@ func _wait_for_ready_components() -> void:
 
 ## Connects all the signals from the modular components.
 func _connect_all_signals():
-	
 	# Connect the InputSystem signals
 	_input_system.letter_input_received.connect(_on_input_system_letter_input_received)
 
@@ -99,19 +95,19 @@ func _start():
 	_popups.start()
 
 ## Triggered when the InputSystem signals that a letter input has been received.
-func _on_input_system_letter_input_received(letter_input:String) -> void:
+func _on_input_system_letter_input_received(letter_input: String) -> void:
 	if _state != State.READY && _state != State.PLAYING:
 		return
 	_process_letter_input(letter_input)
 
 ## Triggered when the ScreenView signals that a new column has spawned.
-func _on_screen_view_new_column_spawned(new_column_id:int) -> void:
+func _on_screen_view_new_column_spawned(new_column_id: int) -> void:
 	if _state != State.PLAYING:
 		return
 	_process_new_column_spawned(new_column_id)
 
 ## Triggered when the ScreenView signals that an existing column has despawned.
-func _on_screen_view_existing_column_spawned(column_id:int) -> void:
+func _on_screen_view_existing_column_spawned(column_id: int) -> void:
 	if _state != State.PLAYING:
 		return
 	_process_existing_column_despawned(column_id)
@@ -133,12 +129,12 @@ func _get_mode_name() -> String
 	
 ## Handles what happens when a new column spawns.
 @abstract
-func _process_new_column_spawned(new_column_id:int) -> void
+func _process_new_column_spawned(new_column_id: int) -> void
 
 ## Handles what happens when an existing column desspawns.
 @abstract
-func _process_existing_column_despawned(column_id:int) -> void
+func _process_existing_column_despawned(column_id: int) -> void
 
 ## Handles what happens when the game receives a letter input.
 @abstract
-func _process_letter_input(_letter_input:String)
+func _process_letter_input(_letter_input: String)
