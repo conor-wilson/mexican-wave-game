@@ -1,6 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://bklubkulutqyb"]
+[gd_scene load_steps=13 format=3 uid="uid://bklubkulutqyb"]
 
 [ext_resource type="Script" uid="uid://ddf65fgyd437n" path="res://scenes/main.gd" id="1_ig7tw"]
+[ext_resource type="Texture2D" uid="uid://cfvry7ctes6tc" path="res://assets/art/stadium/banner/banner_animated_texture.tres" id="3_choun"]
 [ext_resource type="Texture2D" uid="uid://c078h7knc5syp" path="res://assets/art/stadium/StadiumBackground.png" id="3_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://b4jfm050tml0n" path="res://scenes/crowd/crowd.tscn" id="4_tipki"]
 [ext_resource type="Texture2D" uid="uid://bgnn0ubbsmhw1" path="res://assets/art/stadium/StadiumInFrontOfPeople.png" id="5_85g3d"]
@@ -9,6 +10,10 @@
 [ext_resource type="Texture2D" uid="uid://b6c1x0tqb2smy" path="res://scenes/ui/settings_button_animated_texture.tres" id="7_tipki"]
 [ext_resource type="PackedScene" uid="uid://cnmf4ghisg08r" path="res://scenes/ui/pause_menu.tscn" id="8_tipki"]
 [ext_resource type="FontFile" uid="uid://b08gfrml13o4i" path="res://assets/fonts/Tomorrow_Night.ttf" id="12_muem4"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ya4ey"]
+font_size = 8
+font_color = Color(0.28235295, 0.6627451, 1, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_0xm2m"]
 font_size = 48
@@ -32,19 +37,55 @@ repeat_size = Vector2(1152, 0)
 position = Vector2(1152, 324)
 texture = ExtResource("3_o6xl0")
 
-[node name="Ad1" type="ColorRect" parent="EndlessRunnerScreenView/ScrollingBackground/BackWall"]
-offset_left = 48.0
-offset_top = 24.0
-offset_right = 424.0
-offset_bottom = 112.0
-color = Color(0.92156863, 0.9529412, 1, 1)
+[node name="TopLeftBanner" type="Sprite2D" parent="EndlessRunnerScreenView/ScrollingBackground/BackWall"]
+position = Vector2(236.66, 85.275)
+scale = Vector2(2.989, 1.55)
+texture = ExtResource("3_choun")
 
-[node name="Ad2" type="ColorRect" parent="EndlessRunnerScreenView/ScrollingBackground/BackWall"]
-offset_left = 656.0
-offset_top = 32.0
-offset_right = 1032.0
-offset_bottom = 120.0
-color = Color(0.92156863, 0.9529412, 1, 1)
+[node name="CreditsOneLabel" type="Label" parent="EndlessRunnerScreenView/ScrollingBackground/BackWall/TopLeftBanner"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -75.0
+offset_top = -50.0
+offset_right = -75.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("12_muem4")
+theme_override_font_sizes/font_size = 32
+text = "Created by:
+Conor Wilson
+Emmet Winter
+Evie Winter"
+label_settings = SubResource("LabelSettings_ya4ey")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TopRightBanner" type="Sprite2D" parent="EndlessRunnerScreenView/ScrollingBackground/BackWall"]
+position = Vector2(896.274, 85.275)
+scale = Vector2(2.989, 1.55)
+texture = ExtResource("3_choun")
+
+[node name="CreditsTwoLabel" type="Label" parent="EndlessRunnerScreenView/ScrollingBackground/BackWall/TopRightBanner"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -73.265
+offset_top = -51.01
+offset_right = -73.265
+offset_bottom = -51.01
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("12_muem4")
+theme_override_font_sizes/font_size = 32
+text = "Created by:
+Jay Arbuthnot
+Markus Galic
+Sankha Peiris"
+label_settings = SubResource("LabelSettings_ya4ey")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Crowd" parent="EndlessRunnerScreenView" instance=ExtResource("4_tipki")]
 num_columns = 23
