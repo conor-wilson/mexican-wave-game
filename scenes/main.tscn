@@ -24,6 +24,7 @@ _settings_popup = NodePath("PauseMenu")
 [node name="ScrollingBackground" type="Node2D" parent="EndlessRunnerScreenView"]
 
 [node name="BackWall" type="Parallax2D" parent="EndlessRunnerScreenView/ScrollingBackground"]
+z_index = -1
 scroll_scale = Vector2(0.85, 1)
 repeat_size = Vector2(1152, 0)
 
@@ -69,6 +70,7 @@ position = Vector2(1152, 324)
 texture = ExtResource("6_choun")
 
 [node name="MarginContainer" type="CenterContainer" parent="."]
+z_index = 5
 offset_top = -32.73
 offset_right = 1152.0
 offset_bottom = 615.27

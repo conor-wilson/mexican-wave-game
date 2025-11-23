@@ -22,6 +22,7 @@ func _ready() -> void:
 func setup() -> void:
 	# Set up a new column pool
 	_column_pool = CrowdColumnPool.new(num_columns, crowd_column_scene)
+	reset()
 
 ## Resets the crowd to the very beginning state. Does not reuse any existing
 ## crowd members.
