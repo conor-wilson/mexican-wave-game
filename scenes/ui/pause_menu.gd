@@ -7,6 +7,8 @@ class_name PauseMenu extends GamePopup
 @export var _audio_on_icon:Texture2D
 @export var _audio_off_icon:Texture2D
 
+@export var _close_button:Button
+
 var _game_controller:GameController
 var _sound_is_on:bool = true
 
@@ -23,6 +25,8 @@ func _setup_buttons():
 		_retry_button.pressed.connect(_restart_button_clicked)
 	if !_home_button.pressed.is_connected(_quit_button_clicked):
 		_home_button.pressed.connect(_quit_button_clicked)
+	if !_close_button.pressed.is_connected(_close_button_clicked):
+		_close_button.pressed.connect(_close_button_clicked)
 
 func _toggle_audio_button_clicked():
 	# There is no sound in the game so this does nothing. For now we'll just change the icon.
@@ -37,3 +41,7 @@ func _quit_button_clicked():
 
 func _restart_button_clicked():
 	_game_controller.restart()
+
+func _close_button_clicked():
+	_game_controller.unpause()
+	hide()
