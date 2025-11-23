@@ -67,6 +67,7 @@ func _wait_for_ready_components() -> void:
 	if _popups != null:
 		if !_popups.is_node_ready():
 			await _popups.ready
+			_popups.set_game_controller(self)
 	else:
 		push_error("no Popups defined")
 

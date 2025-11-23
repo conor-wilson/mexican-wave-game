@@ -8,14 +8,16 @@
 [sub_resource type="LabelSettings" id="LabelSettings_sqbng"]
 font_size = 64
 
-[node name="EndlessRunnerPopups" type="CanvasLayer" node_paths=PackedStringArray("_go_screen", "_go_screen_hide_timer", "_ready_screen", "_hud", "game_over_menu", "_popups")]
+[node name="EndlessRunnerPopups" type="CanvasLayer" node_paths=PackedStringArray("_go_screen", "_go_screen_hide_timer", "_ready_screen", "_hud", "game_over_menu", "pause_menu", "_popups", "_pause_button")]
 script = ExtResource("1_sqbng")
 _go_screen = NodePath("GoScreen")
 _go_screen_hide_timer = NodePath("GoScreen/HideTimer")
 _ready_screen = NodePath("ReadyScreen")
 _hud = NodePath("HUD")
 game_over_menu = NodePath("GameOverMenu")
+pause_menu = NodePath("PauseMenu")
 _popups = [NodePath("ReadyScreen"), NodePath("GoScreen"), NodePath("GameOverMenu"), NodePath("GameOverMenu"), NodePath("PauseMenu")]
+_pause_button = NodePath("HUD/PauseButton")
 
 [node name="ReadyScreen" type="ColorRect" parent="."]
 offset_left = 232.0
