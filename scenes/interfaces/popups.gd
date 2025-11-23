@@ -49,4 +49,5 @@ func show_hud():
 	_hud.show()
 
 func _on_pause_button_pressed():
+	_game_controller.pause()
 	pause_menu.open_popup(_game_controller)

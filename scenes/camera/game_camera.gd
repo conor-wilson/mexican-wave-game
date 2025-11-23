@@ -30,6 +30,9 @@ func start_auto_scrolling(direction:Vector2, starting_speed:float, accelleration
 func stop_auto_scrolling():
 	_auto_scrolling = false
 
+func resume_auto_scrolling():
+	_auto_scrolling = true
+
 ## Immediately snaps the camera to the specified new position
 func snap_to(new_pos:Vector2) -> void:
 	position = new_pos

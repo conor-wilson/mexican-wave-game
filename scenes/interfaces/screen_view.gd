@@ -41,6 +41,10 @@ func start() -> void
 @abstract
 func stop() -> void
 
+# Pauses the game visuals
+@abstract
+func toggle_pause(is_paused:bool) -> void
+
 ## Returns the IDs of the crowd columns from the left to the right of the 
 ## screen. The optional inputs give options to ignore columns to the left or
 ## right of their index.

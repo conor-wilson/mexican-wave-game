@@ -11,6 +11,7 @@ const HIGH_SCORE_SAVE_SUFFIX := "_HighScore"
 enum State {
 	READY,
 	PLAYING,
+	PAUSED,
 	GAMEOVER,
 }
 var _state: State
@@ -19,6 +20,18 @@ var _state: State
 func _ready() -> void:
 	await _setup()
 	_reset()
+
+func pause() -> void:
+	if _state != State.PLAYING:
+		return; # Invalid state to call pause from
+	_state = State.PAUSED
+	_screen_view.toggle_pause(true)
+
+func unpause() -> void:
+	if _state != State.PAUSED:
+		return; #Invalid state to call unpause from
+	_state = State.PLAYING
+	_screen_view.toggle_pause(false)
 
 ## Sets up the modular components by waiting for them to be ready, and then
 ## connecting all their signals to the correct functions.
@@ -67,7 +80,7 @@ func _wait_for_ready_components() -> void:
 	if _popups != null:
 		if !_popups.is_node_ready():
 			await _popups.ready
-			_popups.set_game_controller(self)
+		_popups.set_game_controller(self)
 	else:
 		push_error("no Popups defined")
 

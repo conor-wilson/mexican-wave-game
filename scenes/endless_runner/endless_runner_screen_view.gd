@@ -46,6 +46,12 @@ func start() -> void:
 	# Update the camera
 	game_camera.start_auto_scrolling(Vector2.RIGHT, _starting_camera_speed, _camera_acceleration)
 
+func toggle_pause(is_paused:bool) -> void:
+	if is_paused:
+		game_camera.stop_auto_scrolling()
+	else:
+		game_camera.resume_auto_scrolling()
+
 ## Stops the game visuals.
 func stop() -> void:
 	
