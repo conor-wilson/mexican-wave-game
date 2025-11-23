@@ -133,24 +133,6 @@ theme_override_fonts/font = ExtResource("6_ht4ye")
 text = "Restart"
 icon = ExtResource("5_coo1x")
 
-[node name="Header" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(287.99976, -15.669998)
-texture = ExtResource("6_2jkta")
-
-[node name="ClosePopupButton" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -73.19452
-offset_top = 16.29
-offset_right = -25.194519
-offset_bottom = 64.28999
-grow_horizontal = 0
-icon = ExtResource("8_2rlsb")
-icon_alignment = 1
-
 [node name="HeaderTextureRect" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 5
@@ -162,3 +144,16 @@ offset_right = 132.50024
 offset_bottom = 67.985
 grow_horizontal = 2
 texture = SubResource("AnimatedTexture_coo1x")
+
+[node name="ClosePopupButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -73.19452
+offset_top = 16.290009
+offset_right = -25.194519
+offset_bottom = 64.29
+grow_horizontal = 0
+icon = ExtResource("8_2rlsb")
+icon_alignment = 1
