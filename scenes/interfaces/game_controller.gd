@@ -33,6 +33,9 @@ func unpause() -> void:
 	_state = State.PLAYING
 	_screen_view.toggle_pause(false)
 
+func quit() -> void:
+	SceneSwitcher.queue_switch_scene(SceneSwitcher.main_menu_scene)
+
 ## Sets up the modular components by waiting for them to be ready, and then
 ## connecting all their signals to the correct functions.
 func _setup() -> void:
