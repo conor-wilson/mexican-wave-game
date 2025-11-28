@@ -55,7 +55,7 @@ async function postScore(data) {
 }
 
 app.get('/', async (req, res) => {
-  res.send("OK");
+  res.send("Ok");
 })
 
 app.get('/test', async (req, res) => {
