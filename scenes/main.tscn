@@ -261,6 +261,10 @@ visible = false
 [node name="RestartButton" parent="PauseMenu/VBoxContainer/HBoxContainer2" index="1"]
 visible = false
 
+[node name="HeaderTextureRect" parent="PauseMenu" index="3"]
+offset_top = -144.565
+offset_bottom = -15.565002
+
 [node name="TutorialPopup" parent="." instance=ExtResource("17_muem4")]
 visible = false
 
