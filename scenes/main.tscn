@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://bklubkulutqyb"]
+[gd_scene load_steps=30 format=3 uid="uid://bklubkulutqyb"]
 
 [ext_resource type="Script" uid="uid://ddf65fgyd437n" path="res://scenes/main.gd" id="1_ig7tw"]
 [ext_resource type="Texture2D" uid="uid://cfvry7ctes6tc" path="res://assets/art/stadium/banner/banner_animated_texture.tres" id="3_choun"]
@@ -11,27 +11,19 @@
 [ext_resource type="Texture2D" uid="uid://doakckvrjg8iy" path="res://assets/art/ui/Titles/GameTitle/LaOlaAnim2.png" id="8_5q0nq"]
 [ext_resource type="PackedScene" uid="uid://cnmf4ghisg08r" path="res://scenes/ui/pause_menu.tscn" id="8_tipki"]
 [ext_resource type="Texture2D" uid="uid://csxrffl53gttv" path="res://assets/art/ui/Titles/GameTitle/LaOlaAnim3.png" id="9_dgi5k"]
-[ext_resource type="Texture2D" uid="uid://b8elscsrtwq76" path="res://assets/art/ui/Button_Settings/Sprite-Settings1.png" id="10_fv21b"]
 [ext_resource type="Texture2D" uid="uid://qiev3vhh3af5" path="res://assets/art/ui/PopupBackground/PauseMenuBack1.png" id="11_jbj1t"]
-[ext_resource type="Texture2D" uid="uid://bob3f0u3rn7m3" path="res://assets/art/ui/Button_Settings/Sprite-Settings2.png" id="11_tel4y"]
 [ext_resource type="Texture2D" uid="uid://ddw7bg88wixnw" path="res://assets/art/ui/PopupBackground/PauseMenuBack2.png" id="12_dp3eg"]
 [ext_resource type="FontFile" uid="uid://b08gfrml13o4i" path="res://assets/fonts/Tomorrow_Night.ttf" id="12_muem4"]
-[ext_resource type="Texture2D" uid="uid://d1tc4nvnvo4pt" path="res://assets/art/ui/Button_Settings/Sprite-Settings11.png" id="12_qkpxi"]
+[ext_resource type="Texture2D" uid="uid://fetb4u78i345" path="res://assets/art/ui/Button_HowToPlay/HowToPlayMenuButton1.png" id="12_y6deb"]
 [ext_resource type="Texture2D" uid="uid://cf8ygvjn2whdl" path="res://assets/art/ui/PopupBackground/PauseMenuBack3.png" id="13_0ld40"]
-[ext_resource type="Texture2D" uid="uid://dm5a8vntr2asl" path="res://assets/art/ui/Button_Settings/Sprite-Settings12.png" id="13_5q0nq"]
-[ext_resource type="Texture2D" uid="uid://75ulvuny05lj" path="res://assets/art/ui/Button_Settings/Sprite-Settings13.png" id="14_dgi5k"]
+[ext_resource type="Texture2D" uid="uid://16tx164xooqe" path="res://assets/art/ui/Button_HowToPlay/HowToPlayMenuButton2.png" id="13_og1vs"]
+[ext_resource type="Texture2D" uid="uid://cxju1cajs2lru" path="res://assets/art/ui/Button_HowToPlay/HowToPlayMenuButton3.png" id="14_2wyq8"]
 [ext_resource type="Texture2D" uid="uid://bij11r6xu3n1h" path="res://assets/art/ui/PopupBackground/PauseMenuBack4.png" id="14_gqmmt"]
-[ext_resource type="Texture2D" uid="uid://p1p3cxa3q8c5" path="res://assets/art/ui/Button_Settings/Sprite-Settings3.png" id="15_j8jky"]
+[ext_resource type="Texture2D" uid="uid://boitsnaxo4n8h" path="res://assets/art/ui/Button_HowToPlay/HowToPlayMenuButton4.png" id="15_vxglm"]
 [ext_resource type="Texture2D" uid="uid://djjebajdht7sp" path="res://assets/art/ui/PopupBackground/PauseMenuBack5.png" id="15_yc10j"]
+[ext_resource type="Texture2D" uid="uid://b1v2r0ahlljj0" path="res://assets/art/ui/Button_HowToPlay/HowToPlayMenuButton5.png" id="16_2f3dj"]
 [ext_resource type="Texture2D" uid="uid://bksx8ea6pwn4c" path="res://assets/art/ui/PopupBackground/PauseMenuBack6.png" id="16_jscy8"]
-[ext_resource type="Texture2D" uid="uid://ca6whxnefua2d" path="res://assets/art/ui/Button_Settings/Sprite-Settings4.png" id="16_kmb1v"]
-[ext_resource type="Texture2D" uid="uid://ovi2kavilir8" path="res://assets/art/ui/Button_Settings/Sprite-Settings5.png" id="17_fuf3a"]
 [ext_resource type="PackedScene" uid="uid://5sj7yhcl7bgn" path="res://scenes/ui/tutorial_popup.tscn" id="17_muem4"]
-[ext_resource type="Texture2D" uid="uid://busnfxltjmm7q" path="res://assets/art/ui/Button_Settings/Sprite-Settings6.png" id="18_pibwh"]
-[ext_resource type="Texture2D" uid="uid://2klfjymwhpjb" path="res://assets/art/ui/Button_Settings/Sprite-Settings7.png" id="19_c6pm6"]
-[ext_resource type="Texture2D" uid="uid://cl1kl45nsd8vl" path="res://assets/art/ui/Button_Settings/Sprite-Settings8.png" id="20_5he1u"]
-[ext_resource type="Texture2D" uid="uid://ch51k3hx32wj3" path="res://assets/art/ui/Button_Settings/Sprite-Settings9.png" id="21_5poiv"]
-[ext_resource type="Texture2D" uid="uid://c4f0pcgo1262e" path="res://assets/art/ui/Button_Settings/Sprite-Settings10.png" id="22_2cjbq"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ya4ey"]
 font_size = 64
@@ -50,33 +42,17 @@ frame_2/texture = ExtResource("9_dgi5k")
 frame_2/duration = 1.0
 
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_chjal"]
-frames = 13
-speed_scale = 10.4
-frame_0/texture = ExtResource("10_fv21b")
-frame_1/texture = ExtResource("11_tel4y")
+frames = 5
+speed_scale = 8.0
+frame_0/texture = ExtResource("12_y6deb")
+frame_1/texture = ExtResource("13_og1vs")
 frame_1/duration = 1.0
-frame_2/texture = ExtResource("15_j8jky")
+frame_2/texture = ExtResource("14_2wyq8")
 frame_2/duration = 1.0
-frame_3/texture = ExtResource("16_kmb1v")
+frame_3/texture = ExtResource("15_vxglm")
 frame_3/duration = 1.0
-frame_4/texture = ExtResource("17_fuf3a")
+frame_4/texture = ExtResource("16_2f3dj")
 frame_4/duration = 1.0
-frame_5/texture = ExtResource("18_pibwh")
-frame_5/duration = 1.0
-frame_6/texture = ExtResource("19_c6pm6")
-frame_6/duration = 1.0
-frame_7/texture = ExtResource("20_5he1u")
-frame_7/duration = 1.0
-frame_8/texture = ExtResource("21_5poiv")
-frame_8/duration = 1.0
-frame_9/texture = ExtResource("22_2cjbq")
-frame_9/duration = 1.0
-frame_10/texture = ExtResource("12_qkpxi")
-frame_10/duration = 1.0
-frame_11/texture = ExtResource("13_5q0nq")
-frame_11/duration = 1.0
-frame_12/texture = ExtResource("14_dgi5k")
-frame_12/duration = 1.0
 
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_pm3ni"]
 frames = 6
@@ -213,6 +189,7 @@ layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/CenterContainer"]
 layout_mode = 2
+alignment = 1
 
 [node name="PlayButton" type="Button" parent="MarginContainer/VBoxContainer/CenterContainer/VBoxContainer"]
 layout_mode = 2
