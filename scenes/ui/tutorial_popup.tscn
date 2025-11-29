@@ -1,15 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://5sj7yhcl7bgn"]
+[gd_scene load_steps=7 format=3 uid="uid://5sj7yhcl7bgn"]
 
+[ext_resource type="Theme" uid="uid://dy8agccfk1yd7" path="res://scenes/ui/ui_theme.tres" id="1_h30ef"]
 [ext_resource type="Script" uid="uid://7hucf76x5yp6" path="res://scenes/ui/tutorial_popup.gd" id="1_uek7y"]
 [ext_resource type="Texture2D" uid="uid://rej5gwy0fxir" path="res://assets/art/ui/PopupBackground/pause_menu_background_animated_texture.tres" id="2_h30ef"]
 [ext_resource type="PackedScene" uid="uid://d0qg5byt1cjmw" path="res://scenes/ui/person_ui.tscn" id="3_twff1"]
-[ext_resource type="FontFile" uid="uid://b08gfrml13o4i" path="res://assets/fonts/Tomorrow_Night.ttf" id="4_sjqu8"]
 [ext_resource type="Texture2D" uid="uid://c2nmtcjb3dnds" path="res://assets/art/ui/Titles/HowToPlayTitle.png" id="5_uek7y"]
 [ext_resource type="Texture2D" uid="uid://dcq0fnknm0rwg" path="res://assets/art/ui/Icons/X.png" id="6_36hg5"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_yc10j"]
-font = ExtResource("4_sjqu8")
-font_color = Color(0.28235295, 0.6627451, 1, 1)
 
 [node name="TutorialPopup" type="ColorRect" node_paths=PackedStringArray("_wave_people", "_sleeping_people", "_sad_people", "_close_button")]
 z_index = 80
@@ -24,11 +20,12 @@ offset_right = 813.185
 offset_bottom = 399.95502
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_h30ef")
 color = Color(1, 1, 1, 0)
 script = ExtResource("1_uek7y")
-_wave_people = [NodePath("VBoxContainer/HBoxContainer/VBoxContainer_Typing/HBoxContainer/PersonUI"), NodePath("VBoxContainer/HBoxContainer/VBoxContainer_Typing/HBoxContainer/PersonUI2"), NodePath("VBoxContainer/HBoxContainer/VBoxContainer_Typing/HBoxContainer/PersonUI3")]
-_sleeping_people = [NodePath("VBoxContainer/HBoxContainer/VBoxContainer_Sleeping/HBoxContainer/PersonUI"), NodePath("VBoxContainer/HBoxContainer/VBoxContainer_Sleeping/HBoxContainer/PersonUI2"), NodePath("VBoxContainer/HBoxContainer/VBoxContainer_Sleeping/HBoxContainer/PersonUI3"), NodePath("VBoxContainer/HBoxContainer/VBoxContainer_Sleeping/HBoxContainer/PersonUI4"), NodePath("VBoxContainer/HBoxContainer/VBoxContainer_Sleeping/HBoxContainer/PersonUI5")]
-_sad_people = [NodePath("VBoxContainer/HBoxContainer3/VBoxContainer_Lose/HBoxContainer/PersonUI"), NodePath("VBoxContainer/HBoxContainer3/VBoxContainer_Lose/HBoxContainer/PersonUI2"), NodePath("VBoxContainer/HBoxContainer3/VBoxContainer_Lose/HBoxContainer/PersonUI3"), NodePath("VBoxContainer/HBoxContainer3/VBoxContainer_Lose/HBoxContainer/PersonUI4"), NodePath("VBoxContainer/HBoxContainer3/VBoxContainer_Lose/HBoxContainer/PersonUI5")]
+_wave_people = [NodePath("MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer_Typing/HBoxContainer/PersonUI"), NodePath("MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer_Typing/HBoxContainer/PersonUI2"), NodePath("MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer_Typing/HBoxContainer/PersonUI3")]
+_sleeping_people = [NodePath("MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer_Sleeping/HBoxContainer/PersonUI"), NodePath("MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer_Sleeping/HBoxContainer/PersonUI2"), NodePath("MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer_Sleeping/HBoxContainer/PersonUI3"), NodePath("MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer_Sleeping/HBoxContainer/PersonUI4"), NodePath("MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer_Sleeping/HBoxContainer/PersonUI5")]
+_sad_people = [NodePath("MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer_Lose/HBoxContainer/PersonUI"), NodePath("MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer_Lose/HBoxContainer/PersonUI2"), NodePath("MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer_Lose/HBoxContainer/PersonUI3"), NodePath("MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer_Lose/HBoxContainer/PersonUI4"), NodePath("MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer_Lose/HBoxContainer/PersonUI5")]
 _close_button = NodePath("ClosePopupButton")
 
 [node name="DarkenColorRect" type="ColorRect" parent="."]
@@ -58,135 +55,135 @@ patch_margin_top = 49
 patch_margin_right = 49
 patch_margin_bottom = 49
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -395.5925
-offset_top = -154.97751
-offset_right = 455.2825
-offset_bottom = 397.0225
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.9, 0.9)
-theme_override_constants/separation = 20
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_left = -192.0
+offset_top = -160.0
+offset_right = 624.0
+offset_bottom = 400.0
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 128
+theme_override_constants/margin_right = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
 alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 2
+theme_override_constants/separation = 8
 alignment = 1
 
-[node name="VBoxContainer_Typing" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
+[node name="VBoxContainer_Typing" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
+theme_override_constants/separation = 16
 alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/VBoxContainer_Typing"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer_Typing"]
 layout_mode = 2
 alignment = 1
 
-[node name="PersonUI" parent="VBoxContainer/HBoxContainer/VBoxContainer_Typing/HBoxContainer" instance=ExtResource("3_twff1")]
+[node name="PersonUI" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer_Typing/HBoxContainer" instance=ExtResource("3_twff1")]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 
-[node name="PersonUI2" parent="VBoxContainer/HBoxContainer/VBoxContainer_Typing/HBoxContainer" instance=ExtResource("3_twff1")]
+[node name="PersonUI2" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer_Typing/HBoxContainer" instance=ExtResource("3_twff1")]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 
-[node name="PersonUI3" parent="VBoxContainer/HBoxContainer/VBoxContainer_Typing/HBoxContainer" instance=ExtResource("3_twff1")]
+[node name="PersonUI3" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer_Typing/HBoxContainer" instance=ExtResource("3_twff1")]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer_Typing"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer_Typing"]
 layout_mode = 2
-text = "Type letters in the order
-they appear on the signs to keep the Mexican wave going!"
-label_settings = SubResource("LabelSettings_yc10j")
+theme_override_font_sizes/font_size = 20
+text = "Type letters on the signs to keep the Mexican wave going!"
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="VBoxContainer_Sleeping" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
+[node name="VBoxContainer_Sleeping" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
+theme_override_constants/separation = 16
 alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/VBoxContainer_Sleeping"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer_Sleeping"]
 layout_mode = 2
 alignment = 1
 
-[node name="PersonUI" parent="VBoxContainer/HBoxContainer/VBoxContainer_Sleeping/HBoxContainer" instance=ExtResource("3_twff1")]
+[node name="PersonUI" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer_Sleeping/HBoxContainer" instance=ExtResource("3_twff1")]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 
-[node name="PersonUI2" parent="VBoxContainer/HBoxContainer/VBoxContainer_Sleeping/HBoxContainer" instance=ExtResource("3_twff1")]
+[node name="PersonUI2" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer_Sleeping/HBoxContainer" instance=ExtResource("3_twff1")]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 
-[node name="PersonUI3" parent="VBoxContainer/HBoxContainer/VBoxContainer_Sleeping/HBoxContainer" instance=ExtResource("3_twff1")]
+[node name="PersonUI3" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer_Sleeping/HBoxContainer" instance=ExtResource("3_twff1")]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 
-[node name="PersonUI4" parent="VBoxContainer/HBoxContainer/VBoxContainer_Sleeping/HBoxContainer" instance=ExtResource("3_twff1")]
+[node name="PersonUI4" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer_Sleeping/HBoxContainer" instance=ExtResource("3_twff1")]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 
-[node name="PersonUI5" parent="VBoxContainer/HBoxContainer/VBoxContainer_Sleeping/HBoxContainer" instance=ExtResource("3_twff1")]
+[node name="PersonUI5" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer_Sleeping/HBoxContainer" instance=ExtResource("3_twff1")]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer_Sleeping"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer_Sleeping"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 20
 text = "Some fans are sleeping - you'll have to guess the letter from context!"
-label_settings = SubResource("LabelSettings_yc10j")
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer"]
+[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 2
 alignment = 1
 
-[node name="VBoxContainer_Lose" type="VBoxContainer" parent="VBoxContainer/HBoxContainer3"]
+[node name="VBoxContainer_Lose" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_constants/separation = 16
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer3/VBoxContainer_Lose"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer_Lose"]
 layout_mode = 2
 alignment = 1
 
-[node name="PersonUI" parent="VBoxContainer/HBoxContainer3/VBoxContainer_Lose/HBoxContainer" instance=ExtResource("3_twff1")]
+[node name="PersonUI" parent="MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer_Lose/HBoxContainer" instance=ExtResource("3_twff1")]
 layout_mode = 2
 
-[node name="PersonUI2" parent="VBoxContainer/HBoxContainer3/VBoxContainer_Lose/HBoxContainer" instance=ExtResource("3_twff1")]
+[node name="PersonUI2" parent="MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer_Lose/HBoxContainer" instance=ExtResource("3_twff1")]
 layout_mode = 2
 
-[node name="PersonUI3" parent="VBoxContainer/HBoxContainer3/VBoxContainer_Lose/HBoxContainer" instance=ExtResource("3_twff1")]
+[node name="PersonUI3" parent="MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer_Lose/HBoxContainer" instance=ExtResource("3_twff1")]
 layout_mode = 2
 
-[node name="PersonUI4" parent="VBoxContainer/HBoxContainer3/VBoxContainer_Lose/HBoxContainer" instance=ExtResource("3_twff1")]
+[node name="PersonUI4" parent="MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer_Lose/HBoxContainer" instance=ExtResource("3_twff1")]
 layout_mode = 2
 
-[node name="PersonUI5" parent="VBoxContainer/HBoxContainer3/VBoxContainer_Lose/HBoxContainer" instance=ExtResource("3_twff1")]
+[node name="PersonUI5" parent="MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer_Lose/HBoxContainer" instance=ExtResource("3_twff1")]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer3/VBoxContainer_Lose"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer_Lose"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 20
 text = "The wave speeds up. Take too long to type the letter and the wave dies - it's game over!"
-label_settings = SubResource("LabelSettings_yc10j")
 horizontal_alignment = 1
 autowrap_mode = 2
 

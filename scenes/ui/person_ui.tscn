@@ -3,11 +3,11 @@
 [ext_resource type="PackedScene" uid="uid://tes5qvvjxl1f" path="res://scenes/crowd/person.tscn" id="1_gigcx"]
 
 [node name="PersonUI" type="Control"]
-custom_minimum_size = Vector2(60, 105)
+custom_minimum_size = Vector2(60, 64)
 layout_mode = 3
 anchors_preset = 0
 offset_right = 60.0
-offset_bottom = 105.0
+offset_bottom = 64.0
 
 [node name="Person" parent="." instance=ExtResource("1_gigcx")]
-position = Vector2(32, 78)
+position = Vector2(32, 37)
