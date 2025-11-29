@@ -11,9 +11,13 @@ func stop_all_audio():
 	for i in range(_audio_players.size()):
 		_audio_players[i].stop()
 
-func play_audio(audio:AudioStreamWAV):
+func play_audio(audio:AudioStreamWAV, volume:float=-1, resetToStart:bool = true):
 	var audioPlayer = _get_audio_player_for_audio(audio)
-	audioPlayer.play()
+	if resetToStart:
+		audioPlayer.stop()
+		audioPlayer.play()
+	if volume != -1:
+		audioPlayer.volume_linear = volume
 
 func stop_audio(audio:AudioStreamWAV):
 	var audioPlayer = _get_audio_player_for_audio(audio)

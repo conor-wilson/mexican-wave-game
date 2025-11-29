@@ -52,6 +52,10 @@ func _reset() -> void:
 	_screen_view.reset()
 	_popups.reset()
 
+	# Play music. By triggering them both at the same time we can make sure they're synced.
+	AudioManager.play_audio(AudioManager.music_beats)
+	AudioManager.play_audio(AudioManager.music_tune, 0.0)
+
 ## Restarts the game, reusing any existing visuals (eg: reuses existing crowd 
 ## members)
 func restart() -> void:
@@ -112,7 +116,7 @@ func _start():
 	_popups.start()
 
 	# Start the music!
-	AudioManager.play_audio(AudioManager.music_tune)
+	AudioManager.play_audio(AudioManager.music_tune, 1, false)
 
 ## Triggered when the InputSystem signals that a letter input has been received.
 func _on_input_system_letter_input_received(letter_input: String) -> void:
