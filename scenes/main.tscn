@@ -252,18 +252,24 @@ offset_top = 220.0
 offset_right = 842.0
 offset_bottom = 255.0
 
+[node name="DarkenColorRect" parent="PauseMenu" index="0"]
+offset_left = -327.0
+offset_top = -220.0
+offset_right = 825.0
+offset_bottom = 428.0
+
 [node name="BackgroundRect" parent="PauseMenu" index="1"]
-offset_left = -39.0
-offset_top = -68.0
-offset_right = -250.0
-offset_bottom = 57.0
+offset_left = -63.0
+offset_top = -47.434998
+offset_right = -266.0
+offset_bottom = 77.565
 scale = Vector2(2, 2)
 
 [node name="VBoxContainer" parent="PauseMenu" index="2"]
-offset_left = -279.5925
-offset_top = -10.977509
-offset_right = 32.4075
-offset_bottom = 109.02249
+offset_left = -296.5
+offset_top = 18.5
+offset_right = 22.99585
+offset_bottom = 146.5
 
 [node name="QuitButton" parent="PauseMenu/VBoxContainer/HBoxContainer2" index="0"]
 visible = false
@@ -272,17 +278,23 @@ visible = false
 visible = false
 
 [node name="HeaderTextureRect" parent="PauseMenu" index="3"]
-offset_top = -144.565
-offset_bottom = -15.565002
+offset_left = -212.60974
+offset_top = -124.0
+offset_right = 52.39026
+offset_bottom = 5.0
 
 [node name="ClosePopupButton" parent="PauseMenu" index="4"]
-offset_left = -18.0
-offset_top = -44.0
-offset_right = 30.0
-offset_bottom = 3.9999924
+offset_left = -26.0
+offset_top = -28.0
+offset_right = 22.0
+offset_bottom = 19.999992
 
 [node name="TutorialPopup" parent="." instance=ExtResource("17_muem4")]
 visible = false
+offset_left = 920.0
+offset_top = 544.0
+offset_right = 1389.185
+offset_bottom = 723.955
 
 [connection signal="column_exited_screen" from="EndlessRunnerScreenView/Crowd" to="EndlessRunnerScreenView" method="_on_crowd_column_exited_screen"]
 [connection signal="new_column_spawned" from="EndlessRunnerScreenView/Crowd" to="EndlessRunnerScreenView" method="_on_crowd_new_column_spawned"]
