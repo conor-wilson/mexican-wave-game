@@ -1,6 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://cv0pcnqkje6xm"]
 
 [ext_resource type="Script" uid="uid://3ugbv7d5ldc" path="res://scenes/ui/game_over_menu.gd" id="1_7nx0y"]
+[ext_resource type="Theme" uid="uid://dy8agccfk1yd7" path="res://scenes/ui/ui_theme.tres" id="1_ssfjd"]
 [ext_resource type="Texture2D" uid="uid://rej5gwy0fxir" path="res://assets/art/ui/PopupBackground/pause_menu_background_animated_texture.tres" id="2_i4hgn"]
 [ext_resource type="Texture2D" uid="uid://81yxlnpsjl8c" path="res://assets/art/ui/Icons/ReturnToMainMenu.png" id="4_bajbn"]
 [ext_resource type="FontFile" uid="uid://b08gfrml13o4i" path="res://assets/fonts/Tomorrow_Night.ttf" id="4_rvyv1"]
@@ -9,12 +10,9 @@
 [ext_resource type="Texture2D" uid="uid://ccrlwir7i7vnv" path="res://assets/art/ui/Titles/GameOverTitle/GameOverAnimOutlined2.png" id="7_ssfjd"]
 [ext_resource type="Texture2D" uid="uid://bbxahrlp7x5xn" path="res://assets/art/ui/Titles/GameOverTitle/GameOverAnimOutlined3.png" id="8_g4y5r"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_7nx0y"]
-font_size = 32
-
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_pqh8g"]
 frames = 3
-speed_scale = 8.0
+speed_scale = 3.0
 frame_0/texture = ExtResource("6_dvuf8")
 frame_1/texture = ExtResource("7_ssfjd")
 frame_1/duration = 1.0
@@ -26,6 +24,7 @@ offset_left = 232.0
 offset_top = 128.0
 offset_right = 848.0
 offset_bottom = 504.0
+theme = ExtResource("1_ssfjd")
 color = Color(0, 1, 1, 0)
 script = ExtResource("1_7nx0y")
 _retry_button = NodePath("CenterContainer/VBoxContainer/HBoxContainer2/RestartButton")
@@ -35,10 +34,10 @@ _high_score_text = NodePath("CenterContainer/VBoxContainer/HighScoreLabel")
 
 [node name="DarkenColorRect" type="ColorRect" parent="."]
 layout_mode = 0
-offset_left = -1000.0
-offset_top = -1000.0
-offset_right = 1000.0
-offset_bottom = 1000.0
+offset_left = -232.0
+offset_top = -128.0
+offset_right = 920.0
+offset_bottom = 520.0
 color = Color(0, 0, 0, 0.39215687)
 
 [node name="BackgroundRect" type="NinePatchRect" parent="."]
@@ -47,8 +46,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -461.9995
-offset_bottom = -278.0
+offset_left = -24.0
+offset_top = -0.6000061
+offset_right = -456.0
+offset_bottom = -272.6
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(4, 4)
@@ -58,25 +59,28 @@ patch_margin_top = 49
 patch_margin_right = 49
 patch_margin_bottom = 49
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="CenterContainer" type="MarginContainer" parent="."]
 layout_mode = 0
-offset_right = 353.925
-offset_bottom = 225.87
+offset_left = -8.00001
+offset_top = 7.39999
+offset_right = 394.2857
+offset_bottom = 222.25713
 scale = Vector2(1.75, 1.75)
+theme_override_constants/margin_top = 48
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
 layout_mode = 2
 
 [node name="ScoreLabel" type="Label" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 30
 text = "Score: 69420"
-label_settings = SubResource("LabelSettings_7nx0y")
 horizontal_alignment = 1
 
 [node name="HighScoreLabel" type="Label" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 30
 text = "Best: 69420"
-label_settings = SubResource("LabelSettings_7nx0y")
 horizontal_alignment = 1
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
@@ -97,6 +101,6 @@ text = "Restart"
 icon = ExtResource("5_dvuf8")
 
 [node name="Title" type="Sprite2D" parent="."]
-position = Vector2(317, 18)
+position = Vector2(349, 17.399994)
 scale = Vector2(1.3, 1.3)
 texture = SubResource("AnimatedTexture_pqh8g")
