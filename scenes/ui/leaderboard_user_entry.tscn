@@ -1,0 +1,98 @@
+[gd_scene load_steps=3 format=3 uid="uid://ccjhqyh1h5dv6"]
+
+[ext_resource type="Script" uid="uid://cb7ill5puaba5" path="res://scenes/ui/leaderboard_user_entry.gd" id="1_xaeq3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wqj57"]
+bg_color = Color(0.80442595, 0.5178656, 0.41382408, 1)
+
+[node name="LeaderboardUserEntry" type="Panel" node_paths=PackedStringArray("_position_label", "_name_label", "_score_label")]
+custom_minimum_size = Vector2(0, 36.855)
+size_flags_vertical = 3
+script = ExtResource("1_xaeq3")
+_position_label = NodePath("CenterContainer/HBoxContainer/Control/RankLabel")
+_name_label = NodePath("CenterContainer/HBoxContainer/Control2/NameLabel")
+_score_label = NodePath("CenterContainer/HBoxContainer/Control3/ScoreLabel")
+_player_panel_style_box = SubResource("StyleBoxFlat_wqj57")
+_player_text_color = Color(0.97969264, 0.97969264, 6.160736e-06, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -69.412506
+offset_top = -5.5975
+offset_right = 69.412506
+offset_bottom = 5.5975
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer"]
+custom_minimum_size = Vector2(261.99, 34.57)
+layout_mode = 2
+alignment = 1
+
+[node name="Control" type="Control" parent="CenterContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RankLabel" type="Label" parent="CenterContainer/HBoxContainer/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.5
+offset_top = -9.0
+offset_right = 8.5
+offset_bottom = 9.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "#1"
+
+[node name="Control2" type="Control" parent="CenterContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NameLabel" type="Label" parent="CenterContainer/HBoxContainer/Control2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.5
+offset_top = -9.0
+offset_right = 20.5
+offset_bottom = 9.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Obama"
+horizontal_alignment = 1
+
+[node name="Control3" type="Control" parent="CenterContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ScoreLabel" type="Label" parent="CenterContainer/HBoxContainer/Control3"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -12.0
+offset_top = -9.0
+offset_right = 12.0
+offset_bottom = 9.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "420"
+horizontal_alignment = 2
