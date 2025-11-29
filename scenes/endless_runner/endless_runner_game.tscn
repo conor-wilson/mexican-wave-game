@@ -33,3 +33,6 @@ max_movement_speed = 2000.0
 [node name="InputSystem" parent="." instance=ExtResource("2_46c3i")]
 
 [node name="TextManager" parent="." instance=ExtResource("6_46c3i")]
+
+[node name="AudioListener2D" type="AudioListener2D" parent="."]
+current = true

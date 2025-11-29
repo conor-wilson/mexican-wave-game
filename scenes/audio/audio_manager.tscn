@@ -1,0 +1,12 @@
+[gd_scene load_steps=5 format=3 uid="uid://1vgs6t35uuo"]
+
+[ext_resource type="Script" uid="uid://dgn4o2qbgbi3k" path="res://scenes/audio/audio_manager.gd" id="1_2ccwd"]
+[ext_resource type="AudioStream" uid="uid://boa45r2ypnrm3" path="res://assets/audio/OleAndSoOn.wav" id="2_cfl81"]
+[ext_resource type="AudioStream" uid="uid://d25vlwgx4eklt" path="res://assets/audio/Drumbeat.wav" id="3_85pnb"]
+[ext_resource type="PackedScene" uid="uid://dundex5h38clt" path="res://scenes/audio/audio_stream_scene.tscn" id="4_wp3eh"]
+
+[node name="AudioManager" type="Node"]
+script = ExtResource("1_2ccwd")
+music_tune = ExtResource("2_cfl81")
+music_beats = ExtResource("3_85pnb")
+_audio_stream_player_scene = ExtResource("4_wp3eh")

@@ -111,6 +111,9 @@ func _start():
 	_screen_view.start()
 	_popups.start()
 
+	# Start the music!
+	AudioManager.play_audio(AudioManager.music_tune)
+
 ## Triggered when the InputSystem signals that a letter input has been received.
 func _on_input_system_letter_input_received(letter_input: String) -> void:
 	if _state != State.READY && _state != State.PLAYING:
