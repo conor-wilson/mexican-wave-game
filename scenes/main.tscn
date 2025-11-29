@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://bklubkulutqyb"]
+[gd_scene load_steps=27 format=3 uid="uid://bklubkulutqyb"]
 
 [ext_resource type="Script" uid="uid://ddf65fgyd437n" path="res://scenes/main.gd" id="1_ig7tw"]
 [ext_resource type="Texture2D" uid="uid://cfvry7ctes6tc" path="res://assets/art/stadium/banner/banner_animated_texture.tres" id="3_choun"]
@@ -6,11 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://b4jfm050tml0n" path="res://scenes/crowd/crowd.tscn" id="4_tipki"]
 [ext_resource type="Texture2D" uid="uid://bgnn0ubbsmhw1" path="res://assets/art/stadium/StadiumInFrontOfPeople.png" id="5_85g3d"]
 [ext_resource type="Texture2D" uid="uid://jf051ov1rwtn" path="res://scenes/ui/start_button_animated_texture.tres" id="6_o6xl0"]
-[ext_resource type="Texture2D" uid="uid://c3gny642yo85j" path="res://assets/art/ui/Titles/GameTitle/LaOlaAnim1.png" id="7_qkpxi"]
+[ext_resource type="Texture2D" uid="uid://doxfnkwsv6oew" path="res://scenes/ui/game_title_animated_text.tres" id="7_jscy8"]
 [ext_resource type="Texture2D" uid="uid://b6c1x0tqb2smy" path="res://scenes/ui/settings_button_animated_texture.tres" id="7_tipki"]
-[ext_resource type="Texture2D" uid="uid://doakckvrjg8iy" path="res://assets/art/ui/Titles/GameTitle/LaOlaAnim2.png" id="8_5q0nq"]
 [ext_resource type="PackedScene" uid="uid://cnmf4ghisg08r" path="res://scenes/ui/pause_menu.tscn" id="8_tipki"]
-[ext_resource type="Texture2D" uid="uid://csxrffl53gttv" path="res://assets/art/ui/Titles/GameTitle/LaOlaAnim3.png" id="9_dgi5k"]
 [ext_resource type="Texture2D" uid="uid://qiev3vhh3af5" path="res://assets/art/ui/PopupBackground/PauseMenuBack1.png" id="11_jbj1t"]
 [ext_resource type="Texture2D" uid="uid://ddw7bg88wixnw" path="res://assets/art/ui/PopupBackground/PauseMenuBack2.png" id="12_dp3eg"]
 [ext_resource type="FontFile" uid="uid://b08gfrml13o4i" path="res://assets/fonts/Tomorrow_Night.ttf" id="12_muem4"]
@@ -31,15 +29,6 @@ font_color = Color(0.28235295, 0.6627451, 1, 1)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_yq6so"]
 load_path = "res://.godot/imported/StadiumPitch.png-e0747f3ce62a7d7f26a7177fed67fae4.ctex"
-
-[sub_resource type="AnimatedTexture" id="AnimatedTexture_j8jky"]
-frames = 3
-speed_scale = 4.0
-frame_0/texture = ExtResource("7_qkpxi")
-frame_1/texture = ExtResource("8_5q0nq")
-frame_1/duration = 1.0
-frame_2/texture = ExtResource("9_dgi5k")
-frame_2/duration = 1.0
 
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_chjal"]
 frames = 5
@@ -71,9 +60,9 @@ frame_5/duration = 1.0
 
 [node name="Main" type="Node2D" node_paths=PackedStringArray("_play_button", "_settings_button", "_tutorial_button", "_settings_popup", "_tutorial_popup")]
 script = ExtResource("1_ig7tw")
-_play_button = NodePath("MarginContainer/VBoxContainer/CenterContainer/VBoxContainer/PlayButton")
-_settings_button = NodePath("MarginContainer/VBoxContainer/CenterContainer/VBoxContainer/SettingsButton")
-_tutorial_button = NodePath("MarginContainer/VBoxContainer/CenterContainer/VBoxContainer/TutorialButton")
+_play_button = NodePath("MarginContainer/VBoxContainer/CenterContainer/VBoxContainer/CenterContainer/PlayButton")
+_settings_button = NodePath("MarginContainer/VBoxContainer/CenterContainer/VBoxContainer/CenterContainer2/SettingsButton")
+_tutorial_button = NodePath("MarginContainer/VBoxContainer/CenterContainer/VBoxContainer/CenterContainer3/TutorialButton")
 _settings_popup = NodePath("PauseMenu")
 _tutorial_popup = NodePath("TutorialPopup")
 
@@ -167,21 +156,27 @@ texture = SubResource("CompressedTexture2D_yq6so")
 
 [node name="MarginContainer" type="CenterContainer" parent="."]
 z_index = 5
-offset_top = 30.155
+offset_top = -12.0
 offset_right = 1152.0
-offset_bottom = 678.155
+offset_bottom = 636.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("7_jscy8")
 
 [node name="Control" type="Control" parent="MarginContainer/VBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(28.875, 102.225)
 layout_mode = 2
 
 [node name="GameTitle" type="Sprite2D" parent="MarginContainer/VBoxContainer/Control"]
-position = Vector2(129.325, 18.9)
+position = Vector2(215.99998, 25.845)
 scale = Vector2(1.5, 1.5)
-texture = SubResource("AnimatedTexture_j8jky")
+texture = ExtResource("7_jscy8")
 
 [node name="CenterContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer"]
 z_index = 10
@@ -191,21 +186,30 @@ layout_mode = 2
 layout_mode = 2
 alignment = 1
 
-[node name="PlayButton" type="Button" parent="MarginContainer/VBoxContainer/CenterContainer/VBoxContainer"]
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="PlayButton" type="Button" parent="MarginContainer/VBoxContainer/CenterContainer/VBoxContainer/CenterContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 icon = ExtResource("6_o6xl0")
 flat = true
 icon_alignment = 1
 
-[node name="SettingsButton" type="Button" parent="MarginContainer/VBoxContainer/CenterContainer/VBoxContainer"]
+[node name="CenterContainer2" type="CenterContainer" parent="MarginContainer/VBoxContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="SettingsButton" type="Button" parent="MarginContainer/VBoxContainer/CenterContainer/VBoxContainer/CenterContainer2"]
 layout_mode = 2
 size_flags_horizontal = 0
 icon = ExtResource("7_tipki")
 flat = true
 icon_alignment = 1
 
-[node name="TutorialButton" type="Button" parent="MarginContainer/VBoxContainer/CenterContainer/VBoxContainer"]
+[node name="CenterContainer3" type="CenterContainer" parent="MarginContainer/VBoxContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TutorialButton" type="Button" parent="MarginContainer/VBoxContainer/CenterContainer/VBoxContainer/CenterContainer3"]
 layout_mode = 2
 size_flags_horizontal = 0
 icon = SubResource("AnimatedTexture_chjal")
