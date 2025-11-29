@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://rej5gwy0fxir" path="res://assets/art/ui/PopupBackground/pause_menu_background_animated_texture.tres" id="2_h30ef"]
 [ext_resource type="PackedScene" uid="uid://d0qg5byt1cjmw" path="res://scenes/ui/person_ui.tscn" id="3_twff1"]
 [ext_resource type="FontFile" uid="uid://b08gfrml13o4i" path="res://assets/fonts/Tomorrow_Night.ttf" id="4_sjqu8"]
-[ext_resource type="Texture2D" uid="uid://b6c1x0tqb2smy" path="res://scenes/ui/settings_button_animated_texture.tres" id="5_67vh5"]
+[ext_resource type="Texture2D" uid="uid://d360dhmfqmgal" path="res://assets/art/ui/Titles/SettingsTitle.png" id="5_uek7y"]
 [ext_resource type="Texture2D" uid="uid://dcq0fnknm0rwg" path="res://assets/art/ui/Icons/X.png" id="6_36hg5"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_yc10j"]
@@ -195,12 +195,13 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -132.49976
-offset_top = -222.0
-offset_right = 132.50024
-offset_bottom = -93.0
+offset_left = -270.37952
+offset_top = -280.36
+offset_right = -5.379532
+offset_bottom = -151.35999
 grow_horizontal = 2
-texture = ExtResource("5_67vh5")
+scale = Vector2(2, 2)
+texture = ExtResource("5_uek7y")
 
 [node name="ClosePopupButton" type="Button" parent="."]
 layout_mode = 1

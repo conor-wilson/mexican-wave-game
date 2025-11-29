@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://bklubkulutqyb"]
+[gd_scene load_steps=38 format=3 uid="uid://bklubkulutqyb"]
 
 [ext_resource type="Script" uid="uid://ddf65fgyd437n" path="res://scenes/main.gd" id="1_ig7tw"]
 [ext_resource type="Texture2D" uid="uid://cfvry7ctes6tc" path="res://assets/art/stadium/banner/banner_animated_texture.tres" id="3_choun"]
@@ -6,8 +6,11 @@
 [ext_resource type="PackedScene" uid="uid://b4jfm050tml0n" path="res://scenes/crowd/crowd.tscn" id="4_tipki"]
 [ext_resource type="Texture2D" uid="uid://bgnn0ubbsmhw1" path="res://assets/art/stadium/StadiumInFrontOfPeople.png" id="5_85g3d"]
 [ext_resource type="Texture2D" uid="uid://jf051ov1rwtn" path="res://scenes/ui/start_button_animated_texture.tres" id="6_o6xl0"]
+[ext_resource type="Texture2D" uid="uid://c3gny642yo85j" path="res://assets/art/ui/Titles/GameTitle/LaOlaAnim1.png" id="7_qkpxi"]
 [ext_resource type="Texture2D" uid="uid://b6c1x0tqb2smy" path="res://scenes/ui/settings_button_animated_texture.tres" id="7_tipki"]
+[ext_resource type="Texture2D" uid="uid://doakckvrjg8iy" path="res://assets/art/ui/Titles/GameTitle/LaOlaAnim2.png" id="8_5q0nq"]
 [ext_resource type="PackedScene" uid="uid://cnmf4ghisg08r" path="res://scenes/ui/pause_menu.tscn" id="8_tipki"]
+[ext_resource type="Texture2D" uid="uid://csxrffl53gttv" path="res://assets/art/ui/Titles/GameTitle/LaOlaAnim3.png" id="9_dgi5k"]
 [ext_resource type="Texture2D" uid="uid://b8elscsrtwq76" path="res://assets/art/ui/Button_Settings/Sprite-Settings1.png" id="10_fv21b"]
 [ext_resource type="Texture2D" uid="uid://qiev3vhh3af5" path="res://assets/art/ui/PopupBackground/PauseMenuBack1.png" id="11_jbj1t"]
 [ext_resource type="Texture2D" uid="uid://bob3f0u3rn7m3" path="res://assets/art/ui/Button_Settings/Sprite-Settings2.png" id="11_tel4y"]
@@ -37,8 +40,14 @@ font_color = Color(0.28235295, 0.6627451, 1, 1)
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_yq6so"]
 load_path = "res://.godot/imported/StadiumPitch.png-e0747f3ce62a7d7f26a7177fed67fae4.ctex"
 
-[sub_resource type="LabelSettings" id="LabelSettings_0xm2m"]
-font_size = 48
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_j8jky"]
+frames = 3
+speed_scale = 4.0
+frame_0/texture = ExtResource("7_qkpxi")
+frame_1/texture = ExtResource("8_5q0nq")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("9_dgi5k")
+frame_2/duration = 1.0
 
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_chjal"]
 frames = 13
@@ -182,21 +191,21 @@ texture = SubResource("CompressedTexture2D_yq6so")
 
 [node name="MarginContainer" type="CenterContainer" parent="."]
 z_index = 5
-offset_top = 59.999996
+offset_top = 30.155
 offset_right = 1152.0
-offset_bottom = 708.0
+offset_bottom = 678.155
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 
-[node name="NameLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="Control" type="Control" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(28.875, 102.225)
 layout_mode = 2
-theme_override_fonts/font = ExtResource("12_muem4")
-theme_override_font_sizes/font_size = 32
-text = "LA OLA"
-label_settings = SubResource("LabelSettings_0xm2m")
-horizontal_alignment = 1
-vertical_alignment = 1
+
+[node name="GameTitle" type="Sprite2D" parent="MarginContainer/VBoxContainer/Control"]
+position = Vector2(129.325, 18.9)
+scale = Vector2(1.5, 1.5)
+texture = SubResource("AnimatedTexture_j8jky")
 
 [node name="CenterContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer"]
 z_index = 10
@@ -207,18 +216,21 @@ layout_mode = 2
 
 [node name="PlayButton" type="Button" parent="MarginContainer/VBoxContainer/CenterContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 0
 icon = ExtResource("6_o6xl0")
 flat = true
 icon_alignment = 1
 
 [node name="SettingsButton" type="Button" parent="MarginContainer/VBoxContainer/CenterContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 0
 icon = ExtResource("7_tipki")
 flat = true
 icon_alignment = 1
 
 [node name="TutorialButton" type="Button" parent="MarginContainer/VBoxContainer/CenterContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 0
 icon = SubResource("AnimatedTexture_chjal")
 flat = true
 icon_alignment = 1

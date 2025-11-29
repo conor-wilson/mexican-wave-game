@@ -11,8 +11,8 @@
 [ext_resource type="Texture2D" uid="uid://x3g75e2sw1lb" path="res://assets/art/ui/Icons/CaseSensitivityOn.png" id="7_lrbnh"]
 [ext_resource type="Texture2D" uid="uid://dcq0fnknm0rwg" path="res://assets/art/ui/Icons/X.png" id="8_2rlsb"]
 [ext_resource type="Script" uid="uid://b3iyxk51da68y" path="res://scenes/ui/case_sensitive_toggle_button.gd" id="8_6qnem"]
-[ext_resource type="Texture2D" uid="uid://b6c1x0tqb2smy" path="res://scenes/ui/settings_button_animated_texture.tres" id="8_coo1x"]
 [ext_resource type="Texture2D" uid="uid://cblhmpjclebn8" path="res://assets/art/ui/Icons/CaseSensitivityOff.png" id="9_ynwdf"]
+[ext_resource type="Texture2D" uid="uid://d360dhmfqmgal" path="res://assets/art/ui/Titles/SettingsTitle.png" id="12_lrbnh"]
 
 [node name="PauseMenu" type="ColorRect" node_paths=PackedStringArray("_retry_button", "_home_button", "_close_button")]
 anchors_preset = 8
@@ -124,12 +124,13 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -132.49976
-offset_top = -61.015
-offset_right = 132.50024
-offset_bottom = 67.985
+offset_left = -196.60976
+offset_top = -78.61
+offset_right = 68.39026
+offset_bottom = 50.39
 grow_horizontal = 2
-texture = ExtResource("8_coo1x")
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("12_lrbnh")
 
 [node name="ClosePopupButton" type="Button" parent="."]
 layout_mode = 1
