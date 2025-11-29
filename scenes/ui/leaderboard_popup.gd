@@ -103,8 +103,8 @@ func _navigate_to_leaderboard_page(index):
 	_current_page_index = clamp(index, 0, _leaderboard_pages.size())
 
 	# Toggle buttons visibility based on page
-	var has_left = index > 0
-	var has_right = index < _leaderboard_pages.size() -1
+	var has_left = _current_page_index > 0
+	var has_right = _current_page_index < _leaderboard_pages.size() -1
 	_leftmost_button.visible = has_left
 	_left_button.visible = has_left
 	_right_button.visible = has_right
