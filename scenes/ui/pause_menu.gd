@@ -11,6 +11,8 @@ var _game_controller:GameController
 func open_popup(game_controller:GameController = null):
 	_game_controller = game_controller
 	_setup_buttons()
+	AudioManager.play_audio(AudioManager.music_tune, 0, false, 0)
+	AudioManager.play_audio(AudioManager.music_beats, 0.5, false)
 	show()
 
 func _setup_buttons():
@@ -30,4 +32,6 @@ func _restart_button_clicked():
 func _close_button_clicked():
 	if _game_controller != null:
 		_game_controller.unpause()
+		AudioManager.play_audio(AudioManager.music_tune, 1, false, 0.25)
+		AudioManager.play_audio(AudioManager.music_beats, 1, false)
 	hide()
