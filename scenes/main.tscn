@@ -20,7 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://5sj7yhcl7bgn" path="res://scenes/ui/tutorial_popup.tscn" id="17_muem4"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_yq6so"]
-load_path = "res://.godot/imported/StadiumPitch.png-e0747f3ce62a7d7f26a7177fed67fae4.ctex"
+load_path = "res://.godot/imported/StadiumPitch.png-16a5b053450c015e0f7b27af646f467c.ctex"
 
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_chjal"]
 frames = 5
