@@ -1,8 +1,6 @@
 name: "Web Export"
 on: 
-  push:
-    branches:
-        - main
+  workflow_dispatch:
 
 env:
   GODOT_VERSION: 4.5.1
