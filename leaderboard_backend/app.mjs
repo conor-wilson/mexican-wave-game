@@ -84,7 +84,8 @@ async function setName(userId, name) {
   const col = mongoCollection(scoresDb, usersCollections);
   name = cleanName(name);
   //throw badRequestError("Setting names is disabled for now.");
-  await col.updateOne({ userId }, { $set: { userId, name }}, { upsert: true });
+  const createdAt = new Date();
+  await col.updateOne({ userId }, { $set: { name }, $setOnInsert: { createdAt }}, { upsert: true });
   return name;
 }
 
