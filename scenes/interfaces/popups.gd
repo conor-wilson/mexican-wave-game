@@ -12,6 +12,9 @@ extends CanvasLayer
 
 var _game_controller:GameController
 
+func _ready() -> void:
+	_setup_all()
+
 func set_game_controller(game_controller:GameController):
 	_game_controller = game_controller
 
@@ -46,7 +49,6 @@ func show_ready_screen():
 ## Shows the in-game HUD
 func show_hud():
 	_hide_all()
-	_score_label.text = "0"
 	_hud.show()
 
 func _on_pause_button_pressed():
