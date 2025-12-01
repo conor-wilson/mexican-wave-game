@@ -133,6 +133,37 @@ position = Vector2(535, 392)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("5_85g3d")
 
+[node name="Trim1" type="ColorRect" parent="EndlessRunnerScreenView/ScrollingForeground/FrontRails"]
+z_index = 25
+offset_top = 589.0
+offset_right = 130.0
+offset_bottom = 594.0
+color = Color(0.17254902, 0.24313726, 0.38039216, 1)
+
+[node name="Trim2" type="ColorRect" parent="EndlessRunnerScreenView/ScrollingForeground/FrontRails"]
+z_index = 25
+offset_left = 150.0
+offset_top = 589.0
+offset_right = 563.0
+offset_bottom = 594.0
+color = Color(0.17254902, 0.24313726, 0.38039216, 1)
+
+[node name="Trim3" type="ColorRect" parent="EndlessRunnerScreenView/ScrollingForeground/FrontRails"]
+z_index = 25
+offset_left = 586.0
+offset_top = 589.0
+offset_right = 979.0
+offset_bottom = 594.0
+color = Color(0.17254902, 0.24313726, 0.38039216, 1)
+
+[node name="Trim4" type="ColorRect" parent="EndlessRunnerScreenView/ScrollingForeground/FrontRails"]
+z_index = 25
+offset_left = 996.0
+offset_top = 589.0
+offset_right = 1152.0
+offset_bottom = 594.0
+color = Color(0.17254902, 0.24313726, 0.38039216, 1)
+
 [node name="Pitch" type="Parallax2D" parent="EndlessRunnerScreenView/ScrollingForeground"]
 scroll_scale = Vector2(0.99, 1)
 repeat_size = Vector2(1152, 0)
@@ -140,6 +171,133 @@ repeat_size = Vector2(1152, 0)
 [node name="StadiumPitch" type="Sprite2D" parent="EndlessRunnerScreenView/ScrollingForeground/Pitch"]
 position = Vector2(1152, 344)
 texture = SubResource("CompressedTexture2D_yq6so")
+
+[node name="ColorRect3" type="ColorRect" parent="EndlessRunnerScreenView/ScrollingForeground/Pitch"]
+offset_top = 603.0
+offset_right = 1152.0
+offset_bottom = 607.0
+color = Color(0.30955997, 0.55645275, 0.14377064, 1)
+
+[node name="Shadow1" type="Node2D" parent="EndlessRunnerScreenView/ScrollingForeground/Pitch"]
+position = Vector2(0, -1)
+
+[node name="ColorRect" type="ColorRect" parent="EndlessRunnerScreenView/ScrollingForeground/Pitch/Shadow1"]
+offset_left = 129.0
+offset_top = 588.0
+offset_right = 150.0
+offset_bottom = 597.0
+color = Color(0.34117648, 0.39607844, 0.47843137, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="EndlessRunnerScreenView/ScrollingForeground/Pitch/Shadow1"]
+offset_left = 133.0
+offset_top = 590.0
+offset_right = 146.0
+offset_bottom = 599.0
+color = Color(0.34117648, 0.39607844, 0.47843137, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="EndlessRunnerScreenView/ScrollingForeground/Pitch/Shadow1"]
+offset_left = 131.0
+offset_top = 588.0
+offset_right = 148.0
+offset_bottom = 598.0
+color = Color(0.34117648, 0.39607844, 0.47843137, 1)
+
+[node name="ColorRect5" type="ColorRect" parent="EndlessRunnerScreenView/ScrollingForeground/Pitch/Shadow1"]
+offset_left = 129.0
+offset_top = 587.0
+offset_right = 150.0
+offset_bottom = 596.0
+color = Color(0.34117648, 0.39607844, 0.47843137, 1)
+
+[node name="ColorRect6" type="ColorRect" parent="EndlessRunnerScreenView/ScrollingForeground/Pitch/Shadow1"]
+offset_left = 136.0
+offset_top = 591.0
+offset_right = 143.0
+offset_bottom = 600.0
+color = Color(0.34117648, 0.39607844, 0.47843137, 1)
+
+[node name="Shadow2" type="Node2D" parent="EndlessRunnerScreenView/ScrollingForeground/Pitch"]
+position = Vector2(438, -1)
+
+[node name="ColorRect" type="ColorRect" parent="EndlessRunnerScreenView/ScrollingForeground/Pitch/Shadow2"]
+offset_left = 129.0
+offset_top = 588.0
+offset_right = 150.0
+offset_bottom = 597.0
+color = Color(0.34117648, 0.39607844, 0.47843137, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="EndlessRunnerScreenView/ScrollingForeground/Pitch/Shadow2"]
+offset_left = 133.0
+offset_top = 590.0
+offset_right = 146.0
+offset_bottom = 599.0
+color = Color(0.34117648, 0.39607844, 0.47843137, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="EndlessRunnerScreenView/ScrollingForeground/Pitch/Shadow2"]
+offset_left = 131.0
+offset_top = 588.0
+offset_right = 148.0
+offset_bottom = 598.0
+color = Color(0.34117648, 0.39607844, 0.47843137, 1)
+
+[node name="ColorRect5" type="ColorRect" parent="EndlessRunnerScreenView/ScrollingForeground/Pitch/Shadow2"]
+offset_left = 129.0
+offset_top = 587.0
+offset_right = 150.0
+offset_bottom = 596.0
+color = Color(0.34117648, 0.39607844, 0.47843137, 1)
+
+[node name="ColorRect6" type="ColorRect" parent="EndlessRunnerScreenView/ScrollingForeground/Pitch/Shadow2"]
+offset_left = 136.0
+offset_top = 591.0
+offset_right = 143.0
+offset_bottom = 600.0
+color = Color(0.34117648, 0.39607844, 0.47843137, 1)
+
+[node name="Shadow3" type="Node2D" parent="EndlessRunnerScreenView/ScrollingForeground/Pitch"]
+position = Vector2(849, -1)
+
+[node name="ColorRect" type="ColorRect" parent="EndlessRunnerScreenView/ScrollingForeground/Pitch/Shadow3"]
+offset_left = 129.0
+offset_top = 588.0
+offset_right = 150.0
+offset_bottom = 597.0
+color = Color(0.34117648, 0.39607844, 0.47843137, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="EndlessRunnerScreenView/ScrollingForeground/Pitch/Shadow3"]
+offset_left = 133.0
+offset_top = 590.0
+offset_right = 146.0
+offset_bottom = 599.0
+color = Color(0.34117648, 0.39607844, 0.47843137, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="EndlessRunnerScreenView/ScrollingForeground/Pitch/Shadow3"]
+offset_left = 131.0
+offset_top = 588.0
+offset_right = 148.0
+offset_bottom = 598.0
+color = Color(0.34117648, 0.39607844, 0.47843137, 1)
+
+[node name="ColorRect5" type="ColorRect" parent="EndlessRunnerScreenView/ScrollingForeground/Pitch/Shadow3"]
+offset_left = 129.0
+offset_top = 587.0
+offset_right = 150.0
+offset_bottom = 596.0
+color = Color(0.34117648, 0.39607844, 0.47843137, 1)
+
+[node name="ColorRect6" type="ColorRect" parent="EndlessRunnerScreenView/ScrollingForeground/Pitch/Shadow3"]
+offset_left = 136.0
+offset_top = 591.0
+offset_right = 143.0
+offset_bottom = 600.0
+color = Color(0.34117648, 0.39607844, 0.47843137, 1)
+
+[node name="ColorRect5" type="ColorRect" parent="EndlessRunnerScreenView/ScrollingForeground/Pitch"]
+offset_left = -9.0
+offset_top = 582.0
+offset_right = 1153.0
+offset_bottom = 591.0
+color = Color(0.34117648, 0.39607844, 0.47843137, 1)
 
 [node name="Title" type="TextureRect" parent="."]
 z_as_relative = false
