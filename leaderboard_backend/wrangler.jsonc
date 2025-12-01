@@ -1,6 +1,6 @@
 {
 	"$schema": "node_modules/wrangler/config-schema.json",
-	"name": "leaderboard-backend",
+	"name": "mexican-wave-backend",
 	"main": "app.mjs",
 	"compatibility_date": "2025-11-21",
 	"observability": {

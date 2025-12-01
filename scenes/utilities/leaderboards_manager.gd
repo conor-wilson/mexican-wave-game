@@ -16,7 +16,7 @@ func _ready():
 
 	player_name = SaveManager.get_value("name")
 	if player_name == null:
-		set_player_name(user_id)
+		set_player_name()
 
 	fetch_scores(LEADERBOARD_ID, user_id)
 
