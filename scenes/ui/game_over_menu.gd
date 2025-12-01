@@ -79,8 +79,11 @@ func hide_name_entry() -> void:
 	_retry_button.show()
 
 func accept_text_input(text:String) -> void:
-	print(text)
-	hide_name_entry()
+	if text != "":
+		
+		# @SANKHA: USE THE TEXT HERE!
+		
+		hide_name_entry()
 
 func _on_name_entry_text_submitted(new_text: String) -> void:
 	accept_text_input(new_text)
