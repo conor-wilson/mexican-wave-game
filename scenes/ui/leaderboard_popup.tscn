@@ -1,14 +1,15 @@
-[gd_scene load_steps=11 format=3 uid="uid://b6fwghryb8gr6"]
+[gd_scene load_steps=12 format=3 uid="uid://b6fwghryb8gr6"]
 
 [ext_resource type="Theme" uid="uid://dy8agccfk1yd7" path="res://scenes/ui/ui_theme.tres" id="1_cqqwj"]
 [ext_resource type="Script" uid="uid://cimclbqfrxm50" path="res://scenes/ui/leaderboard_popup.gd" id="2_cqqwj"]
-[ext_resource type="PackedScene" uid="uid://xa6pvobnmya3" path="res://scenes/ui/leaderboard_user_entry.tscn" id="3_7avpk"]
+[ext_resource type="PackedScene" uid="uid://ccjhqyh1h5dv6" path="res://scenes/ui/leaderboard_user_entry.tscn" id="3_7avpk"]
 [ext_resource type="Texture2D" uid="uid://rej5gwy0fxir" path="res://assets/art/ui/PopupBackground/pause_menu_background_animated_texture.tres" id="3_c6wsd"]
 [ext_resource type="FontFile" uid="uid://b08gfrml13o4i" path="res://assets/fonts/Tomorrow_Night.ttf" id="4_krk68"]
 [ext_resource type="Texture2D" uid="uid://cl351rcg7bgiu" path="res://assets/art/ui/Titles/GameOverTitle/GameOverAnimOutlined1.png" id="7_cxv0x"]
 [ext_resource type="Texture2D" uid="uid://ccrlwir7i7vnv" path="res://assets/art/ui/Titles/GameOverTitle/GameOverAnimOutlined2.png" id="8_ku62i"]
 [ext_resource type="Texture2D" uid="uid://bbxahrlp7x5xn" path="res://assets/art/ui/Titles/GameOverTitle/GameOverAnimOutlined3.png" id="9_6krek"]
 [ext_resource type="Texture2D" uid="uid://dcq0fnknm0rwg" path="res://assets/art/ui/Icons/X.png" id="9_7avpk"]
+[ext_resource type="Texture2D" uid="uid://dm4wgbwrb3whe" path="res://assets/art/ui/Icons/SubmitArrow.png" id="10_7avpk"]
 
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_pqh8g"]
 frames = 3
@@ -19,7 +20,7 @@ frame_1/duration = 1.0
 frame_2/texture = ExtResource("9_6krek")
 frame_2/duration = 1.0
 
-[node name="LeaderboardPopup" type="ColorRect" node_paths=PackedStringArray("_leaderboard_entries_left", "_leaderboard_entries_right", "_leftmost_button", "_left_button", "_player_button", "_right_button", "_rightmost_button", "_close_button")]
+[node name="LeaderboardPopup" type="ColorRect" node_paths=PackedStringArray("_leaderboard_entries_left", "_leaderboard_entries_right", "_name_entry", "_leftmost_button", "_left_button", "_player_button", "_right_button", "_rightmost_button", "_close_button")]
 z_index = 80
 offset_left = 232.0
 offset_top = 128.0
@@ -30,6 +31,7 @@ color = Color(0, 1, 1, 0)
 script = ExtResource("2_cqqwj")
 _leaderboard_entries_left = [NodePath("LeftColumn/VBoxContainer/LeaderboardUserEntry"), NodePath("LeftColumn/VBoxContainer/LeaderboardUserEntry2"), NodePath("LeftColumn/VBoxContainer/LeaderboardUserEntry3"), NodePath("LeftColumn/VBoxContainer/LeaderboardUserEntry4"), NodePath("LeftColumn/VBoxContainer/LeaderboardUserEntry5")]
 _leaderboard_entries_right = [NodePath("RightColumn/VBoxContainer/LeaderboardUserEntry"), NodePath("RightColumn/VBoxContainer/LeaderboardUserEntry2"), NodePath("RightColumn/VBoxContainer/LeaderboardUserEntry3"), NodePath("RightColumn/VBoxContainer/LeaderboardUserEntry4"), NodePath("RightColumn/VBoxContainer/LeaderboardUserEntry5")]
+_name_entry = NodePath("HBoxContainer/NameEntry")
 _leftmost_button = NodePath("CenterContainer2/HBoxContainer2/FirstPageButton")
 _left_button = NodePath("CenterContainer2/HBoxContainer2/LeftButton")
 _player_button = NodePath("CenterContainer2/HBoxContainer2/PlayerButton")
@@ -175,3 +177,28 @@ offset_bottom = 4.644993
 grow_horizontal = 0
 icon = ExtResource("9_7avpk")
 icon_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 78.0
+offset_top = 307.0
+offset_right = 617.0
+offset_bottom = 351.0
+
+[node name="NameEntryInstructions" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Your name: "
+horizontal_alignment = 1
+
+[node name="NameEntry" type="LineEdit" parent="HBoxContainer"]
+custom_minimum_size = Vector2(327, 0)
+layout_mode = 2
+caret_blink = true
+
+[node name="SubmitButton" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+icon = ExtResource("10_7avpk")
+
+[connection signal="text_submitted" from="HBoxContainer/NameEntry" to="." method="_on_name_entry_text_submitted"]
+[connection signal="pressed" from="HBoxContainer/SubmitButton" to="." method="_on_submit_button_pressed"]

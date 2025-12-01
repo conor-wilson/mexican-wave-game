@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://bklubkulutqyb"]
+[gd_scene load_steps=33 format=3 uid="uid://bklubkulutqyb"]
 
 [ext_resource type="Script" uid="uid://ddf65fgyd437n" path="res://scenes/main.gd" id="1_ig7tw"]
 [ext_resource type="Texture2D" uid="uid://w60be57ca6ml" path="res://assets/art/stadium/clouds/CloudSprite-1.png" id="3_dp3eg"]
@@ -43,6 +43,8 @@ frame_3/texture = ExtResource("15_vxglm")
 frame_3/duration = 1.0
 frame_4/texture = ExtResource("16_2f3dj")
 frame_4/duration = 1.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vxglm"]
 
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_pm3ni"]
 frames = 4
@@ -385,6 +387,7 @@ offset_top = 255.0
 offset_right = 1173.0
 offset_bottom = 312.0
 scale = Vector2(0.7, 0.7)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_vxglm")
 icon = SubResource("AnimatedTexture_pm3ni")
 flat = true
 
@@ -394,6 +397,7 @@ offset_left = 1063.0
 offset_top = 254.0
 offset_right = 1133.0001
 offset_bottom = 321.14285
+theme_override_styles/focus = SubResource("StyleBoxEmpty_vxglm")
 icon = SubResource("AnimatedTexture_tel4y")
 flat = true
 
@@ -403,6 +407,7 @@ offset_left = 852.0
 offset_top = 253.0
 offset_right = 924.0
 offset_bottom = 325.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_vxglm")
 icon = SubResource("AnimatedTexture_tel4y")
 flat = true
 
