@@ -61,6 +61,19 @@ patch_margin_top = 49
 patch_margin_right = 49
 patch_margin_bottom = 49
 
+[node name="HeaderTextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -196.60974
+offset_top = -112.0
+offset_right = 68.39026
+offset_bottom = 17.0
+grow_horizontal = 2
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("12_lrbnh")
+
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 8
@@ -121,19 +134,6 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("6_ht4ye")
 text = " Restart "
 icon = ExtResource("5_coo1x")
-
-[node name="HeaderTextureRect" type="TextureRect" parent="."]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -196.60976
-offset_top = -112.0
-offset_right = 68.39026
-offset_bottom = 17.0
-grow_horizontal = 2
-scale = Vector2(1.5, 1.5)
-texture = ExtResource("12_lrbnh")
 
 [node name="ClosePopupButton" type="Button" parent="."]
 layout_mode = 1
