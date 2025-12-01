@@ -20,7 +20,7 @@ frame_1/duration = 1.0
 frame_2/texture = ExtResource("8_g4y5r")
 frame_2/duration = 1.0
 
-[node name="GameOverMenu" type="ColorRect" node_paths=PackedStringArray("_retry_button", "_main_menu_button", "_leaderboard_entry_container")]
+[node name="GameOverMenu" type="ColorRect" node_paths=PackedStringArray("_retry_button", "_main_menu_button", "_name_entry_instructions", "_name_entry", "_name_submit_button", "_leaderboard_entry_container")]
 offset_left = 232.0
 offset_top = 128.0
 offset_right = 848.0
@@ -30,6 +30,9 @@ color = Color(0, 1, 1, 0)
 script = ExtResource("1_7nx0y")
 _retry_button = NodePath("CenterContainer2/HBoxContainer2/RestartButton")
 _main_menu_button = NodePath("CenterContainer2/HBoxContainer2/QuitButton")
+_name_entry_instructions = NodePath("CenterContainer/VBoxContainer/NameEntryInstructions")
+_name_entry = NodePath("CenterContainer/VBoxContainer/HBoxContainer/NameEntry")
+_name_submit_button = NodePath("CenterContainer/VBoxContainer/HBoxContainer/SubmitButton")
 _leaderboard_entry_container = NodePath("CenterContainer/VBoxContainer/VBoxContainer")
 _leaderboard_entry_scene = ExtResource("4_g4y5r")
 
@@ -102,9 +105,23 @@ theme_override_font_sizes/font_size = 30
 text = "Best: 69420"
 horizontal_alignment = 1
 
-[node name="LineEdit" type="LineEdit" parent="CenterContainer/VBoxContainer"]
+[node name="NameEntryInstructions" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "
+Enter your name:"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="NameEntry" type="LineEdit" parent="CenterContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(162, 0)
 layout_mode = 2
 caret_blink = true
+
+[node name="SubmitButton" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Submit"
 
 [node name="Title" type="Sprite2D" parent="."]
 position = Vector2(349, -49.865)
@@ -135,3 +152,6 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("4_rvyv1")
 text = "Restart"
 icon = ExtResource("5_dvuf8")
+
+[connection signal="text_submitted" from="CenterContainer/VBoxContainer/HBoxContainer/NameEntry" to="." method="_on_name_entry_text_submitted"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/SubmitButton" to="." method="_on_submit_button_pressed"]
