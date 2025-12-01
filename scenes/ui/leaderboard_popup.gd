@@ -3,6 +3,8 @@ class_name LeaderboardPopup extends ColorRect
 @export var _leaderboard_entries_left: Array[LeaderboardUserEntry]
 @export var _leaderboard_entries_right: Array[LeaderboardUserEntry]
 
+@export var _name_entry:LineEdit
+
 @export var _leftmost_button:Button
 @export var _left_button:Button
 @export var _player_button:Button
@@ -105,3 +107,14 @@ func _populate_entries(entries:Array[LeaderboardUserEntry], data:Array, data_sta
 			entry_vis.init(entry_data.position, entry_data.name, entry_data.score, entry_data.is_player)
 		else:
 			entry_vis.visible = false
+
+func accept_text_input(text:String) -> void:
+	if text != "":
+		print(text)
+		# @SANKHA: USE THE TEXT HERE!
+
+func _on_name_entry_text_submitted(new_text: String) -> void:
+	accept_text_input(new_text)
+
+func _on_submit_button_pressed() -> void:
+	accept_text_input(_name_entry.text)
