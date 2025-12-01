@@ -16,6 +16,9 @@ class_name LeaderboardPopup extends ColorRect
 var _leaderboard_pages: Array = []
 var _current_page_index = 0
 var _player_page_index = 0
+var _player_data = null
+
+var regex = RegEx.new()
 
 func _ready() -> void:
 	_setup_buttons()
@@ -30,6 +33,7 @@ func _on_visibility_changed():
 func _on_show():
 	# Prepare the leaderboard data for pages
 	_populate_leaderboard_data()
+	regex.compile(r"[^A-Za-z0-9 _-]")
 
 	# Search and store the PAGE that has the player's entry
 	_player_page_index = -1
@@ -56,6 +60,7 @@ func _setup_buttons() -> void:
 func _populate_leaderboard_data():
 	var  scores = LeaderboardsManager.get_board_scores(LeaderboardsManager.LEADERBOARD_ID)
 
+	_player_data = scores.filter(func(s): return s.is_player)[0]
 	_leaderboard_pages = []
 	var page_size = 10
 
@@ -110,11 +115,19 @@ func _populate_entries(entries:Array[LeaderboardUserEntry], data:Array, data_sta
 
 func accept_text_input(text:String) -> void:
 	if text != "":
-		print(text)
-		# @SANKHA: USE THE TEXT HERE!
+		LeaderboardsManager.set_player_name(text)
+		SaveManager.set_value("nameChosen", true)
+		_player_data.name = text
+		_name_entry.set_text("")
 
 func _on_name_entry_text_submitted(new_text: String) -> void:
 	accept_text_input(new_text)
 
 func _on_submit_button_pressed() -> void:
 	accept_text_input(_name_entry.text)
+
+func _on_name_entry_text_changed(new_text: String) -> void:
+	var cleaned_text = regex.sub(new_text, "", true)
+	var pos = _name_entry.caret_column
+	_name_entry.set_text(cleaned_text)
+	_name_entry.caret_column = pos

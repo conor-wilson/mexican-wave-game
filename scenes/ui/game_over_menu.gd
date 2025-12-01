@@ -109,6 +109,6 @@ func _on_submit_button_pressed() -> void:
 
 func _on_name_entry_text_changed(new_text: String) -> void:
 	var cleaned_text = regex.sub(new_text, "", true)
-	var pos = %NameEntry.caret_column
-	%NameEntry.set_text(cleaned_text)
-	%NameEntry.caret_column = pos
+	var pos = _name_entry.caret_column
+	_name_entry.set_text(cleaned_text)
+	_name_entry.caret_column = pos

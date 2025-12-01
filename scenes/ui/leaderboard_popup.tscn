@@ -188,17 +188,19 @@ offset_bottom = 351.0
 [node name="NameEntryInstructions" type="Label" parent="HBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
-text = "Your name: "
+text = "Change name: "
 horizontal_alignment = 1
 
 [node name="NameEntry" type="LineEdit" parent="HBoxContainer"]
 custom_minimum_size = Vector2(327, 0)
 layout_mode = 2
+max_length = 16
 caret_blink = true
 
 [node name="SubmitButton" type="Button" parent="HBoxContainer"]
 layout_mode = 2
 icon = ExtResource("10_7avpk")
 
+[connection signal="text_changed" from="HBoxContainer/NameEntry" to="." method="_on_name_entry_text_changed"]
 [connection signal="text_submitted" from="HBoxContainer/NameEntry" to="." method="_on_name_entry_text_submitted"]
 [connection signal="pressed" from="HBoxContainer/SubmitButton" to="." method="_on_submit_button_pressed"]
